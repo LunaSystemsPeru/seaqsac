@@ -1,9 +1,9 @@
 <?php
-require '../models/cl_cliente.php';
-$c_cliente = new cl_cliente();
+require '../../models/Cliente.php';
+$c_cliente = new Cliente();
 
-require '../models/cl_tipos.php';
-$c_tipo = new cl_tipos();
+require '../../models/TipoClasificacion.php';
+$c_tipo = new TipoClasificacion();
 $c_tipo->setCodigo(1);
 ?>
 <!DOCTYPE html>
@@ -26,9 +26,9 @@ $c_tipo->setCodigo(1);
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="../public/assets/css/style.css">
+    <link rel="stylesheet" href="../../vendors/assets/css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../public/assets/images/favicon.png"/>
+    <link rel="shortcut icon" href="../../vendors/assets/images/favicon.png"/>
 </head>
 
 <body>
@@ -144,11 +144,11 @@ $c_tipo->setCodigo(1);
 <!-- Plugin js for this page-->
 <!-- End plugin js for this page-->
 <!-- inject:js -->
-<script src="../public/assets/js/off-canvas.js"></script>
-<script src="../public/assets/js/misc.js"></script>
+<script src="../../vendors/assets/js/off-canvas.js"></script>
+<script src="../../vendors/assets/js/misc.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-<script src="../public/assets/js/dashboard.js"></script>
+<script src="../../vendors/assets/js/dashboard.js"></script>
 <!-- End custom js for this page-->
 
 <script>
