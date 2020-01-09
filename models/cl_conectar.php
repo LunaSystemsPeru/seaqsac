@@ -10,7 +10,7 @@ class cl_conectar
 {
     private static $_instancia;
     private $_connection;
-    private $_host = "localhost";
+    private $_host = "192.168.1.248";
     private $_user = "may06sed_root";
     //private $_user = "root_lsp";
     private $_pass = "qROYGWKzi=IL";
