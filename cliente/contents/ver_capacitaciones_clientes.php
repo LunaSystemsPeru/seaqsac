@@ -1,7 +1,7 @@
 <?php
 session_start();
-require 'clases/cl_capacitacion.php';
-$c_capacitacion = new cl_capacitacion();
+require 'clases/Capacitacion.php';
+$c_capacitacion = new Capacitacion();
 
 ?>
 <!DOCTYPE html>

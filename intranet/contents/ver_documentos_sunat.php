@@ -1,6 +1,6 @@
 <?php
-require 'clases/cl_documentos_sunat.php';
-$c_documentos = new cl_documentos_sunat();
+require 'clases/DocumentoSunat.php';
+$c_documentos = new DocumentoSunat();
 ?>
 <!DOCTYPE html>
 <html lang="es">

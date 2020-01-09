@@ -1,6 +1,6 @@
 <?php
-require 'clases/cl_monitoreo.php';
-$c_monitoreo = new cl_monitoreo();
+require 'clases/Monitoreo.php';
+$c_monitoreo = new Monitoreo();
 ?>
 <!DOCTYPE html>
 <html lang="es">

@@ -8,11 +8,11 @@
  */
 session_start();
 
-require '../clases/cl_cliente.php';
-$c_cliente = new cl_cliente();
+require '../clases/Cliente.php';
+$c_cliente = new Cliente();
 
-require '../clases/cl_empresa.php';
-$c_empresa = new cl_empresa();
+require '../clases/Empresa.php';
+$c_empresa = new Empresa();
 
 $c_cliente->setRuc(filter_input(INPUT_POST, 'input_ruc'));
 $contrasena = filter_input(INPUT_POST, 'input_password');

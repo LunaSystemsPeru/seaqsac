@@ -1,9 +1,9 @@
 <?php
-require 'clases/cl_cliente.php';
-$c_cliente = new cl_cliente();
+require 'clases/Cliente.php';
+$c_cliente = new Cliente();
 
-require 'clases/cl_tipos.php';
-$c_tipo = new cl_tipos();
+require 'clases/TipoClasificacion.php';
+$c_tipo = new TipoClasificacion();
 ?>
 <!DOCTYPE html>
 <html lang="es">

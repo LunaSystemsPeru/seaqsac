@@ -1,52 +1,52 @@
 <?php
-require 'clases/cl_monitoreo.php';
-require 'clases/cl_monitoreo_comentarios.php';
-require 'clases/cl_monitoreo_anexo.php';
-require 'clases/cl_cliente.php';
-require 'clases/cl_cliente_sucursal.php';
-require 'clases/cl_tipos.php';
-require 'clases/cl_tipo_subclase.php';
-require 'clases/cl_equipo.php';
-require 'clases/cl_monitoreo_equipo.php';
+require 'clases/Monitoreo.php';
+require 'clases/MonitoreoComentario.php';
+require 'clases/MonitoreoAnexo.php';
+require 'clases/Cliente.php';
+require 'clases/ClienteSucursal.php';
+require 'clases/TipoClasificacion.php';
+require 'clases/TipoSubClase.php';
+require 'clases/Equipo.php';
+require 'clases/MonitoreoEquipo.php';
 
 
-$c_monitoreo = new cl_monitoreo();
+$c_monitoreo = new Monitoreo();
 $c_monitoreo->setIdMonitoreo(filter_input(INPUT_GET, 'id_monitoreo'));
 $c_monitoreo->obtener_datos();
 
 
-$c_comentario = new cl_monitoreo_comentarios();
+$c_comentario = new MonitoreoComentario();
 $c_comentario->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
 
 
-$c_anexo = new cl_monitoreo_anexo();
+$c_anexo = new MonitoreoAnexo();
 $c_anexo->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
 
 
-$c_cliente = new cl_cliente();
+$c_cliente = new Cliente();
 $c_cliente->setIdCliente($c_monitoreo->getIdCliente());
 $c_cliente->obtener_datos();
 
 
-$c_sucursal = new cl_cliente_sucursal();
+$c_sucursal = new ClienteSucursal();
 $c_sucursal->setIdCliente($c_monitoreo->getIdCliente());
 $c_sucursal->setIdSucursal($c_monitoreo->getIdSucursal());
 $c_sucursal->obtener_datos();
 
 
-$c_tipo = new cl_tipos();
+$c_tipo = new TipoClasificacion();
 $c_tipo->setId($c_monitoreo->getIdTipo());
 $c_tipo->obtener_datos();
 
 
-$c_clase = new cl_tipo_subclase();
+$c_clase = new TipoSubClase();
 $c_clase->setIdTipo($c_monitoreo->getIdTipo());
 $c_clase->setIdClase($c_monitoreo->getIdClase());
 $c_clase->obtener_datos();
 
-$c_equipos = new cl_equipo();
+$c_equipos = new Equipo();
 
-$c_mequipos = new cl_monitoreo_equipo();
+$c_mequipos = new MonitoreoEquipo();
 $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
 ?>
 <!DOCTYPE html>

@@ -2,13 +2,13 @@
 if (is_null(filter_input(INPUT_GET, 'id_tipo'))) {
     header("Location: ver_tipos.php");
 }
-require 'clases/cl_tipos.php';
-$c_tipo = new cl_tipos();
+require 'clases/TipoClasificacion.php';
+$c_tipo = new TipoClasificacion();
 $c_tipo->setId(filter_input(INPUT_GET, 'id_tipo'));
 $c_tipo->obtener_datos();
 
-require 'clases/cl_tipo_subclase.php';
-$c_clase = new cl_tipo_subclase();
+require 'clases/TipoSubClase.php';
+$c_clase = new TipoSubClase();
 $c_clase->setIdTipo(filter_input(INPUT_GET, 'id_tipo'));
 ?>
 <!DOCTYPE html>

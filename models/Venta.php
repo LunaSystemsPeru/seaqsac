@@ -6,10 +6,10 @@
  * Time: 05:41 AM
  */
 
-require_once 'cl_conectar.php';
+require_once 'Conectar.php';
 
 
-class cl_venta
+class Venta
 {
     private $id_venta;
     private $periodo_venta;
@@ -28,11 +28,11 @@ class cl_venta
     private $c_conectar;
 
     /**
-     * cl_venta constructor.
+     * Venta constructor.
      */
     public function __construct()
     {
-        $this->c_conectar = cl_conectar::getInstancia();
+        $this->c_conectar = Conectar::getInstancia();
     }
 
     /**

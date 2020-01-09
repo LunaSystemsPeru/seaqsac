@@ -6,9 +6,9 @@
  * Time: 06:46 PM
  */
 
-require '../clases/cl_monitoreo_comentarios.php';
+require '../clases/MonitoreoComentario.php';
 
-$c_comentario = new cl_monitoreo_comentarios();
+$c_comentario = new MonitoreoComentario();
 $c_comentario->setIdMonitoreo(filter_input(INPUT_GET, 'id_monitoreo'));
 $c_comentario->setIdComentario(filter_input(INPUT_GET, 'id_comentario'));
 

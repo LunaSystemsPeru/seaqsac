@@ -6,9 +6,9 @@
  * Time: 05:41 PM
  */
 
-require '../clases/cl_monitoreo_anexo.php';
+require '../clases/MonitoreoAnexo.php';
 
-$c_anexo = new cl_monitoreo_anexo();
+$c_anexo = new MonitoreoAnexo();
 $c_anexo->setIdMonitoreo(filter_input(INPUT_GET, 'id_monitoreo'));
 $c_anexo->setIdAnexo(filter_input(INPUT_GET, 'id_anexo'));
 

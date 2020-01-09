@@ -6,9 +6,9 @@
  * Time: 11:09 AM
  */
 
-require '../clases/cl_orden_interna.php';
+require '../clases/OrdenInterna.php';
 
-$c_orden = new cl_orden_interna();
+$c_orden = new OrdenInterna();
 
 $c_orden->setFecha(filter_input(INPUT_POST, 'input_faprobado'));
 $c_orden->setMontoCotizacion(filter_input(INPUT_POST, 'input_monto'));

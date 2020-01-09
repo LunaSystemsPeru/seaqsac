@@ -1,8 +1,8 @@
 <?php
 
-require '../clases/cl_monitoreo.php';
+require '../clases/Monitoreo.php';
 
-$c_monitoreo = new cl_monitoreo();
+$c_monitoreo = new Monitoreo();
 
 $c_monitoreo->setFecha(filter_input(INPUT_POST, 'input_fecha'));
 $c_monitoreo->setIdCliente(filter_input(INPUT_POST, 'select_cliente'));

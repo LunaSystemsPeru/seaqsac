@@ -6,9 +6,9 @@
  * Time: 02:09 AM
  */
 
-require '../clases/cl_auditoria.php';
+require '../clases/auditoria.php';
 
-$c_auditoria = new cl_auditoria();
+$c_auditoria = new auditoria();
 
 $c_auditoria->setFecha(filter_input(INPUT_POST, 'input_fecha'));
 $c_auditoria->setAuditor(filter_input(INPUT_POST, 'input_auditor'));

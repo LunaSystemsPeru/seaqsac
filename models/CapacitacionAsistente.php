@@ -5,9 +5,9 @@
  * Date: 04/05/2019
  * Time: 09:52 AM
  */
-require_once 'cl_conectar.php';
+require_once 'Conectar.php';
 
-class cl_capacitacion_asistente
+class CapacitacionAsistente
 {
     private $id_capacitacion;
     private $id_asistente;
@@ -16,11 +16,11 @@ class cl_capacitacion_asistente
     private $c_conectar;
 
     /**
-     * cl_capacitacion_asistente constructor.
+     * CapacitacionAsistente constructor.
      */
     public function __construct()
     {
-        $this->c_conectar = cl_conectar::getInstancia();
+        $this->c_conectar = Conectar::getInstancia();
     }
 
     /**

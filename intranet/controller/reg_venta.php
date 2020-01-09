@@ -6,9 +6,9 @@
  * Time: 05:17 PM
  */
 
-require '../clases/cl_venta.php';
+require '../clases/Venta.php';
 
-$c_venta = new cl_venta();
+$c_venta = new Venta();
 
 $c_venta->setFecha(filter_input(INPUT_POST, 'input_fecha'));
 $c_venta->setIdDocumento(filter_input(INPUT_POST, 'select_documento'));

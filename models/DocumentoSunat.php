@@ -6,9 +6,9 @@
  * Time: 12:32 PM
  */
 
-require_once 'cl_conectar.php';
+require_once 'Conectar.php';
 
-class cl_documentos_sunat
+class DocumentoSunat
 {
     private $id_tido;
     private $nombre;
@@ -17,11 +17,11 @@ class cl_documentos_sunat
     private $c_conectar;
 
     /**
-     * cl_documentos_sunat constructor.
+     * DocumentoSunat constructor.
      */
     public function __construct()
     {
-        $this->c_conectar = cl_conectar::getInstancia();
+        $this->c_conectar = Conectar::getInstancia();
     }
 
     /**

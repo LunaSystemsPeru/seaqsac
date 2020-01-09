@@ -5,9 +5,9 @@
  * Date: 12/07/19
  * Time: 03:50 PM
  */
-require 'cl_conectar.php';
+require 'Conectar.php';
 
-class cl_orden_servicio
+class OrdenServicio
 {
     private $id_orden;
     private $fecha;
@@ -19,11 +19,11 @@ class cl_orden_servicio
     private $c_conectar;
 
     /**
-     * cl_orden_servicio constructor.
+     * OrdenServicio constructor.
      */
     public function __construct()
     {
-        $this->c_conectar = cl_conectar::getInstancia();
+        $this->c_conectar = Conectar::getInstancia();
     }
 
     /**

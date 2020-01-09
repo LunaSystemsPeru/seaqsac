@@ -6,9 +6,9 @@
  * Time: 11:42 PM
  */
 
-require_once 'cl_conectar.php';
+require_once 'Conectar.php';
 
-class cl_tipo_subclase
+class TipoSubClase
 {
     private $id_tipo;
     private $id_clase;
@@ -16,11 +16,11 @@ class cl_tipo_subclase
     private $c_conectar;
 
     /**
-     * cl_tipo_subclase constructor.
+     * TipoSubClase constructor.
      */
     public function __construct()
     {
-        $this->c_conectar = cl_conectar::getInstancia();
+        $this->c_conectar = Conectar::getInstancia();
     }
 
     /**

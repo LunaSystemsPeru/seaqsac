@@ -3,8 +3,8 @@ session_start();
 if (is_null($_SESSION['id_cliente'])) {
     header ("Location: login.php");
 }
-require 'clases/cl_monitoreo_comentarios.php';
-$c_comentario = new cl_monitoreo_comentarios();
+require 'clases/MonitoreoComentario.php';
+$c_comentario = new MonitoreoComentario();
 ?>
 <!DOCTYPE html>
 <html lang="es">

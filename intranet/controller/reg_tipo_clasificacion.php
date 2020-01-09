@@ -1,7 +1,7 @@
 <?php
-require '../clases/cl_tipo_subclase.php';
+require '../clases/TipoSubClase.php';
 
-$c_tipo = new cl_tipo_subclase();
+$c_tipo = new TipoSubClase();
 
 $c_tipo->setNombre(filter_input(INPUT_POST, 'input_nombre'));
 $c_tipo->setIdTipo(filter_input(INPUT_POST, 'hidden_id_tipo'));

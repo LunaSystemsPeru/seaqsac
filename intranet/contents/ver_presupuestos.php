@@ -1,6 +1,6 @@
 <?php
-require 'clases/cl_presupuesto.php';
-$c_pesupuesto = new cl_presupuesto();
+require 'clases/Presupuesto.php';
+$c_pesupuesto = new Presupuesto();
 ?>
 <!DOCTYPE html>
 <html lang="es">

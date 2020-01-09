@@ -1,9 +1,9 @@
 <?php
-require 'clases/cl_documentos_sunat.php';
-require 'clases/cl_tipos.php';
+require 'clases/DocumentoSunat.php';
+require 'clases/TipoClasificacion.php';
 
-$c_documento = new cl_documentos_sunat();
-$c_tipo = new cl_tipos();
+$c_documento = new DocumentoSunat();
+$c_tipo = new TipoClasificacion();
 ?>
 
 <!DOCTYPE html>

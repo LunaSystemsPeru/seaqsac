@@ -6,9 +6,9 @@
  * Time: 01:13 AM
  */
 
-require_once 'cl_conectar.php';
+require_once 'Conectar.php';
 
-class cl_monitoreo_comentarios
+class MonitoreoComentario
 {
     private $id_monitoreo;
     private $id_comentario;
@@ -21,11 +21,11 @@ class cl_monitoreo_comentarios
     private $c_conectar;
 
     /**
-     * cl_monitoreo_comentarios constructor.
+     * MonitoreoComentario constructor.
      */
     public function __construct()
     {
-        $this->c_conectar = cl_conectar::getInstancia();
+        $this->c_conectar = Conectar::getInstancia();
     }
 
     /**

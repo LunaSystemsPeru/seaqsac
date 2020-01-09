@@ -1,6 +1,6 @@
 <?php
-require 'clases/cl_auditoria.php';
-$c_auditoria = new cl_auditoria();
+require 'clases/Auditoria.php';
+$c_auditoria = new auditoria();
 ?>
 <!DOCTYPE html>
 <html lang="es">

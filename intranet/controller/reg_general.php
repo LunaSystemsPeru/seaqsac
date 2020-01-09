@@ -1,7 +1,7 @@
 <?php
-require '../clases/cl_generales.php';
+require '../clases/TipoGeneral.php';
 
-$c_general = new cl_generales();
+$c_general = new TipoGeneral();
 
 $c_general->obtener_id();
 $c_general->setNombre(filter_input(INPUT_POST, 'input_descripcion'));

@@ -1,7 +1,7 @@
 <?php
-require '../clases/cl_tipos.php';
+require '../clases/TipoClasificacion.php';
 
-$c_tipo = new cl_tipos();
+$c_tipo = new TipoClasificacion();
 
 $c_tipo->obtener_id();
 $c_tipo->setNombre(filter_input(INPUT_POST, 'input_descripcion'));

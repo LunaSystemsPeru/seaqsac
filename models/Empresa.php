@@ -6,9 +6,9 @@
  * Date: 02/05/2019
  * Time: 03:08 PM
  */
-require_once 'cl_conectar.php';
+require_once 'Conectar.php';
 
-class cl_empresa {
+class Empresa {
 
     private $id_empresa;
     private $ruc;
@@ -21,10 +21,10 @@ class cl_empresa {
     private $c_conectar;
 
     /**
-     * cl_empresa constructor.
+     * Empresa constructor.
      */
     public function __construct() {
-       $this->c_conectar = cl_conectar::getInstancia();
+       $this->c_conectar = Conectar::getInstancia();
     }
 
     /**

@@ -2,23 +2,23 @@
 if (is_null(filter_input(INPUT_GET, 'id_capacitacion'))) {
     header("Location: ver_capacitaciones_clientes.php");
 }
-require 'clases/cl_capacitacion.php';
-$c_capacitacion = new cl_capacitacion();
+require 'clases/Capacitacion.php';
+$c_capacitacion = new Capacitacion();
 $c_capacitacion->setIdCapacitacion(filter_input(INPUT_GET, 'id_capacitacion'));
 $c_capacitacion->obtener_datos();
 
-require 'clases/cl_tipos.php';
-$c_tipo = new cl_tipos();
+require 'clases/TipoClasificacion.php';
+$c_tipo = new TipoClasificacion();
 $c_tipo->setId($c_capacitacion->getIdTipo());
 $c_tipo->obtener_datos();
 
-require 'clases/cl_cliente.php';
-$c_cliente = new cl_cliente();
+require 'clases/Cliente.php';
+$c_cliente = new Cliente();
 $c_cliente->setIdCliente($c_capacitacion->getIdCliente());
 $c_cliente->obtener_datos();
 
-require 'clases/cl_capacitacion_asistente.php';
-$c_asistente = new cl_capacitacion_asistente();
+require 'clases/CapacitacionAsistente.php';
+$c_asistente = new CapacitacionAsistente();
 $c_asistente->setIdCapacitacion($c_capacitacion->getIdCapacitacion());
 ?>
 <!DOCTYPE html>

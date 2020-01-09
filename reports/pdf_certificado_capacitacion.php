@@ -14,10 +14,10 @@ require('../clases_varios/cl_varios.php');
 $c_varios = new cl_varios();
 define('FPDF_FONTPATH', '../clases_varios/fpdf/font/');
 
-require '../clases/cl_capacitacion.php';
-require '../clases/cl_capacitacion_asistente.php';
+require '../clases/Capacitacion.php';
+require '../clases/CapacitacionAsistente.php';
 
-$c_capacitacion = new cl_capacitacion();
+$c_capacitacion = new Capacitacion();
 $c_capacitacion->setIdCapacitacion(filter_input(INPUT_GET, 'id_capacitacion'));
 $c_capacitacion->obtener_datos();
 
@@ -28,7 +28,7 @@ $fecha = strftime("%d de %B de %Y", strtotime($d));
 $d2 = date("Y-m-d");
 $fecha2 = strftime("%d de %B de %Y", strtotime($d2));
 
-$c_asistente = new cl_capacitacion_asistente();
+$c_asistente = new CapacitacionAsistente();
 $c_asistente->setIdCapacitacion($c_capacitacion->getIdCapacitacion());
 $c_asistente->setIdAsistente(filter_input(INPUT_GET, 'id_asistente'));
 $c_asistente->obtener_datos();

@@ -6,9 +6,9 @@
  * Time: 01:51 AM
  */
 
-require_once 'cl_conectar.php';
+require_once 'Conectar.php';
 
-class cl_auditoria
+class Auditoria
 {
     private $id_auditoria;
     private $fecha;
@@ -22,11 +22,11 @@ class cl_auditoria
     private $c_conectar;
 
     /**
-     * cl_auditoria constructor.
+     * auditoria constructor.
      */
     public function __construct()
     {
-        $this->c_conectar = cl_conectar::getInstancia();
+        $this->c_conectar = Conectar::getInstancia();
     }
 
     /**

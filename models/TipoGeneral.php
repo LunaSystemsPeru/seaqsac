@@ -6,20 +6,20 @@
  * Time: 10:36 PM
  */
 
-require_once 'cl_conectar.php';
+require_once 'Conectar.php';
 
-class cl_generales
+class TipoGeneral
 {
     private $id;
     private $nombre;
     private $c_conectar;
 
     /**
-     * cl_generales constructor.
+     * TipoGeneral constructor.
      */
     public function __construct()
     {
-        $this->c_conectar = cl_conectar::getInstancia();
+        $this->c_conectar = Conectar::getInstancia();
     }
 
     /**

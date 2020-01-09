@@ -1,6 +1,6 @@
 <?php
-require 'clases/cl_cliente.php';
-$c_cliente = new cl_cliente();
+require 'clases/Cliente.php';
+$c_cliente = new Cliente();
 ?>
 
 <!DOCTYPE html>

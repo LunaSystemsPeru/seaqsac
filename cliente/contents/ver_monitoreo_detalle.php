@@ -1,33 +1,33 @@
 <?php
 $id_monitoreo = filter_var(filter_input(INPUT_GET, 'id_monitoreo'), FILTER_SANITIZE_NUMBER_INT);
 
-require 'clases/cl_monitoreo.php';
-$c_monitoreo = new cl_monitoreo();
+require 'clases/Monitoreo.php';
+$c_monitoreo = new Monitoreo();
 $c_monitoreo->setIdMonitoreo($id_monitoreo);
 $c_monitoreo->obtener_datos();
 
-require 'clases/cl_monitoreo_comentarios.php';
-$c_comentario = new cl_monitoreo_comentarios();
+require 'clases/MonitoreoComentario.php';
+$c_comentario = new MonitoreoComentario();
 $c_comentario->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
 
-require 'clases/cl_cliente.php';
-$c_cliente = new cl_cliente();
+require 'clases/Cliente.php';
+$c_cliente = new Cliente();
 $c_cliente->setIdCliente($c_monitoreo->getIdCliente());
 $c_cliente->obtener_datos();
 
-require 'clases/cl_cliente_sucursal.php';
-$c_sucursal = new cl_cliente_sucursal();
+require 'clases/ClienteSucursal.php';
+$c_sucursal = new ClienteSucursal();
 $c_sucursal->setIdCliente($c_monitoreo->getIdCliente());
 $c_sucursal->setIdSucursal($c_monitoreo->getIdSucursal());
 $c_sucursal->obtener_datos();
 
-require 'clases/cl_tipos.php';
-$c_tipo = new cl_tipos();
+require 'clases/TipoClasificacion.php';
+$c_tipo = new TipoClasificacion();
 $c_tipo->setId($c_monitoreo->getIdTipo());
 $c_tipo->obtener_datos();
 
-require 'clases/cl_tipo_subclase.php';
-$c_clase = new cl_tipo_subclase();
+require 'clases/TipoSubClase.php';
+$c_clase = new TipoSubClase();
 $c_clase->setIdTipo($c_monitoreo->getIdTipo());
 $c_clase->setIdClase($c_monitoreo->getIdClase());
 $c_clase->obtener_datos();

@@ -6,11 +6,11 @@
  * Time: 07:04 PM
  */
 
-require '../clases/cl_monitoreo_anexo.php';
-require '../clases/cl_monitoreo.php';
+require '../clases/MonitoreoAnexo.php';
+require '../clases/Monitoreo.php';
 
-$c_anexo = new cl_monitoreo_anexo();
-$c_monitoreo = new cl_monitoreo();
+$c_anexo = new MonitoreoAnexo();
+$c_monitoreo = new Monitoreo();
 
 $c_anexo->setFecha(filter_input(INPUT_POST, 'input_fecha'));
 $c_anexo->setDescripcion(filter_input(INPUT_POST, 'input_descripcion'));

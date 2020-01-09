@@ -1,6 +1,6 @@
 <?php
-require 'clases/cl_generales.php';
-$c_general = new cl_generales();
+require 'clases/TipoGeneral.php';
+$c_general = new TipoGeneral();
 ?>
 <!DOCTYPE html>
 <html lang="es">

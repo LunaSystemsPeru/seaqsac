@@ -5,8 +5,8 @@ ini_set('display_errors', '1');
 require '../clases_varios/PHPMailer/Exception.php';
 require '../clases_varios/PHPMailer/PHPMailer.php';
 require '../clases_varios/PHPMailer/SMTP.php';
-require '../clases/cl_cliente.php';
-$c_cliente = new cl_cliente();
+require '../clases/Cliente.php';
+$c_cliente = new Cliente();
 $c_cliente->setIdCliente(filter_input(INPUT_GET, 'id_cliente'));
 $c_cliente->obtener_datos();
 

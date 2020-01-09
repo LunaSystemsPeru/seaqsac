@@ -5,9 +5,9 @@
  * Date: 02/05/2019
  * Time: 08:50 PM
  */
-require_once 'cl_conectar.php';
+require_once 'Conectar.php';
 
-class cl_tipos
+class TipoClasificacion
 {
 
     private $id;
@@ -16,11 +16,11 @@ class cl_tipos
     private $c_conectar;
 
     /**
-     * cl_tipos constructor.
+     * TipoClasificacion constructor.
      */
     public function __construct()
     {
-        $this->c_conectar = cl_conectar::getInstancia();
+        $this->c_conectar = Conectar::getInstancia();
     }
 
     /**

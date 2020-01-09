@@ -1,6 +1,6 @@
 <?php
-require 'clases/cl_orden_interna.php';
-$c_orden = new cl_orden_interna();
+require 'clases/OrdenInterna.php';
+$c_orden = new OrdenInterna();
 ?>
 <!DOCTYPE html>
 <html lang="es">

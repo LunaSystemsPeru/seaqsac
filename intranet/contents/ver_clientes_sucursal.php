@@ -2,18 +2,18 @@
 if (is_null(filter_input(INPUT_GET, 'id_cliente'))) {
     header("Location: ver_clientes.php");
 }
-require 'clases/cl_cliente.php';
-$c_cliente = new cl_cliente();
+require 'clases/Cliente.php';
+$c_cliente = new Cliente();
 $c_cliente->setIdCliente(filter_input(INPUT_GET, 'id_cliente'));
 $c_cliente->obtener_datos();
 
-require 'clases/cl_empresa.php';
-$c_empresa = new cl_empresa();
+require 'clases/Empresa.php';
+$c_empresa = new Empresa();
 $c_empresa->setIdEmpresa($c_cliente->getIdEmpresa());
 $c_empresa->obtener_datos();
 
-require 'clases/cl_cliente_sucursal.php';
-$c_sucursal = new cl_cliente_sucursal();
+require 'clases/ClienteSucursal.php';
+$c_sucursal = new ClienteSucursal();
 $c_sucursal->setIdCliente($c_cliente->getIdCliente());
 ?>
 <!DOCTYPE html>

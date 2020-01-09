@@ -1,6 +1,6 @@
 <?php
-require 'clases/cl_proveedor.php';
-$c_proveedor = new cl_proveedor();
+require 'clases/Proveedor.php';
+$c_proveedor = new Proveedor();
 ?>
 <!DOCTYPE html>
 <html lang="es">

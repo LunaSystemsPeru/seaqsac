@@ -6,8 +6,8 @@
  * Time: 01:33 AM
  */
 
-require '../clases/cl_monitoreo_comentarios.php';
-$c_comentario = new cl_monitoreo_comentarios();
+require '../clases/MonitoreoComentario.php';
+$c_comentario = new MonitoreoComentario();
 
 $c_comentario->setIdMonitoreo(filter_input(INPUT_POST, 'hidden_id_monitoreo'));
 $c_comentario->setFecha(date("Y-m-d"));

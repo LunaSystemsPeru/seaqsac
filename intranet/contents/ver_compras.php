@@ -1,6 +1,6 @@
 <?php
-require 'clases/cl_compra.php';
-$c_compra = new cl_compra();
+require 'clases/Compra.php';
+$c_compra = new Compra();
 ?>
 <!DOCTYPE html>
 <html lang="es">

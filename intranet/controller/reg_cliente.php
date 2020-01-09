@@ -1,9 +1,9 @@
 <?php
 
-require '../clases/cl_cliente.php';
+require '../clases/Cliente.php';
 require '../clases_varios/cl_varios.php';
 
-$c_cliente = new cl_cliente();
+$c_cliente = new Cliente();
 $c_varios = new cl_varios();
 
 $c_cliente->setRuc(filter_input(INPUT_POST, 'input_ruc'));

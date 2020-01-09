@@ -1,7 +1,7 @@
 <?php
-require '../clases/cl_cliente_sucursal.php';
+require '../clases/ClienteSucursal.php';
 
-$c_sucursal = new cl_cliente_sucursal();
+$c_sucursal = new ClienteSucursal();
 
 
 $c_sucursal->setIdCliente(filter_input(INPUT_POST, 'hidden_id_cliente'));

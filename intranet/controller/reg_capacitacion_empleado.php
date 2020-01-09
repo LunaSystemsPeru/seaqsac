@@ -6,8 +6,8 @@
  * Time: 10:06 AM
  */
 
-require '../clases/cl_capacitacion_asistente.php';
-$c_asistente = new cl_capacitacion_asistente();
+require '../clases/CapacitacionAsistente.php';
+$c_asistente = new CapacitacionAsistente();
 
 $c_asistente->setIdCapacitacion(filter_input(INPUT_POST, 'hidden_id_capacitacion'));
 $c_asistente->setDni(filter_input(INPUT_POST, 'input_dni'));

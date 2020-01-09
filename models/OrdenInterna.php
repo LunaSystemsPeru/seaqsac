@@ -6,9 +6,9 @@
  * Time: 03:36 PM
  */
 
-require_once 'cl_conectar.php';
+require_once 'Conectar.php';
 
-class cl_orden_interna
+class OrdenInterna
 {
     private $id_orden;
     private $fecha;
@@ -21,11 +21,11 @@ class cl_orden_interna
 
 
     /**
-     * cl_orden_interna constructor.
+     * OrdenInterna constructor.
      */
     public function __construct()
     {
-        $this->c_conectar = cl_conectar::getInstancia();
+        $this->c_conectar = Conectar::getInstancia();
     }
 
     /**

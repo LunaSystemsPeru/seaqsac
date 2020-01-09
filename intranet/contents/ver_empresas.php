@@ -1,6 +1,6 @@
 <?php
-require 'clases/cl_empresa.php';
-$c_empresa = new cl_empresa();
+require 'clases/Empresa.php';
+$c_empresa = new Empresa();
 ?>
 <!DOCTYPE html>
 <html lang="es">

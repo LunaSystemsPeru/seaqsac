@@ -1,6 +1,6 @@
 <?php
-require 'clases/cl_venta.php';
-$c_venta = new cl_venta();
+require 'clases/Venta.php';
+$c_venta = new Venta();
 ?>
 <!DOCTYPE html>
 <html lang="es">

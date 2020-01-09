@@ -6,8 +6,8 @@
  * Time: 08:43 AM
  */
 
-require '../clases/cl_capacitacion.php';
-$c_capacitacion = new cl_capacitacion();
+require '../clases/Capacitacion.php';
+$c_capacitacion = new Capacitacion();
 
 $c_capacitacion->setFecha(filter_input(INPUT_POST, 'input_fecha'));
 $c_capacitacion->setIdCliente(filter_input(INPUT_POST, 'select_cliente'));

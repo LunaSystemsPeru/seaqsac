@@ -1,7 +1,7 @@
 <?php
-require '../clases/cl_empresa.php';
+require '../clases/Empresa.php';
 
-$c_empresa = new cl_empresa();
+$c_empresa = new Empresa();
 
 $c_empresa->setRuc(filter_input(INPUT_POST, 'input_ruc'));
 $c_empresa->setRazonSocial(filter_input(INPUT_POST, 'input_razon_social'));

@@ -6,9 +6,9 @@
  * Time: 12:10 PM
  */
 
-require_once 'cl_conectar.php';
+require_once 'Conectar.php';
 
-class cl_proveedor
+class Proveedor
 {
 
     private $id_proveedor;
@@ -20,11 +20,11 @@ class cl_proveedor
     private $c_conectar;
 
     /**
-     * cl_proveedor constructor.
+     * Proveedor constructor.
      */
     public function __construct()
     {
-        $this->c_conectar = cl_conectar::getInstancia();
+        $this->c_conectar = Conectar::getInstancia();
     }
 
     /**

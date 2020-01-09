@@ -5,14 +5,14 @@
  * Date: 12/07/19
  * Time: 11:15 AM
  */
-require '../clases/cl_presupuesto.php';
-require '../clases/cl_cliente.php';
+require '../clases/Presupuesto.php';
+require '../clases/Cliente.php';
 
-$c_presupuesto = new cl_presupuesto();
+$c_presupuesto = new Presupuesto();
 $c_presupuesto->setIdCotizacion(filter_input(INPUT_POST, 'id_cotizacion'));
 $c_presupuesto->obtener_datos();
 
-$c_cliente = new cl_cliente();
+$c_cliente = new Cliente();
 $c_cliente->setIdCliente($c_presupuesto->getIdCliente());
 $c_cliente->obtener_datos();
 ?>

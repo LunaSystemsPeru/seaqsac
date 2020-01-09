@@ -6,9 +6,9 @@
  * Time: 11:22 AM
  */
 
-require '../clases/cl_presupuesto.php';
+require '../clases/Presupuesto.php';
 
-$c_presupuesto = new cl_presupuesto();
+$c_presupuesto = new Presupuesto();
 
 $c_presupuesto->setFecha(filter_input(INPUT_POST, 'input_fecha'));
 $c_presupuesto->setAnio(date("Y"));

@@ -6,9 +6,9 @@
  * Time: 03:27 PM
  */
 
-require_once 'cl_conectar.php';
+require_once 'Conectar.php';
 
-class cl_cliente_sucursal
+class ClienteSucursal
 {
     private $id_sucursal;
     private $id_cliente;
@@ -17,11 +17,11 @@ class cl_cliente_sucursal
     private $c_conectar;
 
     /**
-     * cl_cliente_sucursal constructor.
+     * ClienteSucursal constructor.
      */
     public function __construct()
     {
-        $this->c_conectar = cl_conectar::getInstancia();
+        $this->c_conectar = Conectar::getInstancia();
     }
 
     /**

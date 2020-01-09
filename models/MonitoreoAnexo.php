@@ -6,9 +6,9 @@
  * Time: 07:05 PM
  */
 
-require_once 'cl_conectar.php';
+require_once 'Conectar.php';
 
-class cl_monitoreo_anexo
+class MonitoreoAnexo
 {
 
     private $id_anexo;
@@ -19,11 +19,11 @@ class cl_monitoreo_anexo
     private $c_conectar;
 
     /**
-     * cl_monitoreo_anexo constructor.
+     * MonitoreoAnexo constructor.
      */
     public function __construct()
     {
-        $this->c_conectar = cl_conectar::getInstancia();
+        $this->c_conectar = Conectar::getInstancia();
     }
 
     /**

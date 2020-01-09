@@ -6,8 +6,8 @@
  * Time: 12:37 PM
  */
 
-require '../clases/cl_documentos_sunat.php';
-$c_documento = new cl_documentos_sunat();
+require '../clases/DocumentoSunat.php';
+$c_documento = new DocumentoSunat();
 
 $c_documento->setNombre(filter_input(INPUT_POST, 'input_descripcion'));
 $c_documento->setAbreviado(filter_input(INPUT_POST, 'input_ncorto'));

@@ -4044,7 +4044,7 @@ select.uk-form-width-xsmall {
 
 /*
  * Sublists
- * Note: General sibling selector allows reply block between comment and sublist
+ * Note: TipoGeneral sibling selector allows reply block between comment and sublist
  */
 .uk-comment-list .uk-comment ~ ul {
     margin: 70px 0 0 0;

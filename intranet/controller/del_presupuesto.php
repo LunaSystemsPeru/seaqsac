@@ -6,9 +6,9 @@
  * Time: 03:40 PM
  */
 
-require '../clases/cl_presupuesto.php';
+require '../clases/Presupuesto.php';
 
-$c_presupuesto = new cl_presupuesto();
+$c_presupuesto = new Presupuesto();
 $c_presupuesto->setIdCotizacion(filter_input(INPUT_GET, 'id_cotizacion'));
 
 if ($c_presupuesto->eliminar()) {

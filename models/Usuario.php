@@ -6,7 +6,7 @@
  * Time: 03:09 PM
  */
 
-class cl_usuario
+class Usuario
 {
     private $id_usuario;
     private $nombre;
@@ -19,11 +19,11 @@ class cl_usuario
     private $c_conectar;
 
     /**
-     * cl_usuario constructor.
+     * Usuario constructor.
      */
     public function __construct()
     {
-        $this->c_conectar = cl_conectar::getInstancia();
+        $this->c_conectar = Conectar::getInstancia();
     }
 
     /**

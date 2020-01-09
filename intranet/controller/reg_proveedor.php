@@ -6,8 +6,8 @@
  * Time: 12:26 PM
  */
 
-require '../clases/cl_proveedor.php';
-$c_proveedor = new cl_proveedor();
+require '../clases/Proveedor.php';
+$c_proveedor = new Proveedor();
 
 $c_proveedor->setRuc(filter_input(INPUT_POST, 'input_ruc'));
 $c_proveedor->setRazonSocial(filter_input(INPUT_POST, 'input_razon_social'));

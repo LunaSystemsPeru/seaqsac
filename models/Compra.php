@@ -6,9 +6,9 @@
  * Time: 11:30 AM
  */
 
-require_once 'cl_conectar.php';
+require_once 'Conectar.php';
 
-class cl_compra
+class Compra
 {
 
     private $id_compra;
@@ -25,11 +25,11 @@ class cl_compra
     private $c_conectar;
 
     /**
-     * cl_compra constructor.
+     * Compra constructor.
      */
     public function __construct()
     {
-        $this->c_conectar = cl_conectar::getInstancia();
+        $this->c_conectar = Conectar::getInstancia();
     }
 
     /**

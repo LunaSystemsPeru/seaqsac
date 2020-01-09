@@ -1,6 +1,6 @@
 <?php
-require 'clases/cl_equipo.php';
-$c_equipo = new cl_equipo();
+require 'clases/Equipo.php';
+$c_equipo = new Equipo();
 ?>
 <!DOCTYPE html>
 <html lang="es">

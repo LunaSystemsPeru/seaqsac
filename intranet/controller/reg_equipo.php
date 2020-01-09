@@ -6,9 +6,9 @@
  * Time: 06:08 PM
  */
 
-require '../clases/cl_equipo.php';
+require '../clases/Equipo.php';
 
-$c_equipo = new cl_equipo();
+$c_equipo = new Equipo();
 
 $c_equipo->setNombre(filter_input(INPUT_POST, 'input_nombre'));
 $c_equipo->setMarca(filter_input(INPUT_POST, 'input_marca'));

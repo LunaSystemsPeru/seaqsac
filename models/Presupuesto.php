@@ -6,9 +6,9 @@
  * Time: 11:07 AM
  */
 
-require_once 'cl_conectar.php';
+require_once 'Conectar.php';
 
-class cl_presupuesto
+class Presupuesto
 {
     private $id_cotizacion;
     private $anio;
@@ -21,11 +21,11 @@ class cl_presupuesto
     private $c_conectar;
 
     /**
-     * cl_presupuesto constructor.
+     * Presupuesto constructor.
      */
     public function __construct()
     {
-        $this->c_conectar = cl_conectar::getInstancia();
+        $this->c_conectar = Conectar::getInstancia();
     }
 
     /**

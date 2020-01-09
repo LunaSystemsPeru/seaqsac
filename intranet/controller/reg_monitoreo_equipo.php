@@ -6,9 +6,9 @@
  * Time: 10:31 AM
  */
 
-require '../clases/cl_monitoreo_equipo.php';
+require '../clases/MonitoreoEquipo.php';
 
-$c_equipos = new cl_monitoreo_equipo();
+$c_equipos = new MonitoreoEquipo();
 
 $c_equipos->setIdMonitoreo(filter_input(INPUT_POST, 'hidden_id_monitoreo_equipo'));
 $c_equipos->setIdEquipo(filter_input(INPUT_POST, 'select_equipo'));

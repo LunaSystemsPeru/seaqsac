@@ -1,6 +1,6 @@
 <?php
-require 'clases/cl_orden_servicio.php';
-$c_orden = new cl_orden_servicio();
+require 'clases/OrdenServicio.php';
+$c_orden = new OrdenServicio();
 ?>
 <!DOCTYPE html>
 <html lang="es">
