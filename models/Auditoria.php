@@ -202,8 +202,7 @@ class Auditoria
         $query = "insert into auditorias 
         values ('" . $this->id_auditoria . "', '" . $this->fecha . "', '" . $this->auditor . "', '" . $this->auditado . "', '" . $this->alcance . "', 
         '" . $this->id_tipo . "', '" . $this->id_sucursal . "', '" . $this->id_cliente . "', '" . $this->url_informe . "')";
-        $resultado = $this->c_conectar->ejecutar_idu($query);
-        return $resultado;
+        return $this->c_conectar->ejecutar_idu($query);
     }
 
     public function ver_auditorias()
