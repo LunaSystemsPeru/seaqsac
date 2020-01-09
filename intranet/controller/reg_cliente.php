@@ -32,7 +32,7 @@ if (!empty($_FILES["file"])) {
     } else {
 
         //establecer directorio de subida
-        $dir_subida = '../archivos_cliente/logos/';
+        $dir_subida = '../../archivos/clientes/logos/';
 
         //establecer nombre de archivo
         $c_cliente->setLogo($c_cliente->getIdCliente() . '.' . $file_extension);
@@ -41,7 +41,7 @@ if (!empty($_FILES["file"])) {
             //print "El archivo fue subido con éxito.";
 
             if ($c_cliente->insertar()) {
-                header("Location: ../ver_clientes.php");
+               header("Location: ../ver_clientes.php");
             }
         } else {
             print "Error al intentar subir el archivo.";

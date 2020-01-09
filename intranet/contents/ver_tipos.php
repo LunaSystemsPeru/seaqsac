@@ -16,18 +16,18 @@ $c_general = new cl_generales();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Generales Nivel II | SEAQ SAC - Software de Gestion </title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <link rel="stylesheet" href="../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../vendors/css/vendor.bundle.addons.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
-    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="../public/assets/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../public/assets/images/favicon.png"/>
+    <link rel="shortcut icon" href="images/favicon.png"/>
 </head>
 
 <body>
@@ -52,7 +52,7 @@ $c_general = new cl_generales();
                             <div class="modal fade" id="modalcrear" tabindex="-1" role="dialog" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <form class="forms-sample" method="post" action="../controller/reg_tipo.php">
+                                        <form class="forms-sample" method="post" action="procesos/reg_tipo.php">
                                             <div class="color-line"></div>
                                             <div class="modal-header text-center">
                                                 <h4 class="modal-title">Agregar Tipo</h4>
@@ -133,17 +133,17 @@ $c_general = new cl_generales();
 <!-- container-scroller -->
 
 <!-- plugins:js -->
-<script src="../../vendors/js/vendor.bundle.base.js"></script>
-<script src="../../vendors/js/vendor.bundle.addons.js"></script>
+<script src="../vendors/js/vendor.bundle.base.js"></script>
+<script src="../vendors/js/vendor.bundle.addons.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page-->
 <!-- End plugin js for this page-->
 <!-- inject:js -->
-<script src="../public/assets/js/off-canvas.js"></script>
-<script src="../public/assets/js/misc.js"></script>
+<script src="js/off-canvas.js"></script>
+<script src="js/misc.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-<script src="../public/assets/js/dashboard.js"></script>
+<script src="js/dashboard.js"></script>
 <!-- End custom js for this page-->
 
 <script>

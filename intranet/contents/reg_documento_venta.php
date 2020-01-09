@@ -12,20 +12,20 @@ $c_cliente = new cl_cliente();
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Agregar Empresa | SEAQ SAC - Software de Gestion </title>
+    <title>Agregar Documento de Venta | SEAQ SAC - Software de Gestion </title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <link rel="stylesheet" href="../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../vendors/css/vendor.bundle.addons.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
-    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="../public/assets/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../public/assets/images/favicon.png"/>
+    <link rel="shortcut icon" href="images/favicon.png"/>
 </head>
 
 <body>
@@ -42,16 +42,16 @@ $c_cliente = new cl_cliente();
                 <div class="row">
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
-                            <form class="form-sample" method="post" action="procesos/reg_venta.php">
+                            <form class="form-sample" enctype="multipart/form-data" method="post" action="procesos/reg_venta.php">
                                 <div class="card-header">
-                                    <h4 class="h3">Agregar Empresa</h4>
+                                    <h4 class="h3">Agregar Documento de Venta</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group row">
                                         <label class="col-md-2 col-form-label">Periodo</label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control text-center" maxlength="6"
-                                                   name="input_periodo" id="input_periodo" value="201905"
+                                            <input type="text" class="form-control text-center" maxlength="6" minlength="6"
+                                                   name="input_periodo" id="input_periodo" value="<?php echo date("Ym") ?>"
                                                    required="true"/>
                                         </div>
                                     </div>
@@ -59,7 +59,7 @@ $c_cliente = new cl_cliente();
                                         <label class="col-md-2 col-form-label">Tipo Documento</label>
                                         <div class="col-md-3">
                                             <select class="form-control" name="select_documento" id="select_documento">
-                                                <option value="4">FACTURA</option>
+                                                <option value="2">FACTURA</option>
                                             </select>
                                         </div>
                                         <label class="col-md-2 col-form-label">Fecha</label>
@@ -101,23 +101,16 @@ $c_cliente = new cl_cliente();
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-md-2 col-form-label">Sucursal</label>
-                                        <div class="col-md-10">
-                                            <select class="form-control" name="select_sucursal" id="select_sucursal">
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-2 col-form-label">Orden de Servicio</label>
+                                        <label class="col-md-2 col-form-label">Orden Interna</label>
                                         <div class="col-md-4">
-                                            <select class="form-control" name="select_orden" id="select_orden"
+                                            <select class="form-control" name="select_orden_interna" id="select_orden_interna"
                                                     onchange="ver_datos_orden()">
                                                 <option value="-">SIN ORDEN</option>
                                             </select>
                                         </div>
-                                        <label class="col-md-2 col-form-label">Orden Interna</label>
+                                        <label class="col-md-2 col-form-label">Orden de Servicio</label>
                                         <div class="col-md-4">
-                                            <select class="form-control" name="select_orden" id="select_orden"
+                                            <select class="form-control" name="select_orden_servicio" id="select_orden_servicio"
                                                     onchange="ver_datos_orden()">
                                                 <option value="-">SIN ORDEN</option>
                                             </select>
@@ -129,7 +122,6 @@ $c_cliente = new cl_cliente();
                                             <select class="form-control" name="select_moneda" id="select_moneda"
                                                     onchange="validar_moneda()">
                                                 <option value="1">SOL</option>
-                                                <option value="2">DOLAR AMERICANO</option>
                                             </select>
                                             <input type="hidden" id="hidden_tc"/>
                                         </div>
@@ -138,7 +130,7 @@ $c_cliente = new cl_cliente();
                                             <input type="text" class="form-control text-right" name="input_tc"
                                                    id="input_tc" maxlength="5" value="1.000" required/>
                                         </div>
-                                        <label class="col-md-2 col-form-label">Porcentaje</label>
+                                        <label class="col-md-2 col-form-label">Porcentaje O.S.</label>
                                         <div class="col-md-2">
                                             <input type="text" class="form-control text-center" name="input_porcentaje"
                                                    id="input_porcentaje" onkeyup="facturado()" maxlength="8" value="100"
@@ -161,13 +153,14 @@ $c_cliente = new cl_cliente();
                                         <div class="col-md-3">
                                             <input type="text" class="form-control text-right" placeholder="0.00"
                                                    name="input_total" id="input_total" required readonly="true"/>
+                                            <input type="hidden" name="hidden_total" id="hidden_total"/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-md-2 col-form-label">Glosa:</label>
+                                        <label class="col-md-2 col-form-label">Arjuntar Archivo:</label>
                                         <div class="col-md-10">
-                                            <textarea class="form-control" name="input_glosa" id="input_glosa"
-                                                      required="true" rows="8"></textarea>
+                                            <input type="file" class="form-control" name="input_file" accept="application/pdf" required/>
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="3145728" />
                                         </div>
                                     </div>
                                 </div>
@@ -191,18 +184,18 @@ $c_cliente = new cl_cliente();
 <!-- container-scroller -->
 
 <!-- plugins:js -->
-<script src="../../vendors/js/vendor.bundle.base.js"></script>
-<script src="../../vendors/js/vendor.bundle.addons.js"></script>
+<script src="../vendors/js/vendor.bundle.base.js"></script>
+<script src="../vendors/js/vendor.bundle.addons.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page-->
 <!-- End plugin js for this page-->
 <!-- inject:js -->
-<script src="../public/assets/js/off-canvas.js"></script>
-<script src="../public/assets/js/misc.js"></script>
+<script src="js/off-canvas.js"></script>
+<script src="js/misc.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-<script src="../public/assets/js/dashboard.js"></script>
-<script src="../public/assets/js/funciones_basicas.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/funciones_basicas.js"></script>
 <!-- End custom js for this page-->
 
 <script>
@@ -214,36 +207,10 @@ $c_cliente = new cl_cliente();
             responsive: true
         });
 
-        cargar_sucursales();
     });
 
 </script>
-<script>
-    function cargar_sucursales() {
-        var ssucursal = $("#select_sucursal");
-        var scliente = $("#select_cliente");
-        var id_cliente = scliente.val();
-        $.ajax({
-            data: {"id_cliente": id_cliente},
-            url: 'peticiones_post_json/ver_sucursales_cliente.php',
-            type: 'post',
-            beforeSend: function () {
-                ssucursal.prop("disabled", true);
-            },
-            success: function (response) {
-                ssucursal.prop("disabled", false);
-                ssucursal.find('option').remove();
-                var json = JSON.parse(response);
-                $(json.data).each(function (key, registro) {
-                    ssucursal.append('<option value="' + registro.id_sucursal + '">' + registro.nombre + '</option>');
-                });
-            },
-            error: function () {
-                ssucursal.prop("disabled", true);
-            }
-        });
-    }
-</script>
+
 </body>
 
 

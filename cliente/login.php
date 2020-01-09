@@ -37,7 +37,7 @@ if (is_null(filter_input(INPUT_GET, 'error'))) {
                     <div class="row w-100">
                         <div class="col-lg-4 mx-auto">
                             <div class="auto-form-wrapper">
-                                <form action="procesos/login.php" method="post">
+                                <form action="controller/login.php" method="post">
                                     <div class="form-group">
                                         <img src="images/logo_Seaq.png" style="max-width: 100%">
                                     </div>

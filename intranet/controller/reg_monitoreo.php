@@ -25,7 +25,7 @@ if (!empty($_FILES["input_url"])) {
     } else {
 
         //establecer directorio de subida
-        $dir_subida = '../archivos_cliente/monitoreos/' . $c_monitoreo->getIdCliente() . "/" . $c_monitoreo->getIdSucursal() . "/";
+        $dir_subida = '../../archivos/clientes/monitoreos/' . $c_monitoreo->getIdCliente() . "/" . $c_monitoreo->getIdSucursal() . "/";
         //crear carpeta sino existe
         if (!file_exists($dir_subida)) {
             if (!mkdir($dir_subida, 0777, true)) {
@@ -40,12 +40,7 @@ if (!empty($_FILES["input_url"])) {
             //print "El archivo fue subido con éxito.";
 
             if ($c_monitoreo->insertar()) {
-                ?>
-                <script>
-                    window.location.href = "../contents/ver_informe_monitoreos.php";
-                </script>
-                <?php
-
+                header("Location: ../ver_informe_monitoreos.php");
             }
         } else {
             print "Error al intentar subir el archivo.";

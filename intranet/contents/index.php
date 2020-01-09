@@ -9,16 +9,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>SEAQ SAC - Software de Gestion </title>
         <!-- plugins:css -->
-        <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-        <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
-        <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+        <link rel="stylesheet" href="../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
+        <link rel="stylesheet" href="../vendors/css/vendor.bundle.addons.css">
         <!-- endinject -->
         <!-- plugin css for this page -->
         <!-- End plugin css for this page -->
         <!-- inject:css -->
-        <link rel="stylesheet" href="../public/assets/css/style.css">
+        <link rel="stylesheet" href="css/style.css">
         <!-- endinject -->
-        <link rel="shortcut icon" href="../public/assets/images/favicon.png" />
+        <link rel="shortcut icon" href="images/favicon.png" />
     </head>
 
     <body>
@@ -122,7 +122,7 @@
                                         <div class="fluid-container">
                                             <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
                                                 <div class="col-md-1">
-                                                    <img class="img-sm rounded-circle mb-4 mb-md-0" src="../public/assets/images/faces/face1.jpg" alt="profile image">
+                                                    <img class="img-sm rounded-circle mb-4 mb-md-0" src="images/faces/face1.jpg" alt="profile image">
                                                 </div>
                                                 <div class="ticket-details col-md-9">
                                                     <div class="d-flex">
@@ -165,7 +165,7 @@
                                             </div>
                                             <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
                                                 <div class="col-md-1">
-                                                    <img class="img-sm rounded-circle mb-4 mb-md-0" src="../public/assets/images/faces/face2.jpg" alt="profile image">
+                                                    <img class="img-sm rounded-circle mb-4 mb-md-0" src="images/faces/face2.jpg" alt="profile image">
                                                 </div>
                                                 <div class="ticket-details col-md-9">
                                                     <div class="d-flex">
@@ -208,7 +208,7 @@
                                             </div>
                                             <div class="row ticket-card mt-3">
                                                 <div class="col-md-1">
-                                                    <img class="img-sm rounded-circle mb-4 mb-md-0" src="../public/assets/images/faces/face3.jpg" alt="profile image">
+                                                    <img class="img-sm rounded-circle mb-4 mb-md-0" src="images/faces/face3.jpg" alt="profile image">
                                                 </div>
                                                 <div class="ticket-details col-md-9">
                                                     <div class="d-flex">
@@ -265,17 +265,17 @@
         <!-- container-scroller -->
 
         <!-- plugins:js -->
-        <script src="../../vendors/js/vendor.bundle.base.js"></script>
-        <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+        <script src="../vendors/js/vendor.bundle.base.js"></script>
+        <script src="../vendors/js/vendor.bundle.addons.js"></script>
         <!-- endinject -->
         <!-- Plugin js for this page-->
         <!-- End plugin js for this page-->
         <!-- inject:js -->
-        <script src="../public/assets/js/off-canvas.js"></script>
-        <script src="../public/assets/js/misc.js"></script>
+        <script src="js/off-canvas.js"></script>
+        <script src="js/misc.js"></script>
         <!-- endinject -->
         <!-- Custom js for this page-->
-        <script src="../public/assets/js/dashboard.js"></script>
+        <script src="js/dashboard.js"></script>
         <!-- End custom js for this page-->
     </body>
 

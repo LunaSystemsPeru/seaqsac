@@ -27,18 +27,18 @@ $c_sucursal->setIdCliente($c_cliente->getIdCliente());
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Ubicaciones del Cliente | SEAQ SAC - Software de Gestion </title>
         <!-- plugins:css -->
-        <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-        <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
-        <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+        <link rel="stylesheet" href="../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
+        <link rel="stylesheet" href="../vendors/css/vendor.bundle.addons.css">
         <!-- endinject -->
         <!-- plugin css for this page -->
-        <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
         <!-- plugin css for this page -->
         <!-- End plugin css for this page -->
         <!-- inject:css -->
-        <link rel="stylesheet" href="../public/assets/css/style.css">
+        <link rel="stylesheet" href="css/style.css">
         <!-- endinject -->
-        <link rel="shortcut icon" href="../public/assets/images/favicon.png"/>
+        <link rel="shortcut icon" href="images/favicon.png"/>
     </head>
 
     <body>
@@ -66,7 +66,7 @@ $c_sucursal->setIdCliente($c_cliente->getIdCliente());
                                         <?php
                                         if ($c_cliente->getTipo() == 1) {
                                             ?>
-                                            <a href="../controller/enviar_email_acceso.php?id_cliente=<?php echo $c_cliente->getIdCliente() ?>" class="btn btn-info"><i class="mdi mdi-message"></i>Enviar Acceso</a>
+                                            <a href="procesos/enviar_email_acceso.php?id_cliente=<?php echo $c_cliente->getIdCliente() ?>" class="btn btn-info"><i class="mdi mdi-message"></i>Enviar Acceso</a>
                                             <?php
                                         }
                                         ?>
@@ -95,7 +95,7 @@ $c_sucursal->setIdCliente($c_cliente->getIdCliente());
                                         <div class="modal fade" id="modalcrear" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
-                                                    <form class="forms-sample" method="post" action="../controller/reg_cliente_sucursal.php">
+                                                    <form class="forms-sample" method="post" action="procesos/reg_cliente_sucursal.php">
                                                         <div class="color-line"></div>
                                                         <div class="modal-header text-center">
                                                             <h4 class="modal-title">Agregar Ubicacion</h4>
@@ -122,7 +122,7 @@ $c_sucursal->setIdCliente($c_cliente->getIdCliente());
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table id="tabla" class="table table-striped">
+                                            <table id="tabla_sucursal" class="table table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th>Id</th>
@@ -141,8 +141,8 @@ $c_sucursal->setIdCliente($c_cliente->getIdCliente());
                                                             <td><?php echo $row['nombre'] ?></td>
                                                             <td><?php echo $row['direccion'] ?></td>
                                                             <td>
-                                                                <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i></button>
-                                                                <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
+                                                                <button class="btn btn-info btn-icons"><i class="fa fa-edit"></i></button>
+                                                                <button class="btn btn-danger btn-icons" title="Eliminar Sucursal" onclick="eliminar('<?php echo $row['id_clientes']?>', '<?php echo $row['id_sucursal']?>')"><i class="fa fa-close"></i></button>
                                                             </td>
                                                         </tr>
                                                         <?php
@@ -168,17 +168,17 @@ $c_sucursal->setIdCliente($c_cliente->getIdCliente());
         <!-- container-scroller -->
 
         <!-- plugins:js -->
-        <script src="../../vendors/js/vendor.bundle.base.js"></script>
-        <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+        <script src="../vendors/js/vendor.bundle.base.js"></script>
+        <script src="../vendors/js/vendor.bundle.addons.js"></script>
         <!-- endinject -->
         <!-- Plugin js for this page-->
         <!-- End plugin js for this page-->
         <!-- inject:js -->
-        <script src="../public/assets/js/off-canvas.js"></script>
-        <script src="../public/assets/js/misc.js"></script>
+        <script src="js/off-canvas.js"></script>
+        <script src="js/misc.js"></script>
         <!-- endinject -->
         <!-- Custom js for this page-->
-        <script src="../public/assets/js/dashboard.js"></script>
+        <script src="js/dashboard.js"></script>
         <!-- End custom js for this page-->
 
         <script>
@@ -191,6 +191,17 @@ $c_sucursal->setIdCliente($c_cliente->getIdCliente());
                 });
 
             });
+
+            function eliminar(id_cliente, id_sucursal) {
+                if (!confirm("¿Está seguro de que desea eliminar la Sucursal Seleccionada?")) {
+                    return false;
+                }
+                else {
+                    document.location = "procesos/del_cliente_sucursal.php?id_cliente=" + id_cliente + "&id_sucursal=" + id_sucursal;
+                    return true;
+                }
+            }
+
 
         </script>
     </body>

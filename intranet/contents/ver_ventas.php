@@ -1,5 +1,6 @@
 <?php
-
+require 'clases/cl_venta.php';
+$c_venta = new cl_venta();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -12,18 +13,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Ver Ventas | SEAQ SAC - Software de Gestion </title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <link rel="stylesheet" href="../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../vendors/css/vendor.bundle.addons.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
-    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="../public/assets/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../public/assets/images/favicon.png"/>
+    <link rel="shortcut icon" href="images/favicon.png"/>
 </head>
 
 <body>
@@ -52,31 +53,41 @@
                                     <table id="tabla" class="table table-striped">
                                         <thead>
                                         <tr>
-                                            <th width="13%">Fecha</th>
-                                            <th>Documento</th>
-                                            <th width="18%">Cliente</th>
-                                            <th width="18%">Orden Servicio</th>
-                                            <th>Total</th>
+                                            <th width="11%">Fecha</th>
+                                            <th width="11%">Documento</th>
+                                            <th>Cliente</th>
+                                            <th>Orden Interna</th>
+                                            <th width="10%">Total</th>
                                             <th>Pagado</th>
                                             <th>Estado</th>
-                                            <th width="22%">Acciones</th>
+                                            <th width="13%" class="text-center">Acciones</th>
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        <?php
+                                        $a_ventas = $c_venta->ver_filas();
+                                        foreach ($a_ventas as $fila) {
+                                            ?>
                                             <tr>
-                                                <td>05/05/2019</td>
-                                                <td>FT | E001 - 00012</td>
-                                                <td>OYANGUREN GIRON LUIS ENRIQUE</td>
-                                                <td>-</td>
-                                                <td>1,800.00</td>
-                                                <td>350.00</td>
+                                                <td><?php echo $fila['fecha'] ?></td>
+                                                <td>
+                                                    <a href="../archivos/ventas/<?php echo $fila['archivo'] ?>" target="_blank">
+                                                        <?php echo $fila['abreviado'] . " | " . $fila['serie'] . " - " . $fila['numero'] ?>
+                                                    </a>
+                                                </td>
+                                                <td><?php echo $fila['razon_social'] ?></td>
+                                                <td><?php echo $fila['id_orden_interna'] ?></td>
+                                                <td class="text-right"><?php echo number_format($fila['total'], 2) ?></td>
+                                                <td class="text-right"><?php echo number_format($fila['pagado'], 2) ?></td>
                                                 <td><label class="badge badge-warning">Pendiente </label></td>
                                                 <td>
-                                                    <a href="" target="_blank" class="btn btn-link btn-xs"><i class="fa fa-download"></i></a>
-                                                    <button class="btn btn-info btn-xs"><i class="fa fa-edit"></i></button>
-                                                    <button class="btn btn-danger btn-xs"><i class="fa fa-close"></i></button>
+                                                    <a href="ver_venta_cobro.php" class="btn btn-success btn-icons"><i class="fa fa-dollar"></i></a>
+                                                    <button class="btn btn-danger btn-icons" title="Eliminar Documento de Venta" onclick="eliminar('<?php echo $fila['id_ventas'] ?>', '<?php echo $fila['periodo'] ?>')"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>
+                                            <?php
+                                        }
+                                        ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -97,17 +108,17 @@
 <!-- container-scroller -->
 
 <!-- plugins:js -->
-<script src="../../vendors/js/vendor.bundle.base.js"></script>
-<script src="../../vendors/js/vendor.bundle.addons.js"></script>
+<script src="../vendors/js/vendor.bundle.base.js"></script>
+<script src="../vendors/js/vendor.bundle.addons.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page-->
 <!-- End plugin js for this page-->
 <!-- inject:js -->
-<script src="../public/assets/js/off-canvas.js"></script>
-<script src="../public/assets/js/misc.js"></script>
+<script src="js/off-canvas.js"></script>
+<script src="js/misc.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-<script src="../public/assets/js/dashboard.js"></script>
+<script src="js/dashboard.js"></script>
 <!-- End custom js for this page-->
 
 <script>
@@ -120,6 +131,16 @@
         });
 
     });
+
+    function eliminar(codigo, periodo) {
+        if (!confirm("¿Está seguro de que desea eliminar el Documento Seleccionado?")) {
+            return false;
+        }
+        else {
+            document.location = "procesos/del_venta.php?id_venta=" + codigo + "&periodo=" + periodo;
+            return true;
+        }
+    }
 
 </script>
 </body>

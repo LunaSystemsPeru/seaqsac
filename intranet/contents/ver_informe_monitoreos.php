@@ -13,18 +13,18 @@ $c_monitoreo = new cl_monitoreo();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Ver Informes de Monitoreos por Cliente | SEAQ SAC - Software de Gestion </title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <link rel="stylesheet" href="../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../vendors/css/vendor.bundle.addons.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
-    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="../public/assets/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../public/assets/images/favicon.png"/>
+    <link rel="shortcut icon" href="images/favicon.png"/>
 </head>
 
 <body>
@@ -54,11 +54,11 @@ $c_monitoreo = new cl_monitoreo();
                                         <thead>
                                         <tr>
                                             <th width="13%">Fecha</th>
-                                            <th width="18%">Cliente</th>
+                                            <th>Cliente</th>
                                             <th>Ubicacion</th>
                                             <th>Monitoreo</th>
                                             <th>Estado</th>
-                                            <th width="22%">Acciones</th>
+                                            <th width="18%">Acciones</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -67,13 +67,13 @@ $c_monitoreo = new cl_monitoreo();
                                         while ($row = $resultado->fetch_assoc()) {
                                             $estado = $row['estado'];
                                             if ($estado == 1) {
-                                                $valor_estado = '<label class="badge badge-warning">Pendiente</label>';
+                                                $valor_estado = '<label class="badge badge-warning badge-lg">Pendiente</label>';
                                             }
                                             if ($estado == 2) {
-                                                $valor_estado = '<label class="badge badge-info">en Revision</label>';
+                                                $valor_estado = '<label class="badge badge-info badge-lg">en Revision</label>';
                                             }
                                             if ($estado == 3) {
-                                                $valor_estado = '<label class="badge badge-success">Aprobado</label>';
+                                                $valor_estado = '<label class="badge badge-success badge-lg">Aprobado</label>';
                                             }
                                             ?>
                                             <tr>
@@ -82,11 +82,11 @@ $c_monitoreo = new cl_monitoreo();
                                                 <td><?php echo $row['nsucursal'] ?></td>
                                                 <td><?php echo $row['ntipo'] . " - " . $row['nsubclase'] ?></td>
                                                 <td><?php echo $valor_estado ?></td>
-                                                <td>
+                                                <td class="text-center">
                                                     <!--<a href="<?php echo $row['url_informe'] ?>" target="_blank" class="btn btn-link btn-xs"><i class="fa fa-download"></i></a>-->
-                                                    <a href="ver_monitoreo_detalle.php?id_monitoreo=<?php echo $row['id_monitoreos'] ?>" class="btn btn-success btn-xs"><i class="fa fa-eye-slash"></i></a>
-                                                    <button class="btn btn-info btn-xs"><i class="fa fa-edit"></i></button>
-                                                    <button class="btn btn-danger btn-xs"><i class="fa fa-close"></i></button>
+                                                    <a href="ver_monitoreo_detalle.php?id_monitoreo=<?php echo $row['id_monitoreos'] ?>" class="btn btn-success btn-icons"><i class="fa fa-eye"></i></a>
+                                                    <!--<button class="btn btn-info btn-icons" title="Modificar Informe de Monitoreo"><i class="fa fa-edit"></i></button>-->
+                                                    <button class="btn btn-danger btn-icons" title="Eliminar Monitoreo" onclick="eliminar('<?php echo $row['id_monitoreos'] ?>')"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>
                                             <?php
@@ -112,17 +112,17 @@ $c_monitoreo = new cl_monitoreo();
 <!-- container-scroller -->
 
 <!-- plugins:js -->
-<script src="../../vendors/js/vendor.bundle.base.js"></script>
-<script src="../../vendors/js/vendor.bundle.addons.js"></script>
+<script src="../vendors/js/vendor.bundle.base.js"></script>
+<script src="../vendors/js/vendor.bundle.addons.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page-->
 <!-- End plugin js for this page-->
 <!-- inject:js -->
-<script src="../public/assets/js/off-canvas.js"></script>
-<script src="../public/assets/js/misc.js"></script>
+<script src="js/off-canvas.js"></script>
+<script src="js/misc.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-<script src="../public/assets/js/dashboard.js"></script>
+<script src="js/dashboard.js"></script>
 <!-- End custom js for this page-->
 
 <script>
@@ -135,6 +135,16 @@ $c_monitoreo = new cl_monitoreo();
         });
 
     });
+
+    function eliminar(codigo) {
+        if (!confirm("¿Está seguro de que desea eliminar el Informe Seleccionado?")) {
+            return false;
+        }
+        else {
+            document.location = "procesos/del_monitoreo.php?id_monitoreo=" + codigo;
+            return true;
+        }
+    }
 
 </script>
 </body>
