@@ -259,6 +259,23 @@ class Cliente
         $this->logo = $logo;
     }
 
+    public function validar_ruc()
+    {
+        $sql = "select id_clientes
+        from clientes 
+        where ruc = '$this->ruc' ";
+        echo $sql;
+        $this->id_cliente = $this->c_conectar->get_valor_query($sql, 'id_clientes');
+        if ($this->id_cliente == NULL || $this->id_cliente == "") {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+
+
     public function obtener_id()
     {
         $query = "select ifnull(max(id_clientes) + 1, 1) as codigo from clientes";

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'clases/Capacitacion.php';
+require '../../models/Capacitacion.php';
 $c_capacitacion = new Capacitacion();
 
 ?>
@@ -24,19 +24,19 @@ $c_capacitacion = new Capacitacion();
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../vendors/assets/css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../images/favicon.png"/>
+    <link rel="shortcut icon" href="../../vendors/assets/images/favicon.png"/>
 </head>
 
 <body>
 <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <?php include 'fixed/navbar.php' ?>
+    <?php include '../fixed/navbar.php' ?>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_sidebar.html -->
-        <?php include 'fixed/sidebar.php' ?>
+        <?php include '../fixed/sidebar.php' ?>
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
@@ -62,10 +62,10 @@ $c_capacitacion = new Capacitacion();
                                         <tbody>
                                         <?php
                                         if ($_SESSION['tipo'] == 1) {
-                                            $resultado = $c_capacitacion->ver_capacitaciones_cliente();
+                                            $resultado = $c_capacitacion->ver_capacitaciones();
                                         }
                                         if ($_SESSION['tipo'] == 2) {
-                                            $resultado = $c_capacitacion->ver_capacitaciones_subcontratista();
+                                            $resultado = $c_capacitacion->ver_capacitaciones();
                                         }
                                         while ($row = $resultado->fetch_assoc()) {
                                             ?>
@@ -92,7 +92,7 @@ $c_capacitacion = new Capacitacion();
             </div>
             <!-- content-wrapper ends -->
             <!-- partial:partials/_footer.html -->
-            <?php include 'fixed/footer.php' ?>
+            <?php include '../fixed/footer.php' ?>
             <!-- partial -->
         </div>
         <!-- main-panel ends -->
@@ -107,11 +107,11 @@ $c_capacitacion = new Capacitacion();
 <!-- endinject -->
 <!-- End plugin js for this page-->
 <!-- inject:js -->
-<script src="../js/off-canvas.js"></script>
-<script src="../js/misc.js"></script>
+<script src="../../vendors/assets/js/off-canvas.js"></script>
+<script src="../../vendors/assets/js/misc.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-<script src="../js/dashboard.js"></script>
+<script src="../../vendors/assets/js/dashboard.js"></script>
 <!-- End custom js for this page-->
 
 <script>

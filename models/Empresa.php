@@ -138,6 +138,17 @@ class Empresa {
     public function setTipo($tipo) {
         $this->tipo = $tipo;
     }
+    public function validar_ruc()
+    {
+        $sql = "select * from empresas where id_empresas = '$this->id_empresa' AND ruc= '$this->ruc'";
+        $this->id_empresa = $this->c_conectar->get_valor_query($sql, 'id_empresas');
+        if ($this->id_empresa == NULL || $this->id_empresa == "") {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
 
     public function obtener_id() {
         $query = "select ifnull(max(id_empresas) +1, 1) as codigo from empresas";

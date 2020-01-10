@@ -80,6 +80,7 @@ class TipoClasificacion
     public function obtener_datos()
     {
         $query = "select * from tipos where id_tipo = '" . $this->id . "'";
+
         $columna = $this->c_conectar->get_Row($query);
         $this->nombre = $columna['nombre'];
         $this->codigo = $columna['id_codigo'];

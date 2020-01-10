@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'clases/Monitoreo.php';
+require '../../models/Monitoreo.php';
 $c_monitoreo = new Monitoreo();
 ?>
 <!DOCTYPE html>
@@ -23,19 +23,19 @@ $c_monitoreo = new Monitoreo();
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../vendors/assets/css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../images/favicon.png"/>
+    <link rel="shortcut icon" href="../../vendors/assets/images/favicon.png"/>
 </head>
 
 <body>
 <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <?php include 'fixed/navbar.php' ?>
+    <?php include '../fixed/navbar.php' ?>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_sidebar.html -->
-        <?php include 'fixed/sidebar.php' ?>
+        <?php include '../fixed/sidebar.php' ?>
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
@@ -64,10 +64,10 @@ $c_monitoreo = new Monitoreo();
                                         <tbody>
                                         <?php
                                         if ($_SESSION['tipo'] == 1) {
-                                            $resultado = $c_monitoreo->ver_monitoreos_cliente();
+                                            $resultado = $c_monitoreo->ver_monitoreos();
                                         }
                                         if ($_SESSION['tipo'] == 2) {
-                                            $resultado = $c_monitoreo->ver_monitoreos_subcontratista();
+                                            $resultado = $c_monitoreo->ver_monitoreos();
                                         }
                                         while ($row = $resultado->fetch_assoc()) {
                                             $estado = $row['estado'];
@@ -105,7 +105,7 @@ $c_monitoreo = new Monitoreo();
             </div>
             <!-- content-wrapper ends -->
             <!-- partial:partials/_footer.html -->
-            <?php include 'fixed/footer.php' ?>
+            <?php include '../fixed/footer.php' ?>
             <!-- partial -->
         </div>
         <!-- main-panel ends -->
@@ -121,11 +121,11 @@ $c_monitoreo = new Monitoreo();
 <!-- Plugin js for this page-->
 <!-- End plugin js for this page-->
 <!-- inject:js -->
-<script src="../js/off-canvas.js"></script>
-<script src="../js/misc.js"></script>
+<script src="../../vendors/assets/js/off-canvas.js"></script>
+<script src="../../vendors/assets/js/misc.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-<script src="../js/dashboard.js"></script>
+<script src="../../vendors/assets/js/dashboard.js"></script>
 <!-- End custom js for this page-->
 
 <script>

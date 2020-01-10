@@ -1,36 +1,39 @@
 <?php
+session_start();
 $id_monitoreo = filter_var(filter_input(INPUT_GET, 'id_monitoreo'), FILTER_SANITIZE_NUMBER_INT);
 
-require 'clases/Monitoreo.php';
+require '../../models/Monitoreo.php';
 $c_monitoreo = new Monitoreo();
 $c_monitoreo->setIdMonitoreo($id_monitoreo);
 $c_monitoreo->obtener_datos();
 
-require 'clases/MonitoreoComentario.php';
+require '../../models/MonitoreoComentario.php';
 $c_comentario = new MonitoreoComentario();
 $c_comentario->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
 
-require 'clases/Cliente.php';
+require '../../models/Cliente.php';
 $c_cliente = new Cliente();
 $c_cliente->setIdCliente($c_monitoreo->getIdCliente());
 $c_cliente->obtener_datos();
 
-require 'clases/ClienteSucursal.php';
+require '../../models/ClienteSucursal.php';
 $c_sucursal = new ClienteSucursal();
 $c_sucursal->setIdCliente($c_monitoreo->getIdCliente());
 $c_sucursal->setIdSucursal($c_monitoreo->getIdSucursal());
 $c_sucursal->obtener_datos();
 
-require 'clases/TipoClasificacion.php';
-$c_tipo = new TipoClasificacion();
-$c_tipo->setId($c_monitoreo->getIdTipo());
-$c_tipo->obtener_datos();
 
-require 'clases/TipoSubClase.php';
+
+require '../../models/TipoSubClase.php';
 $c_clase = new TipoSubClase();
-$c_clase->setIdTipo($c_monitoreo->getIdTipo());
+//$c_clase->setIdTipo($c_monitoreo->getIdTipo());
 $c_clase->setIdClase($c_monitoreo->getIdClase());
 $c_clase->obtener_datos();
+
+require '../../models/TipoClasificacion.php';
+$c_tipo = new TipoClasificacion();
+$c_tipo->setId($c_clase->getIdTipo());
+$c_tipo->obtener_datos();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -52,19 +55,19 @@ $c_clase->obtener_datos();
     <!-- plugin css for this page -->
     <!-- end plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../vendors/assets/css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../images/favicon.png"/>
+    <link rel="shortcut icon" href="../../vendors/assets/images/favicon.png"/>
 </head>
 
 <body>
 <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <?php include 'fixed/navbar.php' ?>
+    <?php include '../fixed/navbar.php' ?>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_sidebar.html -->
-        <?php include 'fixed/sidebar.php' ?>
+        <?php include '../fixed/sidebar.php' ?>
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
@@ -227,7 +230,7 @@ $c_clase->obtener_datos();
             </div>
             <!-- content-wrapper ends -->
             <!-- partial:partials/_footer.html -->
-            <?php include 'fixed/footer.php' ?>
+            <?php include '../fixed/footer.php' ?>
             <!-- partial -->
         </div>
         <!-- main-panel ends -->
@@ -243,11 +246,11 @@ $c_clase->obtener_datos();
 <!-- plugin js for this page-->
 <!-- end plugin js for this page-->
 <!-- inject:js -->
-<script src="../js/off-canvas.js"></script>
-<script src="../js/misc.js"></script>
+<script src="../../vendors/assets/js/off-canvas.js"></script>
+<script src="../../vendors/assets/js/misc.js"></script>
 <!-- endinject -->
 <!-- custom js for this page-->
-<script src="../js/dashboard.js"></script>
+<script src="../../vendors/assets/js/dashboard.js"></script>
 <!-- end custom js for this page-->
 
 <script>

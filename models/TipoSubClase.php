@@ -80,9 +80,11 @@ class TipoSubClase
 
     public function obtener_datos()
     {
-        $query = "select * from tipo_subclase where id_tipo = '" . $this->id_tipo . "' and  id_subclase = '" . $this->id_clase . "'";
+        $query = "select * from tipo_subclase where  id_subclase = '" . $this->id_clase . "'";
+
         $columna = $this->c_conectar->get_Row($query);
         $this->nombre = $columna['nombre'];
+        $this->id_tipo = $columna['id_tipo'];
     }
 
     public function insertar()
