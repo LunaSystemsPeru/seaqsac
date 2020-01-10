@@ -8,10 +8,10 @@
  */
 session_start();
 
-require '../clases/Cliente.php';
+require '../../models/Cliente.php';
 $c_cliente = new Cliente();
 
-require '../clases/Empresa.php';
+require '../../models/Empresa.php';
 $c_empresa = new Empresa();
 
 $c_cliente->setRuc(filter_input(INPUT_POST, 'input_ruc'));
@@ -22,6 +22,7 @@ $sicliente = $c_cliente->validar_ruc();
 $id_error = 0;
 
 if ($sicliente) {
+    $c_cliente->obtener_datos();
     if ($contrasena == $c_cliente->getContrasena()) {
         $c_cliente->obtener_datos();
         $_SESSION['id_cliente'] = $c_cliente->getIdCliente();
@@ -42,6 +43,7 @@ $siempresa = $c_empresa->validar_ruc();
 
 if ($siempresa) {
     //es cliente q da trabajos tiene clientes a su poder
+    $c_empresa->obtener_datos();
     $_SESSION['id_empresa'] = $c_empresa->getIdEmpresa();
     $_SESSION['tipo'] = 2;
     $_SESSION['nombre'] = $c_empresa->getRazonSocial();
@@ -56,5 +58,5 @@ if ($id_error > 0) {
 if ($id_error == 0 & ($sicliente || $siempresa)) {
     //echo "si_cliente = " . $sicliente;
     //echo "si_empresa = " . $siempresa;
-      header("Location: ../index.php");
+      header("Location: ../contents/index.php");
 }

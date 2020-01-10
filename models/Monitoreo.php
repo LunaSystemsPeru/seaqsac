@@ -204,7 +204,7 @@ class Monitoreo
         $this->id_sucursal = $columna['id_sucursal'];
         $this->id_cliente = $columna['id_clientes'];
         $this->id_clase = $columna['id_subclase'];
-        $this->id_tipo = $columna['id_tipo'];
+       // $this->id_tipo = $columna['id_tipo'];
         $this->url_informe = $columna['url_informe'];
         $this->id_usuario = $columna['id_usuarios'];
         $this->estado = $columna['estado'];
@@ -225,7 +225,7 @@ class Monitoreo
         from monitoreos as m 
           inner join clientes as cl on cl.id_clientes = m.id_clientes 
           inner join clientes_sucursal as cs on cs.id_sucursal = m.id_sucursal and cs.id_clientes = m.id_clientes
-        inner join tipo_subclase ts on m.id_subclase = ts.id_subclase and m.id_tipo = ts.id_tipo 
+        inner join tipo_subclase ts on m.id_subclase = ts.id_subclase 
         inner join tipos t on ts.id_tipo = t.id_tipo
         where m.estado = '1'
         order by m.fecha asc";

@@ -25,9 +25,9 @@ if (is_null(filter_input(INPUT_GET, 'error'))) {
         <!-- plugin css for this page -->
         <!-- End plugin css for this page -->
         <!-- inject:css -->
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="../vendors/assets/css/style.css">
         <!-- endinject -->
-        <link rel="shortcut icon" href="images/favicon.png" />
+        <link rel="shortcut icon" href="../vendors/assets/images/favicon.png" />
     </head>
 
     <body>
@@ -39,7 +39,7 @@ if (is_null(filter_input(INPUT_GET, 'error'))) {
                             <div class="auto-form-wrapper">
                                 <form action="controller/login.php" method="post">
                                     <div class="form-group">
-                                        <img src="images/logo_Seaq.png" style="max-width: 100%">
+                                        <img src="../vendors/assets/images/logo_Seaq.png" style="max-width: 100%">
                                     </div>
                                     <hr>
                                     <?php
@@ -112,11 +112,11 @@ if (is_null(filter_input(INPUT_GET, 'error'))) {
         <script src="../vendors/js/vendor.bundle.addons.js"></script>
         <!-- endinject -->
         <!-- inject:js -->
-        <script src="js/off-canvas.js"></script>
-        <script src="js/hoverable-collapse.html"></script>
-        <script src="js/misc.js"></script>
-        <script src="js/settings.html"></script>
-        <script src="js/todolist.html"></script>
+        <script src="../vendors/assets/js/off-canvas.js"></script>
+        <script src="../vendors/assets/js/hoverable-collapse.html"></script>
+        <script src="../vendors/assets/js/misc.js"></script>
+        <script src="../vendors/assets/js/settings.html"></script>
+        <script src="../vendors/assets/js/todolist.html"></script>
         <!-- endinject -->
     </body>
 
