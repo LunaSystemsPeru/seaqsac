@@ -1,7 +1,7 @@
 <?php
 
-require '../clases/Cliente.php';
-require '../clases_varios/cl_varios.php';
+require '../../models/Cliente.php';
+require '../../tools/cl_varios.php';
 
 $c_cliente = new Cliente();
 $c_varios = new cl_varios();
