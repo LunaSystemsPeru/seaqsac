@@ -1,13 +1,13 @@
 <?php
-require 'clases/Monitoreo.php';
-require 'clases/MonitoreoComentario.php';
-require 'clases/MonitoreoAnexo.php';
-require 'clases/Cliente.php';
-require 'clases/ClienteSucursal.php';
-require 'clases/TipoClasificacion.php';
-require 'clases/TipoSubClase.php';
-require 'clases/Equipo.php';
-require 'clases/MonitoreoEquipo.php';
+require '../../models/Monitoreo.php';
+require '../../models/MonitoreoComentario.php';
+require '../../models/MonitoreoAnexo.php';
+require '../../models/Cliente.php';
+require '../../models/ClienteSucursal.php';
+require '../../models/TipoClasificacion.php';
+require '../../models/TipoSubClase.php';
+require '../../models/Equipo.php';
+require '../../models/MonitoreoEquipo.php';
 
 
 $c_monitoreo = new Monitoreo();
@@ -60,28 +60,28 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Estado del informe de monitoreo | SEAQ SAC - Software de Gestion </title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="../vendors/css/vendor.bundle.addons.css">
+    <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
-    <link rel="stylesheet" href="../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
     <!-- plugin css for this page -->
     <!-- end plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../../vendors/assets/css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png"/>
+    <link rel="shortcut icon" href="../../vendors/assets/images/favicon.png"/>
 </head>
 
 <body>
 <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <?php include 'includes/navbar.php' ?>
+    <?php include '../fixed/navbar.php' ?>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_sidebar.html -->
-        <?php include 'includes/sidebar.php' ?>
+        <?php include '../fixedsidebar.php' ?>
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
@@ -125,7 +125,7 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
                                 <div class="modal fade" id="modalcrear" tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <form class="forms-sample" method="post" action="procesos/reg_monitoreo_comentario.php">
+                                            <form class="forms-sample" method="post" action="../controller/reg_monitoreo_comentario.php">
                                                 <div class="color-line"></div>
                                                 <div class="modal-header text-center">
                                                     <h4 class="modal-title">Agregar Comentario</h4>
@@ -246,7 +246,7 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
                                 <div class="modal fade" id="modalanexo" tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <form class="forms-sample" enctype="multipart/form-data" method="post" action="procesos/reg_monitoreo_anexo.php">
+                                            <form class="forms-sample" enctype="multipart/form-data" method="post" action="../controller/reg_monitoreo_anexo.php">
                                                 <div class="color-line"></div>
                                                 <div class="modal-header text-center">
                                                     <h4 class="modal-title">Agregar Archivo - Anexo</h4>
@@ -325,7 +325,7 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
                                 <div class="modal fade" id="modalequipo" tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <form class="forms-sample" method="post" action="procesos/reg_monitoreo_equipo.php">
+                                            <form class="forms-sample" method="post" action="../controller/reg_monitoreo_equipo.php">
                                                 <div class="color-line"></div>
                                                 <div class="modal-header text-center">
                                                     <h4 class="modal-title">Agregar Equipos de Medicion</h4>
@@ -395,7 +395,7 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
             </div>
             <!-- content-wrapper ends -->
             <!-- partial:partials/_footer.html -->
-            <?php include 'includes/footer.php' ?>
+            <?php include '../fixed/footer.php' ?>
             <!-- partial -->
         </div>
         <!-- main-panel ends -->
@@ -405,17 +405,17 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
 <!-- container-scroller -->
 
 <!-- plugins:js -->
-<script src="../vendors/js/vendor.bundle.base.js"></script>
-<script src="../vendors/js/vendor.bundle.addons.js"></script>
+<script src="../../vendors/js/vendor.bundle.base.js"></script>
+<script src="../../vendors/js/vendor.bundle.addons.js"></script>
 <!-- endinject -->
 <!-- plugin js for this page-->
 <!-- end plugin js for this page-->
 <!-- inject:js -->
-<script src="js/off-canvas.js"></script>
-<script src="js/misc.js"></script>
+<script src="../../vendors/assets/js/off-canvas.js"></script>
+<script src="../../vendors/assets/js/misc.js"></script>
 <!-- endinject -->
 <!-- custom js for this page-->
-<script src="js/dashboard.js"></script>
+<script src="../../vendors/assets/js/dashboard.js"></script>
 <!-- end custom js for this page-->
 
 <script>
