@@ -37,10 +37,10 @@
             <div class="collapse" id="facturacion">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="ver_clientes.php">Clientes</a>
+                        <a class="nav-link" href="../contents/ver_clientes.php">Clientes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ver_ventas.php">Venta</a>
+                        <a class="nav-link" href="../contents/ver_ventas.php">Venta</a>
                     </li>
                 </ul>
             </div>
@@ -54,10 +54,10 @@
             <div class="collapse" id="compras">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="ver_proveedores.php">Proveedores</a>
+                        <a class="nav-link" href="../contents/ver_proveedores.php">Proveedores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ver_compras.php">Compras</a>
+                        <a class="nav-link" href="../contents/ver_compras.php">Compras</a>
                     </li>
                 </ul>
             </div>
@@ -71,16 +71,16 @@
             <div class="collapse" id="operaciones">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="ver_presupuestos.php">Presupuestos</a>
+                        <a class="nav-link" href="../contents/ver_presupuestos.php">Presupuestos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ver_alquileres.php">Alquileres</a>
+                        <a class="nav-link" href="../contents/ver_alquileres.php">Alquileres</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ver_orden_interna.php">Orden Interna</a>
+                        <a class="nav-link" href="../contents/ver_orden_interna.php">Orden Interna</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ver_orden_servicio.php">Orden de Servicio</a>
+                        <a class="nav-link" href="../contents/ver_orden_servicio.php">Orden de Servicio</a>
                     </li>
                 </ul>
             </div>
@@ -94,13 +94,13 @@
             <div class="collapse" id="resultados">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="ver_informe_monitoreos.php">Informes Monitoreos</a>
+                        <a class="nav-link" href="../contents/ver_informe_monitoreos.php">Informes Monitoreos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ver_capacitaciones_clientes.php">Capacitaciones</a>
+                        <a class="nav-link" href="../contents/ver_capacitaciones_clientes.php">Capacitaciones</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ver_informe_auditorias.php">Auditorias</a>
+                        <a class="nav-link" href="../contents/ver_informe_auditorias.php">Auditorias</a>
                     </li>
                 </ul>
             </div>
@@ -112,7 +112,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="ver_empresas.php">
+            <a class="nav-link" href="../contents/ver_empresas.php">
                 <i class="menu-icon mdi mdi-home"></i>
                 <span class="menu-title">Empresas</span>
             </a>
@@ -132,10 +132,10 @@
                         <a class="nav-link" href="pages/samples/login.html"> Mis Documentos - SUNAT </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ver_tipos.php"> Tabla Clasificacion </a>
+                        <a class="nav-link" href="../contents/ver_tipos.php"> Tabla Clasificacion </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ver_tipos_codigo.php"> Generales </a>
+                        <a class="nav-link" href="../contents/ver_tipos_codigo.php"> Generales </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="pages/samples/error-500.html"> 500 </a>
