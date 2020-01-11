@@ -127,7 +127,13 @@ class Curso
     {
         $this->c_conectar = $c_conectar;
     }
-
+    public function ver_cursos()
+    {
+        $query = "SELECT c.id_cursos,c.nombre_curso AS curso, d.nombredocente AS docente
+FROM cursos AS c INNER JOIN  docente AS d 
+WHERE c.id_docente = d.id_docente;";
+        return $this->c_conectar->get_Cursor($query);
+    }
 
 
 }

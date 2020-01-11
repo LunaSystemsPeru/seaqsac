@@ -1,4 +1,8 @@
 <?php
+session_start();
+require '../../models/Curso.php';
+ $c_curso = new Curso();
+$lista_curso  = $c_curso->ver_cursos();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -83,17 +87,23 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        <?php
+                                        foreach ($lista_curso as $curso){?>
                                             <tr>
-                                                <td>1</td>
-                                                <td>IMPLEMENTACION DE LA ISO 9001:2015</td>
-                                                <td>Ing. Kristhian Garcia Fiestas</td>
+                                                <td><?php echo $curso['id_cursos'] ?></td>
+                                                <td><?php echo  $curso['curso']?></td>
+                                                <td><?php echo $curso['docente']?></td>
                                                 <td><label class="badge badge-success">Activo</label></td>
                                                 <td>
-                                                    <a href="ver_tipos_categoria.php?id_tipo=<?php echo $row['id_tipo'] ?>" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
+                                                    <a href="ver_tipos_categoria.php?id_tipo=" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
                                                     <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i></button>
                                                     <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>
+                                            <?php
+                                        }
+                                        ?>
+
                                         </tbody>
                                     </table>
                                 </div>
