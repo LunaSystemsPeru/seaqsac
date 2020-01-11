@@ -6,7 +6,7 @@
  * Time: 12:26 PM
  */
 
-require '../clases/Proveedor.php';
+require '../../models/Proveedor.php';
 $c_proveedor = new Proveedor();
 
 $c_proveedor->setRuc(filter_input(INPUT_POST, 'input_ruc'));
@@ -18,5 +18,5 @@ $c_proveedor->setTelefono(filter_input(INPUT_POST, 'input_telefono'));
 $c_proveedor->obtener_id();
 
 if ($c_proveedor->insertar()) {
-    header("Location: ../ver_proveedores.php");
+    header("Location: ../contents/ver_proveedores.php");
 }

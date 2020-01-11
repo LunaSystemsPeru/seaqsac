@@ -6,7 +6,7 @@
  * Time: 11:22 AM
  */
 
-require '../clases/Presupuesto.php';
+require '../../models/Presupuesto.php';
 
 $c_presupuesto = new Presupuesto();
 
@@ -43,7 +43,7 @@ if (!empty($_FILES["input_archivo"])) {
             //print "El archivo fue subido con éxito.";
 
             if ($c_presupuesto->insertar()) {
-                header("Location: ../ver_presupuestos.php");
+                header("Location: ../contents/ver_presupuestos.php");
             }
         } else {
             print "Error al intentar subir el archivo.";

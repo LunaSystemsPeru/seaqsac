@@ -226,10 +226,12 @@ $c_empresa = new Empresa();
                 $("#select_empresa").prop("disabled", true);
             },
             success: function (response) {
+                console.log(response);
                 $("#select_empresa").prop("disabled", false);
                 $("#select_empresa").find('option').remove();
                 var json = JSON.parse(response);
                 $(json.data).each(function (key, registro) {
+                    console.log(registro);
                     $("#select_empresa").append('<option value="' + registro.id_empresas + '">' + registro.razon_social + '</option>');
                 });
             },

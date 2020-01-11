@@ -123,6 +123,7 @@ class Conectar
             $i++;
         };
         return json_encode(array('data' => $registros));
+        //return json_encode($registros);
     }
 
     /**

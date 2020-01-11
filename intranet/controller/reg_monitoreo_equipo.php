@@ -6,7 +6,7 @@
  * Time: 10:31 AM
  */
 
-require '../clases/MonitoreoEquipo.php';
+require '../../models/MonitoreoEquipo.php';
 
 $c_equipos = new MonitoreoEquipo();
 
@@ -14,5 +14,5 @@ $c_equipos->setIdMonitoreo(filter_input(INPUT_POST, 'hidden_id_monitoreo_equipo'
 $c_equipos->setIdEquipo(filter_input(INPUT_POST, 'select_equipo'));
 
 if ($c_equipos->insertar()) {
-    header("Location: ../ver_monitoreo_detalle.php?id_monitoreo=" . $c_equipos->getIdMonitoreo());
+    header("Location: ../contents/ver_monitoreo_detalle.php?id_monitoreo=" . $c_equipos->getIdMonitoreo());
 }

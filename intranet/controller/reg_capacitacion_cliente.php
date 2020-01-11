@@ -6,7 +6,7 @@
  * Time: 08:43 AM
  */
 
-require '../clases/Capacitacion.php';
+require '../../models/Capacitacion.php';
 $c_capacitacion = new Capacitacion();
 
 $c_capacitacion->setFecha(filter_input(INPUT_POST, 'input_fecha'));
@@ -20,5 +20,5 @@ $c_capacitacion->setArchivoAsistencia(filter_input(INPUT_POST, 'input_archivo'))
 $c_capacitacion->obtener_id();
 
 if ($c_capacitacion->insertar()) {
-    header("Location: ../ver_capacitaciones_empleados.php?id_capacitacion=". $c_capacitacion->getIdCapacitacion());
+    header("Location: ../contents/ver_capacitaciones_empleados.php?id_capacitacion=". $c_capacitacion->getIdCapacitacion());
 }

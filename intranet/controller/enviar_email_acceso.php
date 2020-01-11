@@ -2,10 +2,10 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-require '../clases_varios/PHPMailer/Exception.php';
-require '../clases_varios/PHPMailer/PHPMailer.php';
-require '../clases_varios/PHPMailer/SMTP.php';
-require '../clases/Cliente.php';
+require '../../models_varios/PHPMailer/Exception.php';
+require '../../models_varios/PHPMailer/PHPMailer.php';
+require '../../models_varios/PHPMailer/SMTP.php';
+require '../../models/Cliente.php';
 $c_cliente = new Cliente();
 $c_cliente->setIdCliente(filter_input(INPUT_GET, 'id_cliente'));
 $c_cliente->obtener_datos();

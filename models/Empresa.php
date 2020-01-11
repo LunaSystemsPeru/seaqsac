@@ -178,7 +178,7 @@ class Empresa {
     }
 
     public function ver_empresas_tipo() {
-        $query = "select id_empresas, razon_social from empresas where tipo = '" . $this->tipo . "'";
+        $query = "select id_empresas, ruc, razon_social from empresas where tipo = '" . $this->tipo . "'";
         return $this->c_conectar->get_json_rows($query);
     }
 

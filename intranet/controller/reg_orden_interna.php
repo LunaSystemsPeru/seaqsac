@@ -6,7 +6,7 @@
  * Time: 11:09 AM
  */
 
-require '../clases/OrdenInterna.php';
+require '../../models/OrdenInterna.php';
 
 $c_orden = new OrdenInterna();
 
@@ -18,5 +18,5 @@ $c_orden->setIdCotizacion(filter_input(INPUT_POST, 'hidden_id_cotizacion'));
 $c_orden->obtener_id();
 
 if ($c_orden->insertar()) {
-    header("Location: ../ver_orden_interna.php");
+    header("Location: ../contents/ver_orden_interna.php");
 }

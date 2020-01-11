@@ -6,7 +6,7 @@
  * Time: 12:37 PM
  */
 
-require '../clases/DocumentoSunat.php';
+require '../../models/DocumentoSunat.php';
 $c_documento = new DocumentoSunat();
 
 $c_documento->setNombre(filter_input(INPUT_POST, 'input_descripcion'));
@@ -15,5 +15,5 @@ $c_documento->setCodSunat(filter_input(INPUT_POST, 'input_codsunat'));
 $c_documento->obtener_id();
 
 if ($c_documento->insertar()) {
-    header("Location: ../ver_documentos_sunat.php");
+    header("Location: ../contents/ver_documentos_sunat.php");
 }

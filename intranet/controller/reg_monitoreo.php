@@ -1,6 +1,6 @@
 <?php
 
-require '../clases/Monitoreo.php';
+require '../../models/Monitoreo.php';
 
 $c_monitoreo = new Monitoreo();
 
@@ -40,7 +40,7 @@ if (!empty($_FILES["input_url"])) {
             //print "El archivo fue subido con éxito.";
 
             if ($c_monitoreo->insertar()) {
-                header("Location: ../ver_informe_monitoreos.php");
+                header("Location: ../contents/ver_informe_monitoreos.php");
             }
         } else {
             print "Error al intentar subir el archivo.";
