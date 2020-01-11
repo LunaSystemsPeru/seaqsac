@@ -192,15 +192,15 @@ class Capacitacion
     public function obtener_id()
     {
         $query = "select ifnull(max(id_capacitaciones) + 1, concat(year(current_date), 1)) 
-  as codigo 
-from capacitaciones ";
+          as codigo 
+        from capacitaciones ";
         $this->id_capacitacion = $this->c_conectar->get_valor_query($query, "codigo");
     }
 
     public function obtener_datos()
     {
         $query = "select * from capacitaciones 
-where id_capacitaciones = '" . $this->id_capacitacion . "'";
+        where id_capacitaciones = '" . $this->id_capacitacion . "'";
         $columna = $this->c_conectar->get_Row($query);
         $this->fecha = $columna['fecha'];
         $this->id_cliente = $columna['id_clientes'];

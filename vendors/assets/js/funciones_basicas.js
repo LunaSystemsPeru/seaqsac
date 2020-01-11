@@ -6,7 +6,7 @@ function enviar_ruc() {
         };
         $.ajax({
             data: parametros,
-            url: 'peticiones_post_json/validar_ruc.php',
+            url: '../../data/ajax/validar_ruc.php',
             type: 'post',
             beforeSend: function () {
                 $("#div_resultado").html("Procesando, espere por favor...");
@@ -14,7 +14,7 @@ function enviar_ruc() {
             success: function (response) {
                 $("#div_resultado").html("");
                 var json = response;
-                // console.log(json);
+                 console.log(json);
 
                 var json_ruc = JSON.parse(json);
                 $("#input_razon_social").val(json_ruc.result.RazonSocial);
@@ -39,7 +39,7 @@ function enviar_dni() {
         };
         $.ajax({
             data: parametros,
-            url: 'peticiones_post_json/validar_dni.php',
+            url: '../../data/ajax/validar_dni.php',
             type: 'post',
             beforeSend: function () {
                 $("#div_resultado").html("Procesando, espere por favor...");
@@ -61,7 +61,7 @@ function enviar_dni() {
 
 function obtener_tc() {
         $.ajax({
-            url: 'peticiones_post_json/obtener_tipo_cambio.php',
+            url: '../../data/ajax/obtener_tipo_cambio.php',
             type: 'post',
             beforeSend: function () {
                 $("#input_tc").html("1.000");
