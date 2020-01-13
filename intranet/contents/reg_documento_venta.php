@@ -1,6 +1,9 @@
 <?php
 require '../../models/Cliente.php';
+require '../../models/OrdenInterna.php';
 $c_cliente = new Cliente();
+$c_orden_interna = new OrdenInterna();
+
 ?>
 
 <!DOCTYPE html>
@@ -47,14 +50,6 @@ $c_cliente = new Cliente();
                                     <h4 class="h3">Agregar Documento de Venta</h4>
                                 </div>
                                 <div class="card-body">
-                                    <div class="form-group row">
-                                        <label class="col-md-2 col-form-label">Periodo</label>
-                                        <div class="col-md-3">
-                                            <input type="text" class="form-control text-center" maxlength="6" minlength="6"
-                                                   name="input_periodo" id="input_periodo" value="<?php echo date("Ym") ?>"
-                                                   required="true"/>
-                                        </div>
-                                    </div>
                                     <div class="form-group row">
                                         <label class="col-md-2 col-form-label">Tipo Documento</label>
                                         <div class="col-md-3">
@@ -104,14 +99,21 @@ $c_cliente = new Cliente();
                                     <div class="form-group row">
                                         <label class="col-md-2 col-form-label">Orden Interna</label>
                                         <div class="col-md-4">
-                                            <select class="form-control" name="select_orden_interna" id="select_orden_interna"
-                                                    onchange="ver_datos_orden()">
-                                                <option value="-">SIN ORDEN</option>
+                                            <select class="form-control" name="select_orden_interna" id="select_orden_interna">
+                                                <?php
+                                                $result = $c_orden_interna->ver_filas();
+                                                while ($fila = $result->fetch_assoc()){
+                                                    ?>
+                                                    <option value="<?php echo $fila['oi.id_orden_interna']?>"><?php echo $fila['oi.id_orden_interna']?></option>
+                                                    <?php
+                                                }
+                                                ?>
+
                                             </select>
                                         </div>
                                         <label class="col-md-2 col-form-label">Orden de Servicio</label>
                                         <div class="col-md-4">
-                                            <select class="form-control" name="select_orden_servicio" id="select_orden_servicio"
+                                            <select class="form-control" name="select_orden_servicio" id="select_orden_servicio">
                                                     onchange="ver_datos_orden()">
                                                 <option value="-">SIN ORDEN</option>
                                             </select>
