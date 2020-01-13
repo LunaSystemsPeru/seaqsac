@@ -18,6 +18,7 @@ $c_usuario->setUsername(filter_input(INPUT_POST, 'input_usuario'));
 $contrasena = filter_input(INPUT_POST, 'input_password');
 
 $siusuario = $c_usuario->validar_username();
+$id_error = 0;
 
 if ($siusuario) {
     $c_usuario->obtener_datos();
@@ -39,6 +40,6 @@ if ($id_error > 0) {
 //echo $id_error;
 
 if ($id_error == 0 & ($siusuario)) {
-    //echo "si_cliente = " . $sicliente;
-      header("Location: ../contents/index.php");
+   // echo "si_usuario = " . $siusuario;
+    header("Location: ../index.php");
 }

@@ -1,6 +1,14 @@
 <?php
 require '../../models/Empresa.php';
+require '../../models/Cliente.php';
+
 $c_empresa = new Empresa();
+$c_cliente = new Cliente();
+
+if (filter_input(INPUT_GET, 'id')) {
+    $c_cliente->setIdCliente(filter_input(INPUT_GET, 'id'));
+    $c_cliente->obtener_datos();
+}
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +25,7 @@ $c_empresa = new Empresa();
     <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <link rel="stylesheet" href="../../vendors/jquery-toast-plugin/jquery.toast.min.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
@@ -52,7 +61,7 @@ $c_empresa = new Empresa();
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">RUC</label>
                                                 <div class="input-group col-sm-7">
-                                                    <input type="text" class="form-control text-center" placeholder="Ingrese RUC" maxlength="11" id="input_ruc" name="input_ruc" required>
+                                                    <input type="text" class="form-control text-center" placeholder="Ingrese RUC" maxlength="11" id="input_ruc" name="input_ruc" value="<?php echo $c_cliente->getRuc()?>" required>
                                                     <span class="input-group-append">
                                                                 <button class="btn btn-info" type="button" onclick="enviar_ruc()">
                                                                     <i class="fa fa-search"></i> Validar RUC
@@ -63,13 +72,13 @@ $c_empresa = new Empresa();
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Razon Social</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="input_razon_social" name="input_razon_social" required/>
+                                                    <input type="text" class="form-control" id="input_razon_social" name="input_razon_social" value="<?php echo $c_cliente->getRazonSocial()?>" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Direccion</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="input_direccion" name="input_direccion" required/>
+                                                    <input type="text" class="form-control" id="input_direccion" name="input_direccion" value="<?php echo $c_cliente->getDireccion()?>" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -113,29 +122,30 @@ $c_empresa = new Empresa();
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Contacto</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="input_contacto" name="input_contacto" required/>
+                                            <input type="text" class="form-control" id="input_contacto" name="input_contacto" value="<?php echo $c_cliente->getContacto()?>" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Cargo</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" id="input_cargo" name="input_cargo" required/>
+                                            <input type="text" class="form-control" id="input_cargo" name="input_cargo" value="<?php echo $c_cliente->getCargo()?>" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Correo</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="input_correo" name="input_correo" required/>
+                                            <input type="text" class="form-control" id="input_correo" name="input_correo" value="<?php echo $c_cliente->getEmail()?>" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Telefono</label>
                                         <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="input_telefono" name="input_telefono"/>
+                                            <input type="text" class="form-control" id="input_telefono" name="input_telefono" value="<?php echo $c_cliente->getCelular()?>"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer">
+                                    <input type="hidden" name="hidden_id_cliente" value="<?php echo $c_cliente->getIdCliente()?>">
                                     <button type="submit" class="btn btn-success mr-2">Guardar</button>
                                 </div>
                             </form>
@@ -166,6 +176,7 @@ $c_empresa = new Empresa();
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="../../vendors/assets/js/dashboard.js"></script>
+<script src="../../vendors/jquery-toast-plugin/jquery.toast.min.js"></script>
 <script src="../../vendors/assets/js/funciones_basicas.js"></script>
 <!-- End custom js for this page-->
 

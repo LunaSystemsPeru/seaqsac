@@ -274,8 +274,6 @@ class Cliente
 
     }
 
-
-
     public function obtener_id()
     {
         $query = "select ifnull(max(id_clientes) + 1, 1) as codigo from clientes";
@@ -307,6 +305,23 @@ class Cliente
         values ('" . $this->id_cliente . "', '" . $this->ruc . "', '" . $this->razon_social . "', '" . $this->direccion . "', '" . $this->contacto . "', 
         '" . $this->email . "', '" . $this->celular . "', '" . $this->cargo . "', '" . $this->tipo . "', '" . $this->id_empresa . "', '1000-01-01', 
         '1', '" . $this->contrasena . "', '" . $this->logo . "')";
+        return $this->c_conectar->ejecutar_idu($query);
+    }
+
+    public function modificar()
+    {
+        $query = "update clientes set
+                    ruc = '" . $this->ruc . "', 
+                    razon_social = '$this->razon_social', 
+                    direccion = '$this->direccion', 
+                    contacto = '$this->contacto', 
+                    email = '$this->email', 
+                    telefono = '$this->celular', 
+                    cargo = '$this->cargo', 
+                    tipo = '$this->tipo', 
+                    id_empresas = '$this->id_empresa',
+                    logo = '$this->logo'
+                    where id_clientes = '$this->id_cliente'";
         return $this->c_conectar->ejecutar_idu($query);
     }
 
