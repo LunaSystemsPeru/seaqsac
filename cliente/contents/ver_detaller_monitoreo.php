@@ -2,9 +2,9 @@
 session_start();
 require '../../models/Monitoreo.php';
 $c_monitoreo = new Monitoreo();
-$c_monitoreo->setIdSucursal(filter_input(INPUT_GET, 'sucursal'));
-$c_monitoreo->setFecha(date("Y"));
-$listaMonitoreo=$c_monitoreo->ver_monitoreos();
+$c_monitoreo->setIdMonitoreo(filter_input(INPUT_GET, 'monitoreio'));
+
+$c_monitoreo->obtener_datos();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -54,64 +54,35 @@ $listaMonitoreo=$c_monitoreo->ver_monitoreos();
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="h3">Monitoreos</h4>
+                                <h4 class="h3">Detalle</h4>
                                 <!--button class="btn btn-outline-success">
                                     <i class="fa fa-search"></i>Buscar por Criterios
                                 </button-->
                             </div>
-                            <div class="card-body">
-                                <div>
-                                    <div class="form-group row">
-                                        <label for="exampleInputName2" class="col-md-1">Fecha</label>
-                                        <div class="col-md-2">
-                                            <select class="form-control ">
-                                                <option>2020</option>
-                                            </select>
-                                        </div>
 
-                                    </div>
-                                    <div class="">
-
-                                    </div>
-                                </div>
-                            </div>
 
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
-                    <?php
-                    $contador =1;
-                    foreach ($listaMonitoreo as $item) {  ?>
 
-                            <div class="clickclet col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-                                <div class="card card-statistics">
-                                    <div class="card-body" onclick="ir_monitoreo(<?php echo $item["id_monitoreos"]?>)">
-                                        <div class="clearfix">
-
-                                            <div class="float-left">
-
-                                                <div class="fluid-container">
-                                                    <h3 class="font-weight-medium text-right mb-0">Monitoreo <?php echo $contador?></h3>
-                                                </div>
-
-                                                <p  class="mb-0 text-right" >Tipo: <strong><?php echo $item["ntipo"]?></strong></p>
-                                            </div>
-                                            <div class="float-right">
-                                                <i class="fa fa-bullseye text-danger icon-lg"></i>
-                                            </div>
-                                        </div>
-                                        <p class="mb-0 text-right">Revision: <?php echo $item["fecha_revision"]?></p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                    <?php $contador++; }   ?>
-
-
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <h4 for="inputEmail3" class="col-sm-12 control-label">Fecha Registro: <?php echo $c_monitoreo->getFecha()?></h4>
+                        </div>
+                        <div class="form-group">
+                            <h4 for="inputEmail3" class="col-sm-12 control-label">Fecha Revision: <?php echo $c_monitoreo->getFechaRevision()?></h4>
+                        </div>
+                        <div class="form-group">
+                            <h4 for="inputEmail3" class="col-sm-12 control-label">Estado: <div class="badge badge-success">Activo</div></h4>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <embed src="<?php echo $c_monitoreo->getUrlInforme()?>" type="application/pdf" width="100%" height="600px" />
+                    </div>
                 </div>
+
             </div>
             <!-- content-wrapper ends -->
             <!-- partial:partials/_footer.html -->
@@ -139,9 +110,7 @@ $listaMonitoreo=$c_monitoreo->ver_monitoreos();
 <!-- End custom js for this page-->
 
 <script>
-    function ir_monitoreo( id){
-        location.href ="ver_detaller_monitoreo.php?monitoreio="+id;
-    }
+
 
     $(function () {
 
