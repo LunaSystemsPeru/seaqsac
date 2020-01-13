@@ -104,7 +104,7 @@ $c_tipo->obtener_datos();
                             <div class="card-header">
                                 <h4 class="h3">revision del informe </span> <?php echo $c_tipo->getNombre() . " - " . $c_clase->getNombre() ?></h4>
                                 <button class="btn btn-info" data-toggle="modal" data-target="#modalcrear"><i class="fa fa-user-plus"></i>agregar respuesta</button>
-                                <a href="ver_informe_monitoreos.php" class="btn btn-outline-success">
+                                <a href="ver_informe_monitoreos_sucursal.php" class="btn btn-outline-success">
                                     <i class="fa fa-arrow-left"></i>Ver Monitoreos
                                 </a>
 

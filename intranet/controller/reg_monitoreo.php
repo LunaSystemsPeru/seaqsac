@@ -7,7 +7,7 @@ $c_monitoreo = new Monitoreo();
 $c_monitoreo->setFecha(filter_input(INPUT_POST, 'input_fecha'));
 $c_monitoreo->setIdCliente(filter_input(INPUT_POST, 'select_cliente'));
 $c_monitoreo->setIdSucursal(filter_input(INPUT_POST, 'select_sucursal'));
-$c_monitoreo->setIdTipo(filter_input(INPUT_POST, 'select_tipo'));
+//$c_monitoreo->setIdTipo(filter_input(INPUT_POST, 'select_tipo'));
 $c_monitoreo->setIdClase(filter_input(INPUT_POST, 'select_clase'));
 //$c_monitoreo->setUrlInforme(filter_input(INPUT_POST, 'input_url'));
 $c_monitoreo->setIdUsuario(1);
@@ -40,7 +40,7 @@ if (!empty($_FILES["input_url"])) {
             //print "El archivo fue subido con éxito.";
 
             if ($c_monitoreo->insertar()) {
-                header("Location: ../contents/ver_informe_monitoreos.php");
+                header("Location: ../contents/ver_informe_monitoreos_sucursal.php");
             }
         } else {
             print "Error al intentar subir el archivo.";

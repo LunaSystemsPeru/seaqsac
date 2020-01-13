@@ -197,21 +197,27 @@ class Monitoreo
     public function insertar()
     {
         $query = "insert into monitoreos "
-            . "values ('" . $this->id_monitoreo . "', '" . $this->fecha . "', '" . $this->id_sucursal . "', '" . $this->id_cliente . "', '" . $this->id_clase . "', '" . $this->id_tipo . "', '" . $this->url_informe . "', '" . $this->id_usuario . "', '1', 'current_day()')";
+            . "values ('" . $this->id_monitoreo . "', '" . $this->fecha . "', '" . $this->id_sucursal . "', '" . $this->id_cliente . "', '" . $this->url_informe . "', '" . $this->id_usuario . "',  '1', 'current_day()')";
         $resultado = $this->c_conectar->ejecutar_idu($query);
         return $resultado;
     }
 
+    public function sucursales(){
+        $query = "SELECT * FROM clientes_sucursal WHERE id_clientes= '{$_SESSION['id_cliente']}'";
+        return $this->c_conectar->get_Cursor($query);
+    }
+
     public function ver_monitoreos()
     {
-        $query = "select m.id_monitoreos, m.fecha, cl.razon_social, cs.nombre as nsucursal, t.nombre as ntipo, ts.nombre as nsubclase, m.estado, m.url_informe  
+        $query = "select m.id_monitoreos,m.fecha_revision, m.fecha, cl.razon_social, cs.nombre as nsucursal, t.nombre as ntipo, ts.nombre as nsubclase, m.estado, m.url_informe  
         from monitoreos as m 
           inner join clientes as cl on cl.id_clientes = m.id_clientes 
           inner join clientes_sucursal as cs on cs.id_sucursal = m.id_sucursal and cs.id_clientes = m.id_clientes
         inner join tipo_subclase ts on m.id_subclase = ts.id_subclase 
         inner join tipos t on ts.id_tipo = t.id_tipo
-        where m.estado = '1'
+        where m.estado = '1' AND m.id_sucursal='$this->id_sucursal'  and YEAR(m.fecha)='$this->fecha'
         order by m.fecha asc";
+
         return $this->c_conectar->get_Cursor($query);
     }
 

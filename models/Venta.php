@@ -17,8 +17,6 @@ class Venta
     private $id_documento;
     private $serie;
     private $numero;
-    private $sub_total;
-    private $igv;
     private $total;
     private $pagado;
     private $estado;
@@ -260,37 +258,6 @@ class Venta
         $this->archivo = $archivo;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getSubTotal()
-    {
-        return $this->sub_total;
-    }
-
-    /**
-     * @param mixed $sub_total
-     */
-    public function setSubTotal($sub_total)
-    {
-        $this->sub_total = $sub_total;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIgv()
-    {
-        return $this->igv;
-    }
-
-    /**
-     * @param mixed $igv
-     */
-    public function setIgv($igv)
-    {
-        $this->igv = $igv;
-    }
     public function obtener_id()
     {
         $query = "select ifnull(max(id_ventas) + 1, 1) as codigo 
@@ -300,9 +267,10 @@ class Venta
 
     public function insertar()
     {
-        $query = "insert into ventas values ('" . $this->id_venta . "', '" . $this->id_documento . "', '" . $this->fecha . "', '" . $this->serie . "', '" . $this->numero . "',
-         '" . $this->id_cliente . "', '" . $this->id_orden_interna . "', '" . $this->id_orden_cliente . "', '" . $this->porcentaje . "' ,'". $this->sub_total ."', '". $this->igv ."', '" . $this->total . "',   
-         '" . $this->archivo . "')";
+        $query = "insert into ventas values ('" . $this->id_venta . "', '" . $this->id_documento . "',
+         '" . $this->fecha . "', '" . $this->serie . "', '" . $this->numero . "','" . $this->id_cliente . "', 
+         '" . $this->id_orden_interna . "', '" . $this->id_orden_cliente . "', '" . $this->porcentaje . "', 
+         '" . $this->total . "', '" . $this->archivo . "')";
         return $this->c_conectar->ejecutar_idu($query);
     }
 
