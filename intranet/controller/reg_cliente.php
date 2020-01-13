@@ -41,7 +41,7 @@ if (!empty($_FILES["file"])) {
             //print "El archivo fue subido con éxito.";
 
             if ($c_cliente->insertar()) {
-               header("Location: ../ver_clientes.php");
+               header("Location: ../contents/ver_clientes.php");
             }
         } else {
             print "Error al intentar subir el archivo.";

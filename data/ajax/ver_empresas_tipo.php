@@ -6,7 +6,7 @@
  * Time: 08:17 PM
  */
 
-require '../clases/Empresa.php';
+require '../../models/Empresa.php';
 $c_empresa = new Empresa();
 
 $tipo = filter_input(INPUT_POST, 'input_tipo');

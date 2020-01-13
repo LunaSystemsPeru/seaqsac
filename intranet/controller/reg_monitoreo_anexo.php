@@ -6,8 +6,8 @@
  * Time: 07:04 PM
  */
 
-require '../clases/MonitoreoAnexo.php';
-require '../clases/Monitoreo.php';
+require '../../models/MonitoreoAnexo.php';
+require '../../models/Monitoreo.php';
 
 $c_anexo = new MonitoreoAnexo();
 $c_monitoreo = new Monitoreo();
@@ -47,7 +47,7 @@ if (!empty($_FILES["input_archivo"])) {
             //print "El archivo fue subido con éxito.";
 
             if ($c_anexo->insertar()) {
-                header("Location: ../ver_monitoreo_detalle.php?id_monitoreo=" . $c_anexo->getIdMonitoreo());
+                header("Location: ../contents/ver_monitoreo_detalle.php?id_monitoreo=" . $c_anexo->getIdMonitoreo());
             }
         } else {
             print "Error al intentar subir el archivo.";

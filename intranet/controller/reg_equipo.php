@@ -6,7 +6,7 @@
  * Time: 06:08 PM
  */
 
-require '../clases/Equipo.php';
+require '../../models/Equipo.php';
 
 $c_equipo = new Equipo();
 
@@ -48,7 +48,7 @@ if (!empty($_FILES["input_certificado"])) {
             //print "El archivo fue subido con éxito.";
 
             if ($c_equipo->insertar()) {
-                header("Location: ../ver_equipos.php");
+                header("Location: ../contents/ver_equipos.php");
             }
         } else {
             print "Error al intentar subir el archivo.";

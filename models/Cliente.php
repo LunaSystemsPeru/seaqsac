@@ -305,7 +305,7 @@ class Cliente
     {
         $query = "insert into clientes 
         values ('" . $this->id_cliente . "', '" . $this->ruc . "', '" . $this->razon_social . "', '" . $this->direccion . "', '" . $this->contacto . "', 
-        '" . $this->email . "', '" . $this->celular . "', '" . $this->cargo . "', '" . $this->tipo . "', '" . $this->id_empresa . "', '0000-00-00', 
+        '" . $this->email . "', '" . $this->celular . "', '" . $this->cargo . "', '" . $this->tipo . "', '" . $this->id_empresa . "', '1000-01-01', 
         '1', '" . $this->contrasena . "', '" . $this->logo . "')";
         return $this->c_conectar->ejecutar_idu($query);
     }

@@ -43,7 +43,7 @@ if (!empty($_FILES["input_file"])) {
             //print "El archivo fue subido con éxito.";
 
             if ($c_venta->insertar()) {
-                header("Location: ../ver_ventas.php");
+                header("Location: ../contents/ver_ventas.php");
             }
         } else {
             print "Error al intentar subir el archivo.";

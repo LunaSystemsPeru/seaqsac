@@ -1,5 +1,5 @@
 <?php
-require '../clases/Empresa.php';
+require '../../models/Empresa.php';
 
 $c_empresa = new Empresa();
 
@@ -13,5 +13,5 @@ $c_empresa->setTipo(filter_input(INPUT_POST, 'radio_tipo'));
 $c_empresa->obtener_id();
 
 if ($c_empresa->insertar()) {
-    header("Location: ../ver_empresas.php");
+    header("Location: ../contents/ver_empresas.php");
 }

@@ -6,7 +6,7 @@
  * Time: 07:38 AM
  */
 
-require '../clases/TipoSubClase.php';
+require '../../models/TipoSubClase.php';
 
 $c_clase = new TipoSubClase();
 

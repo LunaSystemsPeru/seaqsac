@@ -6,12 +6,12 @@
  * Time: 03:35 PM
  */
 
-require '../clases/OrdenInterna.php';
+require '../../models/OrdenInterna.php';
 
 $c_orden = new OrdenInterna();
 
 $c_orden->setIdOrden(filter_input(INPUT_GET, 'id_orden_interna'));
 
 if ($c_orden->eliminar()) {
-    header("Location: ../ver_presupuestos.php");
+    header("Location: ../contents/ver_presupuestos.php");
 }

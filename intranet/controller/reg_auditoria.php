@@ -6,7 +6,7 @@
  * Time: 02:09 AM
  */
 
-require '../clases/auditoria.php';
+require '../../models/auditoria.php';
 
 $c_auditoria = new auditoria();
 
@@ -21,5 +21,5 @@ $c_auditoria->setUrlInforme(filter_input(INPUT_POST, 'input_url'));
 $c_auditoria->obtener_id();
 
 if ($c_auditoria->insertar()) {
-    header("Location: ../ver_informe_auditorias.php");
+    header("Location: ../contents/ver_informe_auditorias.php");
 }

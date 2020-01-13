@@ -33,16 +33,14 @@ $c_sucursal->setIdCliente($c_monitoreo->getIdCliente());
 $c_sucursal->setIdSucursal($c_monitoreo->getIdSucursal());
 $c_sucursal->obtener_datos();
 
-
-$c_tipo = new TipoClasificacion();
-$c_tipo->setId($c_monitoreo->getIdTipo());
-$c_tipo->obtener_datos();
-
-
 $c_clase = new TipoSubClase();
-$c_clase->setIdTipo($c_monitoreo->getIdTipo());
 $c_clase->setIdClase($c_monitoreo->getIdClase());
 $c_clase->obtener_datos();
+
+
+$c_tipo = new TipoClasificacion();
+$c_tipo->setId($c_clase->getIdTipo());
+$c_tipo->obtener_datos();
 
 $c_equipos = new Equipo();
 
@@ -81,7 +79,7 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_sidebar.html -->
-        <?php include '../fixedsidebar.php' ?>
+        <?php include '../fixed/sidebar.php' ?>
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">

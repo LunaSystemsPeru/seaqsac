@@ -14,7 +14,6 @@ class Monitoreo
     private $fecha;
     private $id_cliente;
     private $id_sucursal;
-    private $id_tipo;
     private $id_clase;
     private $id_usuario;
     private $url_informe;
@@ -94,21 +93,6 @@ class Monitoreo
         $this->id_sucursal = $id_sucursal;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIdTipo()
-    {
-        return $this->id_tipo;
-    }
-
-    /**
-     * @param mixed $id_tipo
-     */
-    public function setIdTipo($id_tipo)
-    {
-        $this->id_tipo = $id_tipo;
-    }
 
     /**
      * @return mixed
@@ -204,7 +188,6 @@ class Monitoreo
         $this->id_sucursal = $columna['id_sucursal'];
         $this->id_cliente = $columna['id_clientes'];
         $this->id_clase = $columna['id_subclase'];
-       // $this->id_tipo = $columna['id_tipo'];
         $this->url_informe = $columna['url_informe'];
         $this->id_usuario = $columna['id_usuarios'];
         $this->estado = $columna['estado'];

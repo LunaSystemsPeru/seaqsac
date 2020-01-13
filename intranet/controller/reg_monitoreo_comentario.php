@@ -6,7 +6,7 @@
  * Time: 01:33 AM
  */
 
-require '../clases/MonitoreoComentario.php';
+require '../../models/MonitoreoComentario.php';
 $c_comentario = new MonitoreoComentario();
 
 $c_comentario->setIdMonitoreo(filter_input(INPUT_POST, 'hidden_id_monitoreo'));
@@ -19,5 +19,5 @@ $c_comentario->setAccion(filter_input(INPUT_POST, 'radio_tipo'));
 $c_comentario->obtener_id();
 
 if ($c_comentario->insertar()) {
-    header("Location: ../ver_monitoreo_detalle.php?id_monitoreo=" . $c_comentario->getIdMonitoreo());
+    header("Location: ../contents/ver_monitoreo_detalle.php?id_monitoreo=" . $c_comentario->getIdMonitoreo());
 }
