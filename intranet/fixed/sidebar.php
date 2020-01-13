@@ -57,7 +57,16 @@
                         <a class="nav-link" href="../contents/ver_proveedores.php">Proveedores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../contents/ver_compras.php">Compras</a>
+                        <a class="nav-link" href="../contents/ver_compras.php">Compras SUNAT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../contents/ver_contratos.php">Contratos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../contents/ver_pagos_frecuentes.php">Pagos Frecuentes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../contents/ver_gastos.php">Gastos</a>
                     </li>
                 </ul>
             </div>
@@ -100,19 +109,10 @@
             <div class="collapse" id="tablas">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/blank-page.html"> Equipos </a>
+                        <a class="nav-link" href="../contents/ver_prestamos.php"> Prestamos </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/login.html"> Mis Documentos - SUNAT </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../contents/ver_tipos.php"> Tabla Clasificacion </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../contents/ver_tipos_codigo.php"> Generales </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/error-500.html"> 500 </a>
+                        <a class="nav-link" href="../contents/ver_bancos.php"> Bancos</a>
                     </li>
                 </ul>
             </div>
@@ -138,7 +138,7 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
+            <a class="nav-link" href="../contents/ver_usuarios.php">
                 <i class="menu-icon mdi mdi-water-percent"></i>
                 <span class="menu-title">Usuarios</span>
             </a>
@@ -158,19 +158,16 @@
             <div class="collapse" id="tablas">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/blank-page.html"> Documentos SUNAT </a>
+                        <a class="nav-link" href="../contents/ver_documentos_sunat.php"> Documentos SUNAT </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/login.html"> Mis Documentos - SUNAT </a>
+                        <a class="nav-link" href="../contents/ver_mis_documentos_sunat.php" Mis Documentos - SUNAT </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../contents/ver_tipos.php"> Tabla Clasificacion </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../contents/ver_tipos_codigo.php"> Generales </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/error-500.html"> 500 </a>
                     </li>
                 </ul>
             </div>
