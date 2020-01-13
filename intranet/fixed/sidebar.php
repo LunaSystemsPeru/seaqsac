@@ -86,6 +86,38 @@
             </div>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="../contents/ver_equipos.php">
+                <i class="menu-icon mdi mdi-water-percent"></i>
+                <span class="menu-title">Equipos</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#tablas" aria-expanded="false" aria-controls="tablas">
+                <i class="menu-icon mdi mdi-box"></i>
+                <span class="menu-title">Caja - Bancos</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="tablas">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/samples/blank-page.html"> Equipos </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/samples/login.html"> Mis Documentos - SUNAT </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../contents/ver_tipos.php"> Tabla Clasificacion </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../contents/ver_tipos_codigo.php"> Generales </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/samples/error-500.html"> 500 </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#resultados" aria-expanded="false" aria-controls="resultados">
                 <i class="menu-icon mdi mdi-content-copy"></i>
                 <span class="menu-title">Resultados</span>

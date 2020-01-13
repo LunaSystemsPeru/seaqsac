@@ -15,7 +15,8 @@ $c_cliente->setEmail(filter_input(INPUT_POST, 'input_correo'));
 $c_cliente->setCelular(filter_input(INPUT_POST, 'input_telefono'));
 $c_cliente->setTipo(filter_input(INPUT_POST, 'radio_tipo'));
 $c_cliente->setIdEmpresa(filter_input(INPUT_POST, 'select_empresa'));
-$c_cliente->obtener_id();
+$c_cliente->setIdCliente(filter_input(INPUT_POST, 'hidden_id_cliente'));
+
 
 if ($c_cliente->getTipo() == 1) {
     $c_cliente->setContrasena($c_varios->generarCodigo(8));
@@ -39,10 +40,13 @@ if (!empty($_FILES["file"])) {
 
         if (move_uploaded_file($file_temporal, $dir_subida . $c_cliente->getLogo())) {
             //print "El archivo fue subido con éxito.";
-
-            if ($c_cliente->insertar()) {
-               header("Location: ../contents/ver_clientes.php");
+            if ($c_cliente->getIdCliente() == "") {
+                $c_cliente->obtener_id();
+                $c_cliente->insertar();
+            } else {
+                $c_cliente->modificar();
             }
+            //header("Location: ../contents/ver_clientes.php");
         } else {
             print "Error al intentar subir el archivo.";
         }
