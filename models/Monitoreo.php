@@ -197,7 +197,7 @@ class Monitoreo
     public function insertar()
     {
         $query = "insert into monitoreos "
-            . "values ('" . $this->id_monitoreo . "', '" . $this->fecha . "', '" . $this->id_sucursal . "', '" . $this->id_cliente . "', '" . $this->id_clase . "', '" . $this->id_tipo . "', '" . $this->url_informe . "', '" . $this->id_usuario . "', '1', 'current_day()')";
+            . "values ('" . $this->id_monitoreo . "', '" . $this->fecha . "', '" . $this->id_sucursal . "', '" . $this->id_cliente . "', '" . $this->url_informe . "', '" . $this->id_usuario . "',  '1', 'current_day()')";
         $resultado = $this->c_conectar->ejecutar_idu($query);
         return $resultado;
     }

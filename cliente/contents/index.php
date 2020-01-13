@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if (is_null($_SESSION['id_cliente'])) {
     header ("Location: ../login.php");
 }
