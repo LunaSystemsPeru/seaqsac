@@ -1,6 +1,5 @@
 <?php
-session_start();
-require '../../models/Auditoria.php';
+require 'clases/Auditoria.php';
 $c_auditoria = new auditoria();
 ?>
 <!DOCTYPE html>
@@ -23,19 +22,19 @@ $c_auditoria = new auditoria();
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="../../vendors/assets/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../../vendors/assets/images/favicon.png"/>
+    <link rel="shortcut icon" href="../images/favicon.png"/>
 </head>
 
 <body>
 <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <?php include '../fixed/navbar.php' ?>
+    <?php include 'fixed/navbar.php' ?>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_sidebar.html -->
-        <?php include '../fixed/sidebar.php' ?>
+        <?php include 'fixed/sidebar.php' ?>
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
@@ -89,7 +88,7 @@ $c_auditoria = new auditoria();
             </div>
             <!-- content-wrapper ends -->
             <!-- partial:partials/_footer.html -->
-            <?php include '../fixed/footer.php' ?>
+            <?php include 'fixed/footer.php' ?>
             <!-- partial -->
         </div>
         <!-- main-panel ends -->
@@ -105,11 +104,11 @@ $c_auditoria = new auditoria();
 <!-- Plugin js for this page-->
 <!-- End plugin js for this page-->
 <!-- inject:js -->
-<script src="../../vendors/assets/js/off-canvas.js"></script>
-<script src="../../vendors/assets/js/misc.js"></script>
+<script src="../js/off-canvas.js"></script>
+<script src="../js/misc.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-<script src="../../vendors/assets/js/dashboard.js"></script>
+<script src="../js/dashboard.js"></script>
 <!-- End custom js for this page-->
 
 <script>

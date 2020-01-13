@@ -40,7 +40,7 @@ if (!empty($_FILES["input_url"])) {
             //print "El archivo fue subido con éxito.";
 
             if ($c_monitoreo->insertar()) {
-                header("Location: ../contents/ver_informe_monitoreos.php");
+                header("Location: ../contents/ver_informe_monitoreos_sucursal.php");
             }
         } else {
             print "Error al intentar subir el archivo.";

@@ -13,7 +13,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="ver_informe_monitoreos.php">
+            <a class="nav-link" href="ver_informe_monitoreos_sucursal.php">
                 <i class="menu-icon mdi mdi-content-copy"></i>
                 <span class="menu-title">Ver Informes de Monitoreo</span>
             </a>
