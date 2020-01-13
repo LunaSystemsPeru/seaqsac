@@ -2,9 +2,7 @@
 session_start();
 require '../../models/Monitoreo.php';
 $c_monitoreo = new Monitoreo();
-$c_monitoreo->setIdSucursal(filter_input(INPUT_GET, 'sucursal'));
-$c_monitoreo->setFecha(date("Y"));
-$listaMonitoreo=$c_monitoreo->ver_monitoreos();
+$listaSucursales=$c_monitoreo->sucursales();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -54,7 +52,7 @@ $listaMonitoreo=$c_monitoreo->ver_monitoreos();
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="h3">Monitoreos</h4>
+                                <h4 class="h3">Sucursales</h4>
                                 <!--button class="btn btn-outline-success">
                                     <i class="fa fa-search"></i>Buscar por Criterios
                                 </button-->
@@ -80,35 +78,31 @@ $listaMonitoreo=$c_monitoreo->ver_monitoreos();
                     </div>
                 </div>
                 <div class="row">
-                    <?php
-                    $contador =1;
-                    foreach ($listaMonitoreo as $item) {  ?>
+                    <?php foreach ($listaSucursales as $item) {  ?>
 
                             <div class="clickclet col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
                                 <div class="card card-statistics">
-                                    <div class="card-body" >
+                                    <div class="card-body" onclick="ir_monitoreo(<?php echo $item["id_sucursal"]?>)">
                                         <div class="clearfix">
-
                                             <div class="float-left">
-
-                                                <div class="fluid-container">
-                                                    <h3 class="font-weight-medium text-right mb-0">Monitoreo <?php echo $contador?></h3>
-                                                </div>
-
-                                                <p  class="mb-0 text-right" >Tipo: <strong><?php echo $item["ntipo"]?></strong></p>
+                                                <i class="fa fa-cubes text-danger icon-lg"></i>
                                             </div>
                                             <div class="float-right">
-                                                <i class="fa fa-bullseye text-danger icon-lg"></i>
+                                                <p class="mb-0 text-right">Sucursal <?php echo $item["id_sucursal"]?></p>
+                                                <div class="fluid-container">
+                                                    <h3 class="font-weight-medium text-right mb-0"><?php echo $item["nombre"]?></h3>
+                                                </div>
                                             </div>
                                         </div>
-                                        <p class="mb-0 text-right">Revision: <?php echo $item["fecha_revision"]?></p>
+                                        <p class="text-muted mt-3 mb-0" style="font-size: 10px">
+                                            <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i><?php echo $item["direccion"]?></p>
                                     </div>
                                 </div>
                             </div>
 
 
 
-                    <?php $contador++; }   ?>
+                    <?php }?>
 
 
                 </div>
@@ -139,6 +133,10 @@ $listaMonitoreo=$c_monitoreo->ver_monitoreos();
 <!-- End custom js for this page-->
 
 <script>
+    function ir_monitoreo( id){
+        console.log("holaaaaaaaa");
+        location.href ="ver_informe_monitoreos.php?sucursal="+id;
+    }
 
 
     $(function () {
