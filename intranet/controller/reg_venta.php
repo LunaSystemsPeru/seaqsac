@@ -6,7 +6,7 @@
  * Time: 05:17 PM
  */
 
-require '../clases/Venta.php';
+require '../../models/Venta.php';
 
 $c_venta = new Venta();
 

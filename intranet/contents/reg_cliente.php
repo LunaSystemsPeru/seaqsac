@@ -93,6 +93,7 @@ $c_empresa = new Empresa();
                                                         <label class="col-sm-2 col-form-label">Tercero</label>
                                                         <div class="col-sm-10">
                                                             <select class="form-control" name="select_empresa" id="select_empresa">
+
                                                             </select>
                                                         </div>
                                                     </div>

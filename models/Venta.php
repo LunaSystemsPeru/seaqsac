@@ -12,12 +12,13 @@ require_once 'Conectar.php';
 class Venta
 {
     private $id_venta;
-    private $periodo_venta;
     private $fecha;
     private $id_cliente;
     private $id_documento;
     private $serie;
     private $numero;
+    private $sub_total;
+    private $igv;
     private $total;
     private $pagado;
     private $estado;
@@ -259,28 +260,59 @@ class Venta
         $this->archivo = $archivo;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getSubTotal()
+    {
+        return $this->sub_total;
+    }
+
+    /**
+     * @param mixed $sub_total
+     */
+    public function setSubTotal($sub_total)
+    {
+        $this->sub_total = $sub_total;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIgv()
+    {
+        return $this->igv;
+    }
+
+    /**
+     * @param mixed $igv
+     */
+    public function setIgv($igv)
+    {
+        $this->igv = $igv;
+    }
     public function obtener_id()
     {
         $query = "select ifnull(max(id_ventas) + 1, 1) as codigo 
-        from ventas 
-        where periodo = '" . $this->periodo_venta . "'";
+        from ventas";
         $this->id_venta = $this->c_conectar->get_valor_query($query, "codigo");
     }
 
     public function insertar()
     {
-        $query = "insert into ventas values ('" . $this->id_venta . "', '" . $this->periodo_venta . "', '" . $this->fecha . "', '" . $this->id_cliente . "', 
-        '" . $this->id_documento . "', '" . $this->serie . "', '" . $this->numero . "','" . $this->total . "' ,'0', '0', '" . $this->id_orden_cliente . "', '" . $this->porcentaje . "', 
-        '" . $this->id_orden_interna . "', '" . $this->archivo . "')";
+        $query = "insert into ventas values ('" . $this->id_venta . "', '" . $this->id_documento . "', '" . $this->fecha . "', '" . $this->serie . "', '" . $this->numero . "',
+         '" . $this->id_cliente . "', '" . $this->id_orden_interna . "', '" . $this->id_orden_cliente . "', '" . $this->porcentaje . "' ,'". $this->sub_total ."', '". $this->igv ."', '" . $this->total . "',   
+         '" . $this->archivo . "')";
         return $this->c_conectar->ejecutar_idu($query);
     }
 
     public function ver_filas()
     {
-        $query = "select v.fecha, v.periodo, v.id_ventas, ds.abreviado, v.serie, v.numero, c.razon_social, v.id_orden_interna, v.total, v.pagado, v.estado, v.archivo 
-        from ventas as v 
-          inner join clientes as c on c.id_clientes = v.id_clientes 
-          inner join documentos_sunat as ds on ds.id_tido = v.id_tido";
+        $query = "SELECT v.fecha, ds.nombre, c.razon_social, oi.id_orden_interna, 
+                    v.total, v.pagado, v.estado
+                FROM ventas as v INNER JOIN documentos_sunat as ds ON ds.id_tido = v.id_tido JOIN 
+                    clientes as c ON c.id_clientes = v.id_clientes JOIN orden_interna as oi ON 
+                    oi.id_orden_interna = v.id_orden_interna";
         return $this->c_conectar->get_Cursor($query);
     }
 
