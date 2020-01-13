@@ -59,7 +59,8 @@ $c_cliente = new Cliente();
                                         <label class="col-md-2 col-form-label">Tipo Documento</label>
                                         <div class="col-md-3">
                                             <select class="form-control" name="select_documento" id="select_documento">
-                                                <option value="2">FACTURA</option>
+                                                <option value="1">FACTURA</option>
+                                                <option value="2">BOLETA</option>
                                             </select>
                                         </div>
                                         <label class="col-md-2 col-form-label">Fecha</label>
@@ -122,6 +123,7 @@ $c_cliente = new Cliente();
                                             <select class="form-control" name="select_moneda" id="select_moneda"
                                                     onchange="validar_moneda()">
                                                 <option value="1">SOL</option>
+                                                <option value="2">DOLAR</option>
                                             </select>
                                             <input type="hidden" id="hidden_tc"/>
                                         </div>

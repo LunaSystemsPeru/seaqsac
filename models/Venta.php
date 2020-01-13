@@ -17,8 +17,6 @@ class Venta
     private $id_documento;
     private $serie;
     private $numero;
-    private $sub_total;
-    private $igv;
     private $total;
     private $pagado;
     private $estado;
@@ -301,7 +299,7 @@ class Venta
     public function insertar()
     {
         $query = "insert into ventas values ('" . $this->id_venta . "', '" . $this->id_documento . "', '" . $this->fecha . "', '" . $this->serie . "', '" . $this->numero . "',
-         '" . $this->id_cliente . "', '" . $this->id_orden_interna . "', '" . $this->id_orden_cliente . "', '" . $this->porcentaje . "' ,'". $this->sub_total ."', '". $this->igv ."', '" . $this->total . "',   
+         '" . $this->id_cliente . "', '" . $this->id_orden_interna . "', '" . $this->id_orden_cliente . "', '" . $this->porcentaje . "', '" . $this->total . "',   
          '" . $this->archivo . "')";
         return $this->c_conectar->ejecutar_idu($query);
     }
