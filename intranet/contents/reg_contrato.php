@@ -43,19 +43,10 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Fecha Inicio</label>
-                                        <input type="date" class="col-sm-2 col-form-label" placeholder="" maxlength="11" id="input_fecha_inicio" name="input_fecha_inicio" required>
-                                        <label class="col-sm-2 col-form-label">Fecha Fin</label>
-                                        <input type="date" class="col-sm-2 col-form-label" placeholder="" maxlength="11" id="input_fecha_fin" name="input_fecha_fin" required>
-                                        <label class="col-sm-2 col-form-label">Duracion</label>
-                                        <input type="text" class="col-sm-1 col-form-label" id="input_rduracion" name="input_duracion" required/>
-                                    </div>
-                                    <div class="form-group row">
-
-                                        <label class="col-sm-2 col-form-label">Monto Pactado</label>
-                                        <input type="text" class="col-sm-2 col-form-label" id="input_monto_pactado" name="input_monto_pactado" required/>
-                                        <label class="col-sm-2 col-form-label">Monto Pagado</label>
-                                        <input type="text" class="col-sm-2 col-form-label" id="input_monto_pagado" name="input_monto_pagado" required/>
+                                        <label class="col-sm-2 col-form-label">Proveedor</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="input_proveedor" id="input_proveedor" required required/>
+                                        </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Servicio</label>
@@ -64,12 +55,37 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Proveedor</label>
-                                        <div class="col-sm-10">
-                                            <select class="form-control" name="input_proveedor" id="input_proveedor" required></select>
-                                            <option value="-----"></option>
+                                        <label class="col-sm-2 col-form-label">Fecha Inicio</label>
+                                        <div class="col-sm-2">
+                                            <input type="date" class="form-control" placeholder="" maxlength="" id="input_fecha_inicio" name="input_fecha_inicio" required>
                                         </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Fecha Fin</label>
+                                            <div class="col-sm-8">
+                                                <input type="date" class="form-control" placeholder="" maxlength="" id="input_fecha_fin" name="input_fecha_fin" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">Duracion</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" placeholder="" maxlength="5" id="input_duracion" name="input_duracion" required>
+                                            </div>
+                                        </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Monto Pactado</label>
+                                        <div>
+                                            <input type="text" class="form-control" id="input_monto_pactado" name="input_monto_pactado" required/>
+                                        </div>
+                                        <div>
+
+                                        </div>
+
+                                        <label class="col-sm-2 col-form-label">Monto Pagado</label>
+                                        <input type="text" class="col-sm-2 col-form-label" id="input_monto_pagado" name="input_monto_pagado" required/>
                                     </div>
+
+
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Estado</label>
                                         <div class="col-sm-1">

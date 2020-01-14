@@ -77,7 +77,7 @@ $c_proveedor = new Proveedor();
                                                     <span class="label uk-label-danger">50</span>
                                                 </td>
                                                 <td>
-                                                    <div class="badge badge-success">100%</div>
+                                                    <div class="badge badge-success">10%</div>
                                                 </td>
                                                 <td>1</td>
                                                 <td>
