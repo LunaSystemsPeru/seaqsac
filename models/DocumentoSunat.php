@@ -92,7 +92,7 @@ class DocumentoSunat
     {
         $query = "select ifnull(max(id_tido) + 1, 1) as codigo 
         from documentos_sunat";
-        $this->id_compra = $this->c_conectar->get_valor_query($query, "codigo");
+        $this->id_tido = $this->c_conectar->get_valor_query($query, "codigo");
     }
 
     public function insertar()
