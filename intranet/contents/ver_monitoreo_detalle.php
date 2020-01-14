@@ -195,7 +195,7 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
                                         ?>
                                         <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
                                             <div class="col-md-1">
-                                                <img class="img-sm rounded-circle mb-4 mb-md-0" src="archivos_cliente/logos/<?php echo $face ?>" alt="profile image">
+                                                <img class="img-sm rounded-circle mb-4 mb-md-0" src="../../archivos/clientes/logos/<?php echo $face ?>" alt="profile image">
                                             </div>
                                             <div class="ticket-details col-md-9">
                                                 <div class="d-flex">

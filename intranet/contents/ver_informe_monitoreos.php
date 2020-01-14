@@ -63,7 +63,7 @@ $c_monitoreo = new Monitoreo();
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $resultado = $c_monitoreo->ver_monitoreos();
+                                        $resultado = $c_monitoreo->ver_monitoreoIntranet();
                                         while ($row = $resultado->fetch_assoc()) {
                                             $estado = $row['estado'];
                                             if ($estado == 1) {
