@@ -191,7 +191,6 @@ class Usuario
         $sql = "select id_usuarios
         from usuarios 
         where username = '$this->username' ";
-        echo $sql;
         $this->id_usuario = $this->c_conectar->get_valor_query($sql, 'id_usuarios');
         if ($this->id_usuario == NULL || $this->id_usuario == "") {
             return false;
