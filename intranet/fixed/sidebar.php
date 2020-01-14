@@ -48,7 +48,7 @@
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#compras" aria-expanded="false" aria-controls="compras">
                 <i class="menu-icon mdi mdi-sale"></i>
-                <span class="menu-title">Compras</span>
+                <span class="menu-title">Compras - Gastos</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="compras">
@@ -60,7 +60,7 @@
                         <a class="nav-link" href="../contents/ver_compras.php">Compras SUNAT</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../contents/ver_contratos.php">Contratos</a>
+                        <a class="nav-link" href="../contents/ver_contrato.php">Contratos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../contents/ver_pagos_frecuentes.php">Pagos Frecuentes</a>
@@ -101,12 +101,12 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#tablas" aria-expanded="false" aria-controls="tablas">
+            <a class="nav-link" data-toggle="collapse" href="#bancos" aria-expanded="false" aria-controls="tablas">
                 <i class="menu-icon mdi mdi-box"></i>
                 <span class="menu-title">Caja - Bancos</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="tablas">
+            <div class="collapse" id="bancos">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
                         <a class="nav-link" href="../contents/ver_prestamos.php"> Prestamos </a>
@@ -161,7 +161,7 @@
                         <a class="nav-link" href="../contents/ver_documentos_sunat.php"> Documentos SUNAT </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../contents/ver_mis_documentos_sunat.php" Mis Documentos - SUNAT </a>
+                        <a class="nav-link" href="../contents/ver_mis_documentos_sunat.php"> Mis Documentos - SUNAT </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../contents/ver_tipos.php"> Tabla Clasificacion </a>

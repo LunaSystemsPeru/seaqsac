@@ -12,7 +12,6 @@ class Compra
 {
 
     private $id_compra;
-    private $periodo;
     private $fecha;
     private $id_proveedor;
     private $id_tido;
@@ -22,6 +21,7 @@ class Compra
     private $pagado;
     private $tipo_compra;
     private $estado;
+    private $archivo;
     private $c_conectar;
 
     /**
@@ -208,25 +208,50 @@ class Compra
         $this->estado = $estado;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getArchivo()
+    {
+        return $this->archivo;
+    }
+
+    /**
+     * @param mixed $archivo
+     */
+    public function setArchivo($archivo)
+    {
+        $this->archivo = $archivo;
+    }
+
     public function obtener_id()
     {
         $query = "select ifnull(max(id_compras) + 1, 1) as codigo 
-        from compras
-        where periodo = '" . $this->periodo . "'";
+        from compras_sunat";
         $this->id_compra = $this->c_conectar->get_valor_query($query, "codigo");
     }
 
     public function insertar()
     {
-        $query = "insert into compras values ('" . $this->id_compra . "', '" . $this->periodo . "', '" . $this->fecha . "', '" . $this->id_tido . "', 
-        '" . $this->serie . "', '" . $this->numero . "', '" . $this->id_proveedor . "','" . $this->tipo_compra . "' ,'" . $this->total . "', '0', '0')";
+        $query = "insert into compras_sunat 
+        values ('" . $this->id_compra . "', 
+                '" . $this->fecha . "', 
+                '" . $this->id_tido . "', 
+                '" . $this->serie . "', 
+                '" . $this->numero . "', 
+                '" . $this->id_proveedor . "',
+                '" . $this->tipo_compra . "' ,
+                '" . $this->total . "', 
+                '0', 
+                '0',
+                '$this->archivo')";
         return $this->c_conectar->ejecutar_idu($query);
     }
 
     public function ver_filas()
     {
-        $query = "select c.periodo, c.id_compras, c.fecha, ds.abreviado as doc_sunat, c.serie, c.numero, c.total, p.razon_social, c.pagado, c.estado 
-        from compras as c 
+        $query = "select c.id_compras, c.fecha, ds.abreviado as doc_sunat, c.serie, c.numero, c.total, p.razon_social, c.pagado, c.estado, c.archivo 
+        from compras_sunat as c 
           inner join proveedores p on c.id_proveedores = p.id_proveedores 
           inner join documentos_sunat ds on c.id_tido = ds.id_tido";
         return $this->c_conectar->get_Cursor($query);
@@ -234,8 +259,8 @@ class Compra
 
     public function eliminar()
     {
-        $query = "delete from compras 
-        where id_compras = '" . $this->id_compra . "' and periodo = '" . $this->periodo . "'";
+        $query = "delete from compras_sunat 
+        where id_compras = '" . $this->id_compra . "' ";
         return $this->c_conectar->ejecutar_idu($query);
     }
 

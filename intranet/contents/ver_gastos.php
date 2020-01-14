@@ -11,7 +11,7 @@ $c_proveedor = new Proveedor();
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Proveedores | SEAQ SAC - Software de Gestion </title>
+    <title>Contratos | SEAQ SAC - Software de Gestion </title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
@@ -42,19 +42,21 @@ $c_proveedor = new Proveedor();
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="h3">Relacion de Proveedores</h4>
-                                <a href="reg_proveedor.php" class="btn btn-info"><i class="fa fa-plus"></i>Agregar</a>
+                                <h4 class="h3">Relacion de Gastos</h4>
+                                <a href="reg_contrato.php" class="btn btn-info"><i class="fa fa-plus"></i>Agregar</a>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="tabla" class="table table-striped">
                                         <thead>
                                         <tr>
-                                            <th>RUC</th>
-                                            <th>Razon Social</th>
-                                            <th>Email</th>
-                                            <th>Telefono</th>
-                                            <th width="10%">Acciones</th>
+                                            <th>ID</th>
+                                            <th>Feccha</th>
+                                            <th>Caja/Banco</th>
+                                            <th>Descripcion</th>
+                                            <th>Monto</th>
+                                            <th>Clasificacion</th>
+                                            <th>Acciones</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -63,12 +65,13 @@ $c_proveedor = new Proveedor();
                                         while ($row = $resultado->fetch_assoc()) {
                                             ?>
                                             <tr>
-                                                <td class="text-center"><?php echo $row['ruc'] ?></td>
-                                                <td><?php echo $row['razon_social'] ?></td>
-                                                <td><?php echo $row['email'] ?></td>
-                                                <td class="text-center"><?php echo $row['telefono'] ?></td>
+                                                <td class="text-center">20</td>
+                                                <td>10-01-2020</td>
+                                                <td>EFECTIVO</td>
+                                                <td class="text-center">COMIDA</td>
+                                                <td>50</td>
+                                                <td>10</td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i></button>
                                                     <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>

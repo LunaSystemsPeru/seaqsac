@@ -102,7 +102,9 @@ class TipoSubClase
 
     public function ver_clases_json()
     {
-        $query = "select id_subclase, nombre from tipo_subclase where id_tipo = '" . $this->id_tipo . "'  order by nombre asc";
+        $query = "select id_subclase, nombre 
+        from tipo_subclase where id_tipo = '" . $this->id_tipo . "'  
+        order by nombre asc";
         return $this->c_conectar->get_json_rows($query);
     }
 }

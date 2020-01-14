@@ -1,3 +1,8 @@
+<?php
+session_start();
+require '../../models/Cliente.php';
+$c_cliente = new Cliente();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -37,7 +42,7 @@
                         <div class="row">
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
-                                    <form class="form-sample" method="post" action="../controller/reg_empresa.php">
+                                    <form class="form-sample" method="post" action="../controller/reg_orden_servicio.php">
                                         <div class="card-header">
                                             <h4 class="h3">Agregar Orden de Servicio - Cliente</h4>
                                         </div>
@@ -45,39 +50,46 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Fecha</label>
                                                 <div class="col-sm-3">
-                                                    <input type="date" class="form-control" id="input_fecha" name="input_fecha"/>
+                                                    <input type="date" class="form-control" id="input_fecha" name="input_fecha" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Cliente</label>
                                                 <div class="col-sm-10">
-                                                    <select class="form-control" name="select_cliente">
-                                                        <option></option>
+                                                    <select class="form-control" name="select_cliente" id="select_cliente">
+                                                        <?php
+                                                        $resultado = $c_cliente->ver_clientes();
+                                                        while ($row = $resultado->fetch_assoc()) {
+                                                            ?>
+                                                            <option value="<?php echo $row['id_clientes'] ?>"><?php echo $row['razon_social'] ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Nro de orden</label>
                                                 <div class="col-sm-3">
-                                                    <input type="text" class="form-control" id="input_numero" name="input_numero"/>
+                                                    <input type="text" class="form-control" id="input_numero" name="input_numero" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Descripcion</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="input_direccion" name="input_direccion"/>
+                                                    <input type="text" class="form-control" id="input_descripcion" name="input_descripcion" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Total</label>
                                                 <div class="col-sm-3">
-                                                    <input type="text" class="form-control" id="input_total" name="input_total"/>
+                                                    <input type="text" class="form-control text-right" placeholder="0.00" id="input_total" name="input_total" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Cargar Archivo</label>
                                                 <div class="col-sm-10">
-                                                    <input type="file" class="form-control" id="input_archivo" name="input_archivo"/>
+                                                    <input type="file" class="form-control" id="input_archivo" name="input_archivo" required/>
                                                 </div>
                                             </div>
                                             

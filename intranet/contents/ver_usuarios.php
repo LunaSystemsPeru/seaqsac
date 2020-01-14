@@ -1,3 +1,11 @@
+<?php
+session_start();
+require '../../models/Usuario.php';
+require '../../tools/cl_varios.php';
+$c_usuario = new Usuario();
+$c_varios = new cl_varios();
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -52,20 +60,29 @@
                                             <th>Item</th>
                                             <th>Usuario</th>
                                             <th>Datos</th>
+                                            <th>ult. Acceso</th>
                                             <th>Acciones</th>
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        <?php
+                                        $a_resultado = $c_usuario->ver_filas();
+                                        foreach ($a_resultado as $fila) {
+                                            ?>
                                             <tr>
-                                                <td>1</td>
-                                                <td>kgarcia</td>
-                                                <td>Kristhian Garcia Fiestas</td>
-                                                <td>
+                                                <td><?php echo $fila['id_usuarios']?></td>
+                                                <td class="text-center"><?php echo $fila['username']?></td>
+                                                <td><?php echo $fila['nombre']?></td>
+                                                <td class="text-center"><?php echo $c_varios->fecha_mysql_web($fila['fecha_session'])?></td>
+                                                <td class="text-center">
                                                     <a href="ver_tipos_categoria.php?id_tipo=1" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
                                                     <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i></button>
                                                     <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>
+                                            <?php
+                                        }
+                                        ?>
                                         </tbody>
                                     </table>
                                 </div>

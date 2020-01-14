@@ -24,6 +24,7 @@ if ($siusuario) {
     $c_usuario->obtener_datos();
     if ($contrasena == $c_usuario->getContrasena()) {
         $c_usuario->obtener_datos();
+        $c_usuario->actualizar_session();
         $_SESSION['id_usuario'] = $c_usuario->getIdUsuario();
         $_SESSION['id_empresa'] = $c_empresa->getIdEmpresa();
     } else {

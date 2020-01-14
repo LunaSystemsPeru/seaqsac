@@ -1,6 +1,7 @@
 <?php
-require '../../models/Proveedor.php';
-$c_proveedor = new Proveedor();
+session_start();
+require '../../models/PagoFrecuente.php';
+$c_frecuente = new PagoFrecuente();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -11,7 +12,7 @@ $c_proveedor = new Proveedor();
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Proveedores | SEAQ SAC - Software de Gestion </title>
+    <title>Pagos Frecentes | SEAQ SAC - Software de Gestion </title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
@@ -42,34 +43,47 @@ $c_proveedor = new Proveedor();
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="h3">Relacion de Proveedores</h4>
-                                <a href="reg_proveedor.php" class="btn btn-info"><i class="fa fa-plus"></i>Agregar</a>
+                                <h4 class="h3">Relacion de Pagos Frecuentes</h4>
+                                <a href="reg_pago_frecuente.php" class="btn btn-info"><i class="fa fa-plus"></i>Agregar</a>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="tabla" class="table table-striped">
                                         <thead>
                                         <tr>
-                                            <th>RUC</th>
-                                            <th>Razon Social</th>
-                                            <th>Email</th>
-                                            <th>Telefono</th>
-                                            <th width="10%">Acciones</th>
+                                            <th>ID</th>
+                                            <th>Fecha Vcto.</th>
+                                            <th>Servicio</th>
+                                            <th>Dias Falt.</th>
+                                            <th>Total</th>
+                                            <th>%Pagado</th>
+                                            <th>por Pagar</th>
+                                            <th>Acciones</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $resultado = $c_proveedor->ver_filas();
+                                        $resultado = $c_frecuente->ver_filas();
                                         while ($row = $resultado->fetch_assoc()) {
                                             ?>
                                             <tr>
-                                                <td class="text-center"><?php echo $row['ruc'] ?></td>
-                                                <td><?php echo $row['razon_social'] ?></td>
-                                                <td><?php echo $row['email'] ?></td>
-                                                <td class="text-center"><?php echo $row['telefono'] ?></td>
+                                                <td class="text-center"><?php echo $row['id_pagos_frecuentes']?></td>
+                                                <td><?php echo $row['fecha']?></td>
+                                                <td><?php echo $row['datos_servicio']?></td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i></button>
-                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
+                                                    <div class="badge badge-danger"><?php echo $row['dias_faltante']?> dias</div>
+                                                </td>
+                                                <td class="text-right">
+                                                    <?php echo number_format($row['total'],2)?>
+                                                </td>
+                                                <td>
+                                                    <div class="badge badge-danger"><?php echo number_format($row['porcentaje_pagado'],2)?>%</div>
+                                                </td>
+                                                <td class="text-right">
+                                                    <?php echo number_format($row['pendiente'],2)?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="#" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                                 </td>
                                             </tr>
                                             <?php

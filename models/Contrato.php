@@ -2,21 +2,22 @@
 
 require_once 'Conectar.php';
 
-class PagoFrecuente
+class Contrato
 {
-    private $id_frecuente;
-    private $fecha;
+    private $id_contrato;
+    private $fecha_inicio;
+    private $fecha_fin;
+    private $duracion;
     private $monto_pactado;
     private $monto_pagado;
     private $servicio;
-    private $frecuencia;
-    private $estado;
+    private $estado; //1 activo, 2 finalizado
     private $id_proveedor;
     private $id_clasificacion; //id de tabla tipo
     private $c_conectar;
 
     /**
-     * PagoFrecuente constructor.
+     * Contrato constructor.
      */
     public function __construct()
     {
@@ -26,33 +27,65 @@ class PagoFrecuente
     /**
      * @return mixed
      */
-    public function getIdFrecuente()
+    public function getIdContrato()
     {
-        return $this->id_frecuente;
+        return $this->id_contrato;
     }
 
     /**
-     * @param mixed $id_frecuente
+     * @param mixed $id_contrato
      */
-    public function setIdFrecuente($id_frecuente)
+    public function setIdContrato($id_contrato)
     {
-        $this->id_frecuente = $id_frecuente;
+        $this->id_contrato = $id_contrato;
     }
 
     /**
      * @return mixed
      */
-    public function getFecha()
+    public function getFechaInicio()
     {
-        return $this->fecha;
+        return $this->fecha_inicio;
     }
 
     /**
-     * @param mixed $fecha
+     * @param mixed $fecha_inicio
      */
-    public function setFecha($fecha)
+    public function setFechaInicio($fecha_inicio)
     {
-        $this->fecha = $fecha;
+        $this->fecha_inicio = $fecha_inicio;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFechaFin()
+    {
+        return $this->fecha_fin;
+    }
+
+    /**
+     * @param mixed $fecha_fin
+     */
+    public function setFechaFin($fecha_fin)
+    {
+        $this->fecha_fin = $fecha_fin;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDuracion()
+    {
+        return $this->duracion;
+    }
+
+    /**
+     * @param mixed $duracion
+     */
+    public function setDuracion($duracion)
+    {
+        $this->duracion = $duracion;
     }
 
     /**
@@ -106,22 +139,6 @@ class PagoFrecuente
     /**
      * @return mixed
      */
-    public function getFrecuencia()
-    {
-        return $this->frecuencia;
-    }
-
-    /**
-     * @param mixed $frecuencia
-     */
-    public function setFrecuencia($frecuencia)
-    {
-        $this->frecuencia = $frecuencia;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getEstado()
     {
         return $this->estado;
@@ -169,20 +186,21 @@ class PagoFrecuente
 
     public function obtener_id()
     {
-        $query = "select ifnull(max(id_pagos_frecuentes) + 1, 1) as codigo 
-        from pagos_frecuentes";
-        $this->id_frecuente = $this->c_conectar->get_valor_query($query, "codigo");
+        $query = "select ifnull(max(id_contrato) + 1, 1) as codigo 
+        from contratos";
+        $this->id_contrato = $this->c_conectar->get_valor_query($query, "codigo");
     }
 
     public function insertar()
     {
-        $query = "insert into pagos_frecuentes 
-        values ('$this->id_frecuente', 
-                '$this->fecha', 
-                '$this->monto_pactado', 
-                '0', 
-                '$this->servicio', 
-                '$this->frecuencia',
+        $query = "insert into contratos 
+        values ('" . $this->id_contrato . "', 
+                '" . $this->fecha_inicio . "', 
+                '" . $this->fecha_fin . "', 
+                '" . $this->duracion . "', 
+                '" . $this->monto_pactado . "', 
+                '0',
+                '" . $this->servicio . "' ,
                 '1', 
                 '$this->id_proveedor', 
                 '$this->id_clasificacion')";
@@ -191,26 +209,25 @@ class PagoFrecuente
 
     public function ver_filas()
     {
-        $query = "select 
-               pf.id_pagos_frecuentes,
-               pf.fecha, 
-               concat(p.razon_social, ' | ' , pf.servicio, ' | ' , t.nombre, ' | ' , 
-                   if(pf.frecuencia = 1, 'MENSUAL', 'ANUAL') ) as datos_servicio, 
-                    pf.monto_pactado as total, 
-               (pf.monto_pagado / pf.monto_pactado) as porcentaje_pagado, 
-               (pf.monto_pactado - pf.monto_pagado) as pendiente, 
-               datediff(pf.fecha, curdate()) as dias_faltante
-            from pagos_frecuentes as pf 
-            inner join tipos as t on pf.id_tipo = t.id_tipo 
-            inner join proveedores p on pf.id_proveedores = p.id_proveedores
-            where pf.fecha <= curdate() or month(pf.fecha) <= month(curdate())";
+        $query = "select c.id_contrato, 
+           concat(c.servicio, ' | ', p.razon_social, ' | ', t.nombre) as servicio,
+           c.fecha_fin, 
+           date_add(c.fecha_inicio, INTERVAL c.duracion day) as fecha_fin_aprox, 
+           datediff(date_add(c.fecha_inicio, INTERVAL c.duracion day), curdate()) as dias_restantes, 
+           c.monto_pactado, 
+           (c.monto_pagado / c.monto_pactado) as porcentaje_pagado, 
+           (c.monto_pactado - c.monto_pagado) as faltante_pagar, 
+           c.estado
+            from contratos as c 
+            inner join proveedores p on c.id_proveedores = p.id_proveedores 
+            inner join tipos t on c.id_tipo = t.id_tipo";
         return $this->c_conectar->get_Cursor($query);
     }
 
     public function eliminar()
     {
-        $query = "delete from compras_sunat 
-        where id_compras = '" . $this->id_compra . "' ";
+        $query = "delete from contratos 
+        where id_contrato = '" . $this->id_contrato . "' ";
         return $this->c_conectar->ejecutar_idu($query);
     }
 }

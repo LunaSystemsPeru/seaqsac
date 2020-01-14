@@ -21,31 +21,51 @@ function enviar_ruc() {
                 //$("#div_resultado").html("Procesando, espere por favor...");
             },
             success: function (response) {
-                resetToastPosition();
-                $.toast({
-                    heading: 'Alerta',
-                    text: 'Datos de la empresa encontrados',
-                    showHideTransition: 'slide',
-                    icon: 'success',
-                    loaderBg: '#57c7d4',
-                    position: 'top-right'
-                })
                 var json = response;
-                 console.log(json);
+                 //console.log(json);
 
                 var json_ruc = JSON.parse(json);
-                $("#input_razon_social").val(json_ruc.result.RazonSocial);
-                $("#input_estado").val(json_ruc.result.Estado);
-                $("#input_condicion").val(json_ruc.result.Condicion);
-                $("#input_direccion").val(json_ruc.result.Direccion);
-                $("#input_nombre_comercial").val(json_ruc.result.NombreComercial);
-                $("#input_nombre_comercial").prop('readonly', false);
-                $("#input_nombre_comercial").focus();
+                if (json_ruc.success == "true") {
+                    toast_datos_encontrados();
+                    $("#input_razon_social").val(json_ruc.result.RazonSocial);
+                    $("#input_estado").val(json_ruc.result.Estado);
+                    $("#input_condicion").val(json_ruc.result.Condicion);
+                    $("#input_direccion").val(json_ruc.result.Direccion);
+                    $("#input_nombre_comercial").val(json_ruc.result.NombreComercial);
+                    $("#input_nombre_comercial").prop('readonly', false);
+                    $("#input_nombre_comercial").focus();
+                } else {
+                    toast_datos_error();
+                }
             }
         });
     } else {
         alert("Son 11 (once) digitos para el ruc");
     }
+}
+
+function toast_datos_encontrados () {
+    resetToastPosition();
+    $.toast({
+        heading: 'Alerta',
+        text: 'Datos de la empresa encontrados',
+        showHideTransition: 'slide',
+        icon: 'success',
+        loaderBg: '#57c7d4',
+        position: 'top-right'
+    })
+}
+
+function toast_datos_error () {
+    resetToastPosition();
+    $.toast({
+        heading: 'Alerta',
+        text: 'Datos no encontrados',
+        showHideTransition: 'slide',
+        icon: 'danger',
+        loaderBg: '#57c7d4',
+        position: 'top-right'
+    })
 }
 
 function enviar_dni() {

@@ -5,6 +5,7 @@
  * Date: 02/05/2019
  * Time: 03:09 PM
  */
+require_once 'Conectar.php';
 
 class Usuario
 {
@@ -186,12 +187,27 @@ class Usuario
         $this->id_empresa = $columna['id_empresas'];
         $this->username = $columna ['username'];
     }
+
+    public function actualizar_session()
+    {
+        $query = "update usuarios 
+        set fecha_session = curdate() 
+        where id_usuarios = '$this->id_usuario'";
+        return $this->c_conectar->ejecutar_idu($query);
+    }
+
+    public function ver_filas()
+    {
+        $query = "select * 
+            from usuarios";
+        return $this->c_conectar->get_Cursor($query);
+    }
+
     public function validar_username()
     {
         $sql = "select id_usuarios
         from usuarios 
         where username = '$this->username' ";
-        echo $sql;
         $this->id_usuario = $this->c_conectar->get_valor_query($sql, 'id_usuarios');
         if ($this->id_usuario == NULL || $this->id_usuario == "") {
             return false;

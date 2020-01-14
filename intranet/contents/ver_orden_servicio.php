@@ -43,7 +43,7 @@ $c_orden = new OrdenServicio();
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="h3">Ordenes de Servicios - Clientes</h4>
-                                <a href="reg_presupuesto.php" class="btn btn-info"><i class="fa fa-plus"></i>Agregar Documento</a>
+                                <a href="reg_orden_servicio.php" class="btn btn-info"><i class="fa fa-plus"></i>Agregar Documento</a>
                                 <button class="btn btn-outline-success">
                                     <i class="fa fa-search"></i>Buscar por Criterios
                                 </button>
