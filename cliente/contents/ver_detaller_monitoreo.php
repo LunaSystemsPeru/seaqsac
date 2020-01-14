@@ -76,9 +76,6 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
             padding: 5px;
             cursor: pointer;
         }
-        .clickclet>.card:hover{
-            background-color: #e9e7e2;
-        }
     </style>
 </head>
 
@@ -130,14 +127,72 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
                                 <p><span class="font-weight-bold">tipo =</span> <?php echo $c_tipo->getNombre() . " - " . $c_clase->getNombre() ?></p>
 
                                 <p><span class="font-weight-bold">estado =</span> <?php echo $valor_estado ?></p>
-                                <span class="badge badge-primary click" >Ver Informe</span>
+                                <span class="badge badge-primary click"  onclick="cargarDocumento('<?php echo '../../archivos/clientes/monitoreos/' . $_SESSION['id_cliente'] . '/' . $c_monitoreo->getIdSucursal() . '/'. $c_monitoreo->getUrlInforme()?>' )">Ver Informe</span>
                                 <span class="badge badge-info click" >Ver Revisiones</span>
                             </div>
                         </div>
+                        <div class="card">
+                            <div class="card-body">
+                            <div class="table-responsive">
+                                <h4>Equipos de medicion</h4>
+                                <table id="tabla_equipos" class="table table-striped">
+                                    <tbody>
+                                    <?php
+                                    $a_mequipos = $c_mequipos->ver_filas();
+                                    foreach ($a_mequipos as $fila) {
+                                        $mequipo = $fila['nombre'] . " " . $fila['marca'] . " " . $fila['modelo'] . " " . $fila['serie'];
+                                        ?>
+                                        <tr>
+                                            <td>
+                                                <span style="cursor: pointer;color: #0b63b1"  onclick="cargarDocumento('../../archivos/equipos/<?php echo $fila["certificado"]?>')" target="_blank"><?php echo $mequipo?></span>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        </div>
                     </div>
                     <div class="col-md-8">
-                        <embed src="<?php echo '../../archivos/clientes/monitoreos/' . $_SESSION['id_cliente'] . '/' . $c_monitoreo->getIdSucursal() . '/'. $c_monitoreo->getUrlInforme()?>" type="application/pdf" width="100%" height="600px" />
+                        <embed id="documento_PDF"  src="<?php echo '../../archivos/clientes/monitoreos/' . $_SESSION['id_cliente'] . '/' . $c_monitoreo->getIdSucursal() . '/'. $c_monitoreo->getUrlInforme()?>" type="application/pdf" width="100%" height="500px" />
                     </div>
+                </div>
+                <div class="row">
+                    <div class="card" style="width: 100%; padding: 15px;">
+                        <h4 class="h3">Archivos / Anexos / Ensayos</h4>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="tabla_anexo" class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Descripcion</th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    $a_anexos = $c_anexo->ver_filas();
+                                    foreach ($a_anexos as $fila) {
+                                        $archivo = "../archivos/clientes/monitoreos/" . $fila['id_clientes'] . "/" . $fila['id_sucursal'] . "/" . $fila['archivo'];
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $fila['descripcion'] ?></td>
+                                            <td><?php echo $fila['fecha'] ?></td>
+
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
@@ -167,6 +222,9 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
 <!-- End custom js for this page-->
 
 <script>
+    function cargarDocumento(ruta){
+        $("#documento_PDF").prop("src",ruta);
+    }
 
 
     $(function () {
