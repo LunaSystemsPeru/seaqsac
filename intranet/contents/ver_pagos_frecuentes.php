@@ -42,7 +42,7 @@ $c_proveedor = new Proveedor();
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="h3">Relacion de Contratos</h4>
+                                <h4 class="h3">Relacion de Pagos Frecuentes</h4>
                                 <a href="reg_pago_frecuente.php" class="btn btn-info"><i class="fa fa-plus"></i>Agregar</a>
                             </div>
                             <div class="card-body">
@@ -78,8 +78,7 @@ $c_proveedor = new Proveedor();
                                                 </td>
                                                 <td>40</td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i></button>
-                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
+                                                    <a href="ver_detalles_pagos_frecuentes.php"><button class="btn btn-success btn-sm"><i class="fa fa-eye"></i></button></a>
                                                 </td>
                                             </tr>
                                             <?php

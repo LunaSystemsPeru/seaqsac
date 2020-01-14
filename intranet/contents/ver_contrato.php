@@ -84,8 +84,7 @@ $c_proveedor = new Proveedor();
                                                     <div class="badge badge-success">Activo</div>
                                                 </td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i></button>
-                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
+                                                    <button class="btn btn-success btn-sm"><i class="fa fa-eye"></i></button>
                                                 </td>
                                             </tr>
                                             <?php
