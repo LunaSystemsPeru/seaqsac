@@ -1,8 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['id_usuario'])) {
-    header("Location: contents/index.php");
-}else{
+if (!isset($_SESSION['id_usuario'])) {
     header ("Location: login.php");
 }
 ?>

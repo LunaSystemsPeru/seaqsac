@@ -86,8 +86,8 @@ $c_cliente = new Cliente();
                                                     <?php echo $valor_estado ?>
                                                 </td>
                                                 <td>
-                                                    <a href="ver_clientes_sucursal.php?id_cliente=<?php echo $row['id_clientes'] ?>" class="btn btn-success btn-sm"><i class="fa fa-eye-slash"></i></a>
-                                                    <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i></button>
+                                                    <a href="ver_clientes_sucursal.php?id_cliente=<?php echo $row['id_clientes'] ?>" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
+                                                    <a href="reg_cliente.php?id=<?php echo $row['id_clientes'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
                                                     <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>

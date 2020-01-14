@@ -9,10 +9,27 @@ function enviar_ruc() {
             url: '../../data/ajax/validar_ruc.php',
             type: 'post',
             beforeSend: function () {
-                $("#div_resultado").html("Procesando, espere por favor...");
+                resetToastPosition();
+                $.toast({
+                    heading: 'Alerta',
+                    text: 'Se esta buscando los datos en la base de datos de SUNAT',
+                    showHideTransition: 'slide',
+                    icon: 'warning',
+                    loaderBg: '#57c7d4',
+                    position: 'top-right'
+                })
+                //$("#div_resultado").html("Procesando, espere por favor...");
             },
             success: function (response) {
-                $("#div_resultado").html("");
+                resetToastPosition();
+                $.toast({
+                    heading: 'Alerta',
+                    text: 'Datos de la empresa encontrados',
+                    showHideTransition: 'slide',
+                    icon: 'success',
+                    loaderBg: '#57c7d4',
+                    position: 'top-right'
+                })
                 var json = response;
                  console.log(json);
 
@@ -115,4 +132,14 @@ function calcular_total() {
     $("#input_igv").val(number_format(igv, 2));
     $("#input_total").val(number_format(total, 2));
     $("#hidden_total").val(total);
+}
+
+resetToastPosition = function() {
+    $('.jq-toast-wrap').removeClass('bottom-left bottom-right top-left top-right mid-center'); // to remove previous position class
+    $(".jq-toast-wrap").css({
+        "top": "",
+        "left": "",
+        "bottom": "",
+        "right": ""
+    }); //to remove previous position style
 }

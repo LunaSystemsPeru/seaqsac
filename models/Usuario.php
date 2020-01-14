@@ -13,9 +13,10 @@ class Usuario
     private $email;
     private $celular;
     private $contrasena;
-    private $id_empresa;
     private $fecha_session;
     private $estado;
+    private $id_empresa;
+    private $username;
     private $c_conectar;
 
     /**
@@ -109,22 +110,6 @@ class Usuario
     /**
      * @return mixed
      */
-    public function getIdEmpresa()
-    {
-        return $this->id_empresa;
-    }
-
-    /**
-     * @param mixed $id_empresa
-     */
-    public function setIdEmpresa($id_empresa)
-    {
-        $this->id_empresa = $id_empresa;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getFechaSession()
     {
         return $this->fecha_session;
@@ -154,5 +139,65 @@ class Usuario
         $this->estado = $estado;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getIdEmpresa()
+    {
+        return $this->id_empresa;
+    }
 
+    /**
+     * @param mixed $id_empresa
+     */
+    public function setIdEmpresa($id_empresa)
+    {
+        $this->id_empresa = $id_empresa;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+
+    public function obtener_datos()
+    {
+        $query = "select * from usuarios where id_usuarios = '" . $this->id_usuario . "' ";
+        $columna = $this->c_conectar->get_Row($query);
+        $this->id_usuario = $columna['id_usuarios'];
+        $this->nombre = $columna['nombre'];
+        $this->email = $columna['email'];
+        $this->celular = $columna['celular'];
+        $this->contrasena = $columna['contrasena'];
+        $this->fecha_session = $columna['fecha_session'];
+        $this->estado = $columna['estado'];
+        $this->id_empresa = $columna['id_empresas'];
+        $this->username = $columna ['username'];
+    }
+    public function validar_username()
+    {
+        $sql = "select id_usuarios
+        from usuarios 
+        where username = '$this->username' ";
+        echo $sql;
+        $this->id_usuario = $this->c_conectar->get_valor_query($sql, 'id_usuarios');
+        if ($this->id_usuario == NULL || $this->id_usuario == "") {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
 }
