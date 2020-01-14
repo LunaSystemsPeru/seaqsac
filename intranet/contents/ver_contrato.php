@@ -67,14 +67,22 @@ $c_proveedor = new Proveedor();
                                         while ($row = $resultado->fetch_assoc()) {
                                             ?>
                                             <tr>
-                                                <td class="text-center"><?php echo $row['ruc'] ?></td>
-                                                <td><?php echo $row['razon_social'] ?></td>
-                                                <td><?php echo $row['email'] ?></td>
-                                                <td class="text-center"><?php echo $row['telefono'] ?></td>
-                                                <td>50</td>
-                                                <td>10</td>
-                                                <td>40</td>
+                                                <td class="text-center">1</td>
+                                                <td>Bueno</td>
+                                                <td>Mañana</td>
+                                                <td style="text-align: center; ">
+                                                    <div class="badge badge-danger">20 dias</div>
+                                                </td>
+                                                <td style="text-align: center; ">
+                                                    <span class="label uk-label-danger">50</span>
+                                                </td>
+                                                <td>
+                                                    <div class="badge badge-success">100%</div>
+                                                </td>
                                                 <td>1</td>
+                                                <td>
+                                                    <div class="badge badge-success">Activo</div>
+                                                </td>
                                                 <td class="text-center">
                                                     <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i></button>
                                                     <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
