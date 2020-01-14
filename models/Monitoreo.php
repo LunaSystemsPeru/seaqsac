@@ -220,12 +220,13 @@ class Monitoreo
         return $resultado;
     }
 
-    public function sucursales(){
+    public function sucursales()
+    {
         $query = "SELECT * FROM clientes_sucursal WHERE id_clientes= '{$_SESSION['id_cliente']}'";
         return $this->c_conectar->get_Cursor($query);
     }
 
-    public function ver_monitoreos()
+    public function ver_monitoreos_sucursal_anio($anio)
     {
         $query = "select m.id_monitoreos,m.fecha_revision, m.fecha, cl.razon_social, cs.nombre as nsucursal, t.nombre as ntipo, ts.nombre as nsubclase, m.estado, m.url_informe  
         from monitoreos as m 
@@ -233,9 +234,8 @@ class Monitoreo
           inner join clientes_sucursal as cs on cs.id_sucursal = m.id_sucursal and cs.id_clientes = m.id_clientes
         inner join tipo_subclase ts on m.id_subclase = ts.id_subclase 
         inner join tipos t on ts.id_tipo = t.id_tipo
-        where m.estado = '1' AND m.id_sucursal='$this->id_sucursal'  and YEAR(m.fecha)='$this->fecha'
+        where m.id_sucursal='$this->id_sucursal' and m.id_clientes = '$this->id_cliente' and YEAR(m.fecha)='$anio'
         order by m.fecha asc";
-
         return $this->c_conectar->get_Cursor($query);
     }
 

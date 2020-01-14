@@ -33,7 +33,7 @@
         <li class="nav-item nav-profile">
             <div class="nav-link ">
                 <div class="row">
-                    <img src="../intranet/archivos_cliente/logos/<?php echo $_SESSION['url_logo'] ?>" alt="logo Cliente" width="100%" height="100%">
+                    <img src="../../archivos/clientes/logos/<?php echo $_SESSION['url_logo'] ?>" alt="logo Cliente" width="100%" height="100%">
                 </div>
             </div>
         </li>
