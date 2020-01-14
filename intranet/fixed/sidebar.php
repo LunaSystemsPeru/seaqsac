@@ -60,7 +60,7 @@
                         <a class="nav-link" href="../contents/ver_compras.php">Compras SUNAT</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../contents/ver_contratos.php">Contratos</a>
+                        <a class="nav-link" href="../contents/ver_contrato.php">Contratos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../contents/ver_pagos_frecuentes.php">Pagos Frecuentes</a>
