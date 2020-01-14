@@ -2,7 +2,7 @@
 session_start();
 require '../../models/Monitoreo.php';
 $c_monitoreo = new Monitoreo();
-$listaSucursales=$c_monitoreo->sucursales();
+$listaSucursales = $c_monitoreo->sucursales();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -28,10 +28,11 @@ $listaSucursales=$c_monitoreo->sucursales();
     <!-- endinject -->
     <link rel="shortcut icon" href="../../vendors/assets/images/favicon.png"/>
     <style>
-        .clickclet{
+        .clickclet {
             cursor: pointer;
         }
-        .clickclet>.card:hover{
+
+        .clickclet > .card:hover {
             background-color: #e9e7e2;
         }
     </style>
@@ -62,8 +63,8 @@ $listaSucursales=$c_monitoreo->sucursales();
                                     <div class="form-group row">
                                         <label for="exampleInputName2" class="col-md-1">Fecha</label>
                                         <div class="col-md-2">
-                                            <select class="form-control ">
-                                                <option>2020</option>
+                                            <select class="form-control " id="select_anio">
+                                                <option value="2020">2020</option>
                                             </select>
                                         </div>
 
@@ -78,31 +79,30 @@ $listaSucursales=$c_monitoreo->sucursales();
                     </div>
                 </div>
                 <div class="row">
-                    <?php foreach ($listaSucursales as $item) {  ?>
+                    <?php foreach ($listaSucursales as $item) { ?>
 
-                            <div class="clickclet col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
-                                <div class="card card-statistics">
-                                    <div class="card-body" onclick="ir_monitoreo(<?php echo $item["id_sucursal"]?>)">
-                                        <div class="clearfix">
-                                            <div class="float-left">
-                                                <i class="fa fa-cubes text-danger icon-lg"></i>
-                                            </div>
-                                            <div class="float-right">
-                                                <p class="mb-0 text-right">Sucursal <?php echo $item["id_sucursal"]?></p>
-                                                <div class="fluid-container">
-                                                    <h3 class="font-weight-medium text-right mb-0"><?php echo $item["nombre"]?></h3>
-                                                </div>
+                        <div class="clickclet col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+                            <div class="card card-statistics">
+                                <div class="card-body" onclick="ir_monitoreo(<?php echo $item["id_sucursal"] ?>)">
+                                    <div class="clearfix">
+                                        <div class="float-left">
+                                            <i class="fa fa-cubes text-danger icon-lg"></i>
+                                        </div>
+                                        <div class="float-right">
+                                            <p class="mb-0 text-right">Sucursal <?php echo $item["id_sucursal"] ?></p>
+                                            <div class="fluid-container">
+                                                <h3 class="font-weight-medium text-right mb-0"><?php echo $item["nombre"] ?></h3>
                                             </div>
                                         </div>
-                                        <p class="text-muted mt-3 mb-0" style="font-size: 10px">
-                                            <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i><?php echo $item["direccion"]?></p>
                                     </div>
+                                    <p class="text-muted mt-3 mb-0" style="font-size: 10px">
+                                        <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i><?php echo $item["direccion"] ?></p>
                                 </div>
                             </div>
+                        </div>
 
 
-
-                    <?php }?>
+                    <?php } ?>
 
 
                 </div>
@@ -133,9 +133,9 @@ $listaSucursales=$c_monitoreo->sucursales();
 <!-- End custom js for this page-->
 
 <script>
-    function ir_monitoreo( id){
-        console.log("holaaaaaaaa");
-        location.href ="ver_informe_monitoreos.php?sucursal="+id;
+    function ir_monitoreo(id) {
+        var anio = $("#select_anio").val();
+        location.href = "ver_informe_monitoreos.php?sucursal=" + id + "&anio=" + anio;
     }
 
 

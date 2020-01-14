@@ -1,9 +1,6 @@
 <?php
 require '../../models/Cliente.php';
-require '../../models/OrdenInterna.php';
 $c_cliente = new Cliente();
-$c_orden_interna = new OrdenInterna();
-
 ?>
 
 <!DOCTYPE html>
@@ -100,22 +97,14 @@ $c_orden_interna = new OrdenInterna();
                                         <label class="col-md-2 col-form-label">Orden Interna</label>
                                         <div class="col-md-4">
                                             <select class="form-control" name="select_orden_interna" id="select_orden_interna">
-                                                <?php
-                                                $result = $c_orden_interna->ver_filas();
-                                                while ($fila = $result->fetch_assoc()){
-                                                    ?>
-                                                    <option value="<?php echo $fila['oi.id_orden_interna']?>"><?php echo $fila['oi.id_orden_interna']?></option>
-                                                    <?php
-                                                }
-                                                ?>
-
+                                                    <option value="0">SIN ORDEN INTERNA</option>
                                             </select>
                                         </div>
                                         <label class="col-md-2 col-form-label">Orden de Servicio</label>
                                         <div class="col-md-4">
                                             <select class="form-control" name="select_orden_servicio" id="select_orden_servicio">
-                                                    onchange="ver_datos_orden()">
-                                                <option value="-">SIN ORDEN</option>
+                                                onchange="ver_datos_orden()">
+                                                <option value="0">SIN ORDEN</option>
                                             </select>
                                         </div>
                                     </div>
@@ -164,7 +153,7 @@ $c_orden_interna = new OrdenInterna();
                                         <label class="col-md-2 col-form-label">Arjuntar Archivo:</label>
                                         <div class="col-md-10">
                                             <input type="file" class="form-control" name="input_file" accept="application/pdf" required/>
-                                            <input type="hidden" name="MAX_FILE_SIZE" value="3145728" />
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="3145728"/>
                                         </div>
                                     </div>
                                 </div>
