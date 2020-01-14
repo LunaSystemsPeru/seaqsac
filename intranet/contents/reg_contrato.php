@@ -134,7 +134,6 @@ $c_tipo->setCodigo(4);
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="../../vendors/assets/js/dashboard.js"></script>
-<script src="../../vendors/assets/js/funciones_basicas.js"></script>
 <script src="../../vendors/assets/js/funciones_autocomplete.js"></script>
 <!-- End custom js for this page-->
 

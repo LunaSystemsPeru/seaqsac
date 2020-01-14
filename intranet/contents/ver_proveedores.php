@@ -54,7 +54,7 @@ $c_proveedor = new Proveedor();
                                             <th>Razon Social</th>
                                             <th>Email</th>
                                             <th>Telefono</th>
-                                            <th>Acciones</th>
+                                            <th width="10%">Acciones</th>
                                         </tr>
                                         </thead>
                                         <tbody>

@@ -1,3 +1,9 @@
+<?php
+session_start();
+require '../../models/TipoClasificacion.php';
+$c_tipo = new TipoClasificacion();
+$c_tipo->setCodigo(4);
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -12,6 +18,8 @@
     <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
@@ -37,18 +45,20 @@
                 <div class="row">
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
-                            <form enctype="multipart/form-data" class="form-sample" method="post" action="../controller/reg_contrato.php">
+                            <form enctype="multipart/form-data" class="form-sample" method="post" action="../controller/reg_pago_frecuente.php">
                                 <div class="card-header">
                                     <h4 class="h3">Agregar Pago Frecuente</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Fecha</label>
-                                        <input type="date" class="col-sm-2 col-form-label" placeholder="" maxlength="11" id="input_fecha" name="input_fecha" required>
-                                        <label class="col-sm-2 col-form-label">Monto Pactado</label>
-                                        <input type="text" class="col-sm-2 col-form-label" id="input_monto_pactado" name="input_monto_pactado" required/>
-                                        <label class="col-sm-2 col-form-label">Monto Pagado</label>
-                                        <input type="text" class="col-sm-2 col-form-label" id="input_monto_pagado" name="input_monto_pagado" required/>
+                                        <label class="col-sm-2 col-form-label">Proveedor</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="input_proveedor" id="input_proveedor" required>
+                                            <input type="hidden" name="hidden_id_proveedor" id="hidden_id_proveedor">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <a href="reg_proveedor.php" class="btn btn-info"><i class="fa fa-plus"></i> Crear</a>
+                                        </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Servicio</label>
@@ -57,25 +67,41 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Proveedor</label>
-                                        <div class="col-sm-10">
-                                            <select class="form-control" name="input_proveedor" id="input_proveedor" required></select>
-                                            <option value="-----"></option>
+                                        <label class="col-sm-2 col-form-label">Fecha Recordatorio</label>
+                                        <div class="col-sm-2">
+                                            <input type="date" class="form-control" id="input_fecha" name="input_fecha" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Frecuencia</label>
-                                        <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="input_frecuencia" name="input_telefono"/>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" name="select_frecuencia" id="select_frecuencia">
+                                                <option value="1">MENSUAL</option>
+                                                <option value="2">ANUAL</option>
+                                            </select>
                                         </div>
-                                        <label class="col-sm-2 col-form-label">Estado</label>
-                                        <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="input_telefono" name="input_telefono"/>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Monto Pactado</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" placeholder="0.00" class="form-control text-right" id="input_monto" name="input_monto" required/>
                                         </div>
-                                        <label class="col-sm-1 col-form-label">tipo</label>
-                                        <select  class="col-sm-2 col-form-label" name="input_tipo" id="input_tipo"></select>
-                                        <option value="S"></option>
-                                        <option value="B"></option>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Clasificacion Gasto</label>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" id="select_tipo" name="select_tipo" onchange="cargar_clase()">
+                                                <?php
+                                                $resultado = $c_tipo->ver_tipos_codigo();
+                                                while ($row = $resultado->fetch_assoc()) {
+                                                    ?>
+                                                    <option value="<?php echo $row['id_tipo'] ?>"><?php echo $row['nombre'] ?></option>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -100,6 +126,9 @@
 <!-- plugins:js -->
 <script src="../../vendors/js/vendor.bundle.base.js"></script>
 <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page-->
 <!-- End plugin js for this page-->
@@ -109,7 +138,8 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="../../vendors/assets/js/dashboard.js"></script>
-<script src="../../vendors/assets/js/funciones_basicas.js"></script>
+
+<script src="../../vendors/assets/js/funciones_autocomplete.js"></script>
 <!-- End custom js for this page-->
 
 </body>
