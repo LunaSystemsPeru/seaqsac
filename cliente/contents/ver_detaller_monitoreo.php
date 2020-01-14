@@ -158,10 +158,11 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <embed id="documento_PDF"  src="<?php echo '../../archivos/clientes/monitoreos/' . $_SESSION['id_cliente'] . '/' . $c_monitoreo->getIdSucursal() . '/'. $c_monitoreo->getUrlInforme()?>" type="application/pdf" width="100%" height="900px" />
+                        <embed id="documento_PDF"  src="<?php echo '../../archivos/clientes/monitoreos/' . $_SESSION['id_cliente'] . '/' . $c_monitoreo->getIdSucursal() . '/'. $c_monitoreo->getUrlInforme()?>"  width="100%" height="750px" />
                     </div>
                 </div>
-                <div class="row">
+                <br>
+                <div class="row" >
                     <div class="card" style="width: 100%; padding: 15px;">
                         <h4 class="h3">Archivos / Anexos / Ensayos</h4>
                         <div class="card-body">
@@ -177,10 +178,10 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
                                     <?php
                                     $a_anexos = $c_anexo->ver_filas();
                                     foreach ($a_anexos as $fila) {
-                                        $archivo = "../archivos/clientes/monitoreos/" . $fila['id_clientes'] . "/" . $fila['id_sucursal'] . "/" . $fila['archivo'];
+                                        $archivo = "../../archivos/clientes/monitoreos/" . $fila['id_clientes'] . "/" . $fila['id_sucursal'] . "/" . $fila['archivo'];
                                         ?>
                                         <tr>
-                                            <td><?php echo $fila['descripcion'] ?></td>
+                                            <td> <span class="btn btn-info" onclick="cargarDocumento('<?php echo $archivo;?>')"><i  class="fa fa-search"></i> </span>  <?php echo $fila['descripcion'] ?></td>
                                             <td><?php echo $fila['fecha'] ?></td>
 
                                         </tr>
@@ -223,6 +224,7 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
 
 <script>
     function cargarDocumento(ruta){
+        console.log(ruta)
         $("#documento_PDF").prop("src",ruta);
     }
 
