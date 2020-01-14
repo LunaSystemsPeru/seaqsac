@@ -215,7 +215,7 @@ $c_orden = new OrdenServicio();
             return false;
         }
         else {
-            document.location = "procesos/del_orden_servicio.php?id_orden=" + codigo;
+            document.location = "../controller/del_orden_servicio.php?id_orden=" + codigo;
             return true;
         }
     }

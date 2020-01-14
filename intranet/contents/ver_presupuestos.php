@@ -160,7 +160,7 @@ $c_pesupuesto = new Presupuesto();
         };
         $.ajax({
             data: parametros,
-            url: 'peticiones_modal/m_aprobar_cotizacion.php',
+            url: '../../data/modals/m_aprobar_cotizacion.php',
             type: 'post',
             beforeSend: function () {
                 $("#resultado").html("Procesando, espere por favor...");

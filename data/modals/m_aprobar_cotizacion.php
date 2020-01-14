@@ -5,8 +5,8 @@
  * Date: 12/07/19
  * Time: 11:15 AM
  */
-require '../clases/Presupuesto.php';
-require '../clases/Cliente.php';
+require '../../models/Presupuesto.php';
+require '../../models/Cliente.php';
 
 $c_presupuesto = new Presupuesto();
 $c_presupuesto->setIdCotizacion(filter_input(INPUT_POST, 'id_cotizacion'));
@@ -16,7 +16,7 @@ $c_cliente = new Cliente();
 $c_cliente->setIdCliente($c_presupuesto->getIdCliente());
 $c_cliente->obtener_datos();
 ?>
-<form class="forms-sample" method="post" action="procesos/reg_orden_interna.php">
+<form class="forms-sample" method="post" action="../controller/reg_orden_interna.php">
     <div class="color-line"></div>
     <div class="modal-header text-center">
         <h4 class="modal-title">Aprobar Cotizacion</h4>
@@ -61,7 +61,7 @@ $c_cliente->obtener_datos();
         <div class="form-group">
             <label for="exampleInputName1">Duracion (dias):</label>
             <div class="input-group col-xs-4">
-                <input type="number" class="form-control text-right" id="input_duracion" name="input_duracion" value="1" min="1" required>
+                <input type="number" class="form-control text-center" id="input_duracion" name="input_duracion" value="1" min="1" required>
             </div>
         </div>
         <input type="hidden" name="hidden_id_cotizacion" value="<?php echo $c_presupuesto->getIdCotizacion()?>">

@@ -267,20 +267,36 @@ class Venta
 
     public function insertar()
     {
-        $query = "insert into ventas values ('" . $this->id_venta . "', '" . $this->id_documento . "',
-         '" . $this->fecha . "', '" . $this->serie . "', '" . $this->numero . "','" . $this->id_cliente . "', 
-         '" . $this->id_orden_interna . "', '" . $this->id_orden_cliente . "', '" . $this->porcentaje . "', 
-         '" . $this->total . "', '" . $this->archivo . "')";
+        $query = "insert into ventas 
+        values ('$this->id_venta',
+                '$this->fecha', 
+                '$this->id_cliente',
+                '$this->id_documento',
+                '$this->serie', 
+                '$this->numero',
+                '$this->total',
+                '0',
+                '1',
+                '$this->id_orden_cliente', 
+                '$this->porcentaje', 
+                '$this->id_orden_interna',
+                '$this->archivo')";
         return $this->c_conectar->ejecutar_idu($query);
     }
 
     public function ver_filas()
     {
-        $query = "SELECT v.fecha, ds.nombre, c.razon_social, oi.id_orden_interna, 
-                    v.total, v.pagado, v.estado
-                FROM ventas as v INNER JOIN documentos_sunat as ds ON ds.id_tido = v.id_tido JOIN 
-                    clientes as c ON c.id_clientes = v.id_clientes JOIN orden_interna as oi ON 
-                    oi.id_orden_interna = v.id_orden_interna";
+        $query = "SELECT v.fecha,
+                       ds.nombre,
+                       c.razon_social,
+                       oi.id_orden_interna,
+                       v.total,
+                       v.pagado,
+                       v.estado
+                FROM ventas as v
+                         INNER JOIN documentos_sunat as ds ON ds.id_tido = v.id_tido
+                         INNER JOIN clientes as c ON c.id_clientes = v.id_clientes
+                         INNER JOIN orden_interna as oi ON oi.id_orden_interna = v.id_orden_interna";
         return $this->c_conectar->get_Cursor($query);
     }
 

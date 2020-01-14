@@ -164,18 +164,24 @@ class OrdenInterna
     {
         $query = "insert into orden_interna "
             . "values ('" . $this->id_orden . "', '" . $this->fecha . "', '" . $this->id_cotizacion . "', '" . $this->monto_cotizacion . "', 
-            '" . $this->monto_orden . "', '" . $this->duracion . "', '" . $this->estado. "')";
-        $resultado = $this->c_conectar->ejecutar_idu($query);
-        return $resultado;
+            '" . $this->monto_orden . "', '" . $this->duracion . "', '1')";
+        return $this->c_conectar->ejecutar_idu($query);
     }
 
     public function ver_filas()
     {
-        $query = "select oi.id_orden_interna, oi.fecha, oi.duracion, date_add(oi.fecha, interval oi.duracion day) as fecha_termino, 
-        c2.razon_social, c.descripcion, oi.monto_pactado, oi.estado 
-        from orden_interna as oi 
-          inner  join cotizaciones c on oi.id_cotizaciones = c.id_cotizaciones 
-          inner join clientes c2 on c.id_clientes = c2.id_clientes";
+        $query = "select oi.id_orden_interna,
+                       oi.fecha,
+                       oi.duracion,
+                       date_add(oi.fecha, interval oi.duracion day) as fecha_termino,
+                       datediff(date_add(oi.fecha, interval oi.duracion day), CURRENT_DATE()) as dias_restantes,
+                       c2.razon_social,
+                       c.descripcion,
+                       oi.monto_pactado,
+                       oi.estado
+                from orden_interna as oi
+                         inner join cotizaciones c on oi.id_cotizaciones = c.id_cotizaciones
+                         inner join clientes c2 on c.id_clientes = c2.id_clientes";
         return $this->c_conectar->get_Cursor($query);
     }
 
@@ -183,7 +189,6 @@ class OrdenInterna
     {
         $query = "delete from orden_interna 
         where id_orden_interna = '".$this->id_orden."'";
-        $resultado = $this->c_conectar->ejecutar_idu($query);
-        return $resultado;
+        return $this->c_conectar->ejecutar_idu($query);
     }
 }

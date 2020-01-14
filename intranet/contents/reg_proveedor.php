@@ -70,7 +70,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-radio">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="radio_tipo" id="radio_tipo1" value="1"> Normal
+                                                    <input type="radio" class="form-check-input" name="radio_tipo" id="radio_tipo1" value="1" checked> Normal
                                                 </label>
                                             </div>
                                         </div>

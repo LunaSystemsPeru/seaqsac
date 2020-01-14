@@ -18,7 +18,7 @@ class BancoMovimiento
      */
     public function __construct()
     {
-        $this->c_conectar=Conectar::getInstancia();
+        $this->c_conectar = Conectar::getInstancia();
     }
 
     /**

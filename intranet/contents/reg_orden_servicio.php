@@ -42,7 +42,7 @@ $c_cliente = new Cliente();
                         <div class="row">
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
-                                    <form class="form-sample" method="post" action="../controller/reg_orden_servicio.php">
+                                    <form class="form-sample" enctype="multipart/form-data"  method="post" action="../controller/reg_orden_servicio.php">
                                         <div class="card-header">
                                             <h4 class="h3">Agregar Orden de Servicio - Cliente</h4>
                                         </div>
