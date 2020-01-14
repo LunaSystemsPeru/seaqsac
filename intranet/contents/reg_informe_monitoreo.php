@@ -113,7 +113,7 @@ $c_tipo->setCodigo(1);
                                         <label class="col-sm-2 col-form-label">URL Archivo</label>
                                         <div class="col-sm-10">
                                             <input type="hidden" name="MAX_FILE_SIZE" value="15728640" />
-                                            <input type="file" class="form-control" name="input_url" id="input_url"/>
+                                            <input type="file" class="form-control" name="input_url" id="input_url" accept="application/pdf"/>
                                         </div>
                                     </div>
 
@@ -174,7 +174,7 @@ $c_tipo->setCodigo(1);
         var id_cliente = scliente.val();
         $.ajax({
             data: {"id_cliente": id_cliente},
-            url: 'peticiones_post_json/ver_sucursales_cliente.php',
+            url: '../../data/ajax/ver_sucursales_cliente.php',
             type: 'post',
             beforeSend: function () {
                 ssucursal.prop("disabled", true);
@@ -209,12 +209,13 @@ $c_tipo->setCodigo(1);
             data: {
                 "id_tipo": id_tipo
             },
-            url: 'peticiones_post_json/ver_clases_tipo.php',
+            url: '../../data/ajax/ver_clases_tipo.php',
             type: 'post',
             beforeSend: function () {
                 sclase.prop("disabled", true);
             },
             success: function (response) {
+
                 sclase.prop("disabled", false);
                 sclase.find('option').remove();
                 var json = JSON.parse(response);

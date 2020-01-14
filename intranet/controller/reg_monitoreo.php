@@ -20,6 +20,7 @@ if (!empty($_FILES["input_url"])) {
     $validextensions = array("pdf", "PDF");
     $temporary = explode(".", $_FILES["input_url"]["name"]);
     $file_extension = end($temporary);
+
     if ($_FILES["input_url"]["error"] > 0) {
         die("Return Code: " . $_FILES["input_url"]["error"] . "<br/><br/>");
     } else {
@@ -40,7 +41,7 @@ if (!empty($_FILES["input_url"])) {
             //print "El archivo fue subido con éxito.";
 
             if ($c_monitoreo->insertar()) {
-                header("Location: ../contents/ver_informe_monitoreos_sucursal.php");
+                header("Location: ../contents/ver_informe_monitoreos.php");
             }
         } else {
             print "Error al intentar subir el archivo.";

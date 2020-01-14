@@ -1,5 +1,5 @@
 <?php
-require '../../models/modules.xml';
+require '../../models/ClienteSucursal.php';
 
 $c_sucursal= new ClienteSucursal();
 $c_sucursal->setIdCliente(filter_input(INPUT_POST, 'id_cliente'));

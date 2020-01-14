@@ -86,7 +86,7 @@ $listaMonitoreo=$c_monitoreo->ver_monitoreos();
 
                             <div class="clickclet col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
                                 <div class="card card-statistics">
-                                    <div class="card-body" >
+                                    <div class="card-body" onclick="ir_monitoreo(<?php echo $item["id_monitoreos"]?>)">
                                         <div class="clearfix">
 
                                             <div class="float-left">
@@ -139,7 +139,9 @@ $listaMonitoreo=$c_monitoreo->ver_monitoreos();
 <!-- End custom js for this page-->
 
 <script>
-
+    function ir_monitoreo( id){
+        location.href ="ver_detaller_monitoreo.php?monitoreio="+id;
+    }
 
     $(function () {
 
