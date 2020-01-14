@@ -4,8 +4,8 @@
 #!/greenter/src/
 #!/greenter/resources/
 /nbproject/
-/archivos/clientes/logos/*
-/archivos/clientes/monitoreos/*
-/archivos/cotizaciones/*
-/archivos/equipos/*
-/archivos/ventas/*
+#/archivos/clientes/logos/*
+#/archivos/clientes/monitoreos/*
+#/archivos/cotizaciones/*
+#/archivos/equipos/*
+#/archivos/ventas/*
