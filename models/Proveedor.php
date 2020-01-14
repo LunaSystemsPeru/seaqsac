@@ -144,6 +144,14 @@ class Proveedor
         return $this->c_conectar->get_Cursor($query);
     }
 
+        public function ver_filas_busqueda($term)
+    {
+        $query = "select ruc, razon_social, email, telefono, id_proveedores, direccion 
+        from proveedores
+        where ruc like '%$term%' or razon_social like '%$term%'";
+        return $this->c_conectar->get_Cursor($query);
+    }
+
     public function eliminar()
     {
         $query = "delete from proveedores 
