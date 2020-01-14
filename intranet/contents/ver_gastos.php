@@ -1,6 +1,15 @@
 <?php
-require '../../models/Proveedor.php';
-$c_proveedor = new Proveedor();
+require '../../models/Gasto.php';
+require '../../models/Banco.php';
+require '../../models/TipoClasificacion.php';
+require '../../tools/cl_varios.php';
+
+$c_gasto = new Gasto();
+$c_banco = new Banco();
+$c_tipo = new TipoClasificacion();
+$c_varios = new cl_varios();
+
+$c_tipo->setCodigo(4);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -11,7 +20,7 @@ $c_proveedor = new Proveedor();
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Contratos | SEAQ SAC - Software de Gestion </title>
+    <title>Gastos Mensuales | SEAQ SAC - Software de Gestion </title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
@@ -43,7 +52,64 @@ $c_proveedor = new Proveedor();
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="h3">Relacion de Gastos</h4>
-                                <a href="reg_contrato.php" class="btn btn-info"><i class="fa fa-plus"></i>Agregar</a>
+                                <button data-target="#modalcrear" data-toggle="modal" class="btn btn-info"><i class="fa fa-plus"></i>Agregar</button>
+
+                                <div class="modal fade" id="modalcrear" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form class="forms-sample" method="post" action="../controller/reg_gasto.php">
+                                                <div class="color-line"></div>
+                                                <div class="modal-header text-center">
+                                                    <h4 class="modal-title">Agregar Gasto</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputName1">Fecha </label>
+                                                        <input type="date" class="form-control" name="input_fecha" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputName1">Caja - Banco </label>
+                                                        <select class="form-control" name="select_banco">
+                                                            <?php
+                                                            $a_resultado = $c_banco->ver_filas();
+                                                            foreach ($a_resultado as $fila) {
+                                                                ?>
+                                                                <option value="<?php echo $fila['id_banco'] ?>"><?php echo $fila['nombre'] . " - Saldo S/ " . number_format($fila['monto'], 2) ?></option>
+                                                                <?php
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputName1">Descripcion </label>
+                                                        <input type="text" class="form-control" id="input_descripcion" name="input_descripcion" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputName1">Monto </label>
+                                                        <input type="number" class="form-control" min="0" id="input_monto" name="input_monto" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputName1">Clasificacion Gasto </label>
+                                                        <select class="form-control" id="select_tipo" name="select_tipo" onchange="cargar_clase()">
+                                                            <?php
+                                                            $resultado = $c_tipo->ver_tipos_codigo();
+                                                            while ($row = $resultado->fetch_assoc()) {
+                                                                ?>
+                                                                <option value="<?php echo $row['id_tipo'] ?>"><?php echo $row['nombre'] ?></option>
+                                                                <?php
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -51,7 +117,7 @@ $c_proveedor = new Proveedor();
                                         <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Feccha</th>
+                                            <th>Fecha</th>
                                             <th>Caja/Banco</th>
                                             <th>Descripcion</th>
                                             <th>Monto</th>
@@ -61,16 +127,18 @@ $c_proveedor = new Proveedor();
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $resultado = $c_proveedor->ver_filas();
+                                        $resultado = $c_gasto->ver_filas();
+                                        $saldo = 0;
                                         while ($row = $resultado->fetch_assoc()) {
+                                            $saldo += $row['sale'];
                                             ?>
                                             <tr>
-                                                <td class="text-center">20</td>
-                                                <td>10-01-2020</td>
-                                                <td>EFECTIVO</td>
-                                                <td class="text-center">COMIDA</td>
-                                                <td>50</td>
-                                                <td>10</td>
+                                                <td class="text-center"><?php echo $row['id_movimiento'] ?></td>
+                                                <td class="text-center"><?php echo $row['fecha'] ?></td>
+                                                <td class="text-center"><?php echo $row['banco'] ?></td>
+                                                <td><?php echo $row['descripcion'] ?></td>
+                                                <td class="text-right"><?php echo number_format($row['sale'], 2) ?></td>
+                                                <td class="text-center"><?php echo $row['clasificacion'] ?></td>
                                                 <td class="text-center">
                                                     <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
                                                 </td>
@@ -79,6 +147,14 @@ $c_proveedor = new Proveedor();
                                         }
                                         ?>
                                         </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <td class="text-right" colspan="4">TOTAL GASTOS</td>
+                                            <td class="text-right"><?php echo number_format($saldo, 2) ?></td>
+                                            <td class="text-center"></td>
+                                            <td class="text-center"></td>
+                                        </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
