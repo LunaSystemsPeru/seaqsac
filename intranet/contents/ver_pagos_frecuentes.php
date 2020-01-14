@@ -1,6 +1,7 @@
 <?php
-require '../../models/Proveedor.php';
-$c_proveedor = new Proveedor();
+session_start();
+require '../../models/PagoFrecuente.php';
+$c_frecuente = new PagoFrecuente();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -51,10 +52,10 @@ $c_proveedor = new Proveedor();
                                         <thead>
                                         <tr>
                                             <th>ID</th>
+                                            <th>Fecha Vcto.</th>
                                             <th>Servicio</th>
-                                            <th>Fecha Fin</th>
-                                            <th>Dias Faltantes</th>
-                                            <th>Monto Total</th>
+                                            <th>Dias Falt.</th>
+                                            <th>Total</th>
                                             <th>%Pagado</th>
                                             <th>por Pagar</th>
                                             <th>Acciones</th>
@@ -62,23 +63,27 @@ $c_proveedor = new Proveedor();
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $resultado = $c_proveedor->ver_filas();
+                                        $resultado = $c_frecuente->ver_filas();
                                         while ($row = $resultado->fetch_assoc()) {
                                             ?>
                                             <tr>
-                                                <td class="text-center">1</td>
-                                                <td>Buen Servicio</td>
-                                                <td>mañana</td>
-                                                <td style="text-align: center; ">
-                                                    <div class="badge badge-danger">12 dias</div>
-                                                </td>
-                                                <td>50</td>
-                                                <td>
-                                                    <div class="badge badge-danger">0%</div>
-                                                </td>
-                                                <td>40</td>
+                                                <td class="text-center"><?php echo $row['id_pagos_frecuentes']?></td>
+                                                <td><?php echo $row['fecha']?></td>
+                                                <td><?php echo $row['datos_servicio']?></td>
                                                 <td class="text-center">
-                                                    <a href="ver_detalles_pagos_frecuentes.php"><button class="btn btn-success btn-sm"><i class="fa fa-eye"></i></button></a>
+                                                    <div class="badge badge-danger"><?php echo $row['dias_faltante']?> dias</div>
+                                                </td>
+                                                <td class="text-right">
+                                                    <?php echo number_format($row['total'],2)?>
+                                                </td>
+                                                <td>
+                                                    <div class="badge badge-danger"><?php echo number_format($row['porcentaje_pagado'],2)?>%</div>
+                                                </td>
+                                                <td class="text-right">
+                                                    <?php echo number_format($row['pendiente'],2)?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="#" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                                 </td>
                                             </tr>
                                             <?php

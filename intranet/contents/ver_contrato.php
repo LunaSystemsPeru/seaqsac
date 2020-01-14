@@ -1,6 +1,6 @@
 <?php
-require '../../models/Proveedor.php';
-$c_proveedor = new Proveedor();
+require '../../models/Contrato.php';
+$c_contrato = new Contrato();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -63,28 +63,45 @@ $c_proveedor = new Proveedor();
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $resultado = $c_proveedor->ver_filas();
+                                        $resultado = $c_contrato->ver_filas();
                                         while ($row = $resultado->fetch_assoc()) {
+                                            $badge_dias ="badge-success";
+                                            if ($row['dias_restantes'] > 0) {
+                                                $badge_dias ="badge-success";
+                                            } elseif ($row['dias_restantes'] == 0) {
+                                                $badge_dias ="badge-warning";
+                                            } else {
+                                                $badge_dias ="badge-danger";
+                                            }
+
+                                            $badge_pagado ="badge-success";
+                                            if ($row['porcentaje_pagado'] > 0) {
+                                                $badge_pagado ="badge-success";
+                                            } elseif ($row['porcentaje_pagado'] == 0) {
+                                                $badge_pagado ="badge-warning";
+                                            } else {
+                                                $badge_pagado ="badge-danger";
+                                            }
                                             ?>
                                             <tr>
-                                                <td class="text-center">1</td>
-                                                <td>Bueno</td>
-                                                <td>Mañana</td>
-                                                <td style="text-align: center; ">
-                                                    <div class="badge badge-danger">20 dias</div>
+                                                <td class="text-center"><?php echo $row['id_contrato']?></td>
+                                                <td><?php echo $row['servicio']?></td>
+                                                <td><?php echo $row['fecha_fin_aprox']?></td>
+                                                <td class="text-center">
+                                                    <div class="badge <?php echo $badge_dias?>"><?php echo $row['dias_restantes']?> dias</div>
                                                 </td>
-                                                <td style="text-align: center; ">
-                                                    <span class="label uk-label-danger">50</span>
+                                                <td class="text-center">
+                                                    <?php echo number_format($row['monto_pactado'],2)?>
                                                 </td>
                                                 <td>
-                                                    <div class="badge badge-success">10%</div>
+                                                    <div class="badge <?php echo $badge_pagado?>"><?php echo number_format($row['porcentaje_pagado'],2)?>%</div>
                                                 </td>
-                                                <td>1</td>
+                                                <td><?php echo number_format($row['faltante_pagar'],2)?></td>
                                                 <td>
                                                     <div class="badge badge-success">Activo</div>
                                                 </td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-success btn-sm"><i class="fa fa-eye"></i></button>
+                                                    <a href="#" class="btn btn-dark btn-sm"><i class="fa fa-eye"></i></a>
                                                 </td>
                                             </tr>
                                             <?php

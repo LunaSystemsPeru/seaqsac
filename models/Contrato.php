@@ -209,17 +209,25 @@ class Contrato
 
     public function ver_filas()
     {
-        $query = "select c.id_compras, c.fecha, ds.abreviado as doc_sunat, c.serie, c.numero, c.total, p.razon_social, c.pagado, c.estado, c.archivo 
-        from compras_sunat as c 
-          inner join proveedores p on c.id_proveedores = p.id_proveedores 
-          inner join documentos_sunat ds on c.id_tido = ds.id_tido";
+        $query = "select c.id_contrato, 
+           concat(c.servicio, ' | ', p.razon_social, ' | ', t.nombre) as servicio,
+           c.fecha_fin, 
+           date_add(c.fecha_inicio, INTERVAL c.duracion day) as fecha_fin_aprox, 
+           datediff(date_add(c.fecha_inicio, INTERVAL c.duracion day), curdate()) as dias_restantes, 
+           c.monto_pactado, 
+           (c.monto_pagado / c.monto_pactado) as porcentaje_pagado, 
+           (c.monto_pactado - c.monto_pagado) as faltante_pagar, 
+           c.estado
+            from contratos as c 
+            inner join proveedores p on c.id_proveedores = p.id_proveedores 
+            inner join tipos t on c.id_tipo = t.id_tipo";
         return $this->c_conectar->get_Cursor($query);
     }
 
     public function eliminar()
     {
-        $query = "delete from compras_sunat 
-        where id_compras = '" . $this->id_compra . "' ";
+        $query = "delete from contratos 
+        where id_contrato = '" . $this->id_contrato . "' ";
         return $this->c_conectar->ejecutar_idu($query);
     }
 }
