@@ -83,7 +83,7 @@ $c_frecuente = new PagoFrecuente();
                                                     <?php echo number_format($row['pendiente'],2)?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="#" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+                                                    <a href="ver_detalles_pagos_frecuentes.php?pago_f=<?php echo $row['id_pagos_frecuentes']?>" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                                                 </td>
                                             </tr>
                                             <?php

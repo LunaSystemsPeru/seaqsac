@@ -6,6 +6,14 @@ class cl_varios {
 
     }
 
+    function dias_restantes($fecha_final) {
+        $fecha_actual = date("Y-m-d");
+        $s = strtotime($fecha_final)-strtotime($fecha_actual);
+        $d = intval($s/86400);
+        $diferencia = $d;
+        return $diferencia;
+    }
+
     function _primer_dia_mes() {
         $month = date('m');
         $year = date('Y');

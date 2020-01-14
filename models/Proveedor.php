@@ -130,6 +130,18 @@ class Proveedor
         $this->id_proveedor = $this->c_conectar->get_valor_query($query, "codigo");
     }
 
+    public function obtener_datos()
+    {
+        $query = "SELECT * FROM proveedores WHERE id_proveedores = '" . $this->id_proveedor . "' ";
+        $columna = $this->c_conectar->get_Row($query);
+        $this->ruc=$columna["ruc"];
+        $this->razon_social=$columna["razon_social"];
+        $this->direccion=$columna["direccion"];
+        $this->email=$columna["email"];
+        $this->telefono=$columna["telefono"];
+
+    }
+
     public function insertar()
     {
         $query = "insert into proveedores values ('" . $this->id_proveedor . "', '" . $this->ruc . "', '" . $this->razon_social . "', '" . $this->direccion . "', 

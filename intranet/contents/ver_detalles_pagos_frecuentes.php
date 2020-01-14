@@ -1,6 +1,31 @@
 <?php
 require '../../models/Proveedor.php';
+require '../../models/PagoFrecuente.php';
+require '../../tools/cl_varios.php';
+require  '../../models/Banco.php';
+require  '../../models/TipoClasificacion.php';
+
+$c_frecuente = new PagoFrecuente();
 $c_proveedor = new Proveedor();
+$c_varios=new cl_varios();
+$c_banco=new Banco();
+$tipoClasificacion=new TipoClasificacion();
+
+$idPago=filter_input(INPUT_GET, 'pago_f');
+if (is_null($idPago)){
+    header("Location: ver_pagos_frecuentes.php");
+}
+$c_frecuente->setIdFrecuente($idPago);
+$c_frecuente->obtener_datos();
+$c_proveedor->setIdProveedor($c_frecuente->getIdProveedor());
+$c_proveedor->obtener_datos();
+
+$dias_faltantes=$c_varios->dias_restantes($c_frecuente->getFecha());
+
+$filasPagos=$c_frecuente->ver_filas_pago_movimiento();
+
+$listaBancos=$c_banco->ver_filas();
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -54,56 +79,59 @@ $c_proveedor = new Proveedor();
                                 <h4 class="card-title">Detalle del Contrato</h4>
                                 <div class="add-items d-flex">
                                     <button class="btn btn-behance"><i class="fa fa-edit"></i>Modificar Pago</button>
-                                    <button class="btn btn-success"><i class="fa fa-sign-out"></i>Pasar a sgt mes
+                                    <button class="btn btn-warning"><i class="fa fa-stop"></i>Detener Frecuencia
                                     </button>
                                 </div>
                                 <div class="add-items d-flex">
-                                    <button class="btn btn-warning"><i class="fa fa-stop"></i>Detener Frecuencia
+                                    <button class="btn btn-success"><i class="fa fa-sign-out"></i>Pasar a sgt mes
                                     </button>
                                     <button class="btn btn-danger"><i class="fa fa-trash"></i>Eliminar</button>
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label for="">Codigo Pago:</label>
-                                    <label for="">8</label>
+                                    <label for=""><?php echo $c_frecuente->getIdFrecuente() ?></label>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Proveedor:</label>
-                                    <label for="">Lunasystems Peru</label>
+                                    <label for=""><?php echo $c_proveedor->getRazonSocial()?></label>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Servicio:</label>
-                                    <label for="">Celular</label>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Servicio:</label>
-                                    <label for="">Celular</label>
+                                    <label for=""><?php echo $c_frecuente->getServicio()?></label>
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label for="">Frecuencia:</label>
-                                    <label for="">1</label>
+                                    <label for=""><?php echo $c_frecuente->getFrecuencia()?></label>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Fecha recordatorio:</label>
-                                    <label for="">2020-01-20</label>
+                                    <label for=""><?php echo $c_frecuente->getFecha()?></label>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Dias Faltantes:</label>
-                                    <label for="">12 dias</label>
+                                    <label class="<?php echo (($dias_faltantes>=0)?"badge badge-success badge-pill":"badge badge-danger badge-pill")?>" for=""><?php echo $dias_faltantes?> dias</label>
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label for="">Total a Pagar:</label>
-                                    <label for="">78.00</label>
+                                    <label for=""><?php echo number_format($c_frecuente->getMontoPactado())?></label>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Total Pagado:</label>
-                                    <label for="">0.00</label>
+                                    <label for=""><?php echo number_format($c_frecuente->getMontoPagado())?></label>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Estado:</label>
-                                    <label class="badge badge-warning" for="">Pendiente</label>
+                                    <?php
+                                        if ($c_frecuente->getEstado()==1){
+                                          echo "<label class='badge badge-success' >Activo</label>";
+                                        }elseif($c_frecuente->getEstado()==2){
+                                            echo "<label class='badge badge-danger' >Finalizado</label>";
+                                        }
+                                    ?>
+
                                 </div>
                             </div>
                         </div>
@@ -114,7 +142,7 @@ $c_proveedor = new Proveedor();
                             <div class="card-body">
                                 <h4 class="card-title">Ver Pago de este Periodo</h4>
                                 <div class="panel-body">
-                                    <a href="reg_pago_frecuente.php" class="btn btn-behance"><i class="fa fa-plus"></i>Agregar</a>
+                                    <span data-toggle="modal" data-target="#modal_pago_fre" class="btn btn-behance"><i class="fa fa-plus"></i>Agregar</span>
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
@@ -125,13 +153,23 @@ $c_proveedor = new Proveedor();
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        <?php
+                                            foreach ($filasPagos as $item){ ?>
+                                        <tr>
+                                            <td><?php echo $item["fecha"]?></td>
+                                            <td><?php echo $item["banco"]?></td>
+                                            <td><?php echo $item["sale"]?></td>
+                                            <td><div style="cursor: pointer;" class="badge badge-pill badge-danger"><i class="fa fa-trash"></i></div></td>
+                                        </tr>
+                                         <?php   }
+                                        ?>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="card">
+                        <!--div class="card">
                             <div class="card-body">
                                 <h3 class="card-title text-bold">Ver Todos los Pagos</h3>
                             </div>
@@ -148,7 +186,7 @@ $c_proveedor = new Proveedor();
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </div-->
                     </div>
                 </div>
             </div>
@@ -162,6 +200,48 @@ $c_proveedor = new Proveedor();
     <!-- page-body-wrapper ends -->
 </div>
 <!-- container-scroller -->
+
+<div class="modal fade" id="modal_pago_fre" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-4" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel-4">Agregar Pago</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formulario_modal_pago" action="../controller/reg_frecuencia_movimiento.php" method="post">
+                    <input type="hidden" name="id_pago" value="<?php echo $idPago ?>">
+                    <div class="form-group">
+
+                        <label for="banco" class="col-form-label">Banco:</label>
+                        <select name="id_banco" class="form-control" id="banco">
+                            <?php foreach ($listaBancos as $item){
+
+                                echo "<option value='{$item['id_banco']}'>{$item['nombre']}</option>";
+                            } ?>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="monto" class="col-form-label">Monto:</label>
+                        <input required type="number" name="monto" class="form-control" id="monto">
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha" class="col-form-label">Fecha:</label>
+                        <input type="date" value="<?php echo date("Y-m-d");?>" name="fecha" class="form-control" id="fecha">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="enviarformularioRegistro()">Registrar</button>
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- plugins:js -->
 <script src="../../vendors/js/vendor.bundle.base.js"></script>
@@ -178,6 +258,9 @@ $c_proveedor = new Proveedor();
 <!-- End custom js for this page-->
 
 <script>
+    function enviarformularioRegistro(){
+        $("#formulario_modal_pago").submit();
+    }
 
     $(function () {
 

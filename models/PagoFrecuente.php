@@ -10,7 +10,7 @@ class PagoFrecuente
     private $monto_pagado;
     private $servicio;
     private $frecuencia;
-    private $estado;
+    private $estado;  // 1 -> activo     .....  2 -> finalizado
     private $id_proveedor;
     private $id_clasificacion; //id de tabla tipo
     private $c_conectar;
@@ -167,6 +167,21 @@ class PagoFrecuente
         $this->id_clasificacion = $id_clasificacion;
     }
 
+    public function obtener_datos()
+    {
+        $query = "SELECT * FROM pagos_frecuentes WHERE id_pagos_frecuentes = '" . $this->id_frecuente . "' ";
+        $columna = $this->c_conectar->get_Row($query);
+        $this->fecha=$columna["fecha"];
+        $this->monto_pactado=$columna["monto_pactado"];
+        $this->monto_pagado=$columna["monto_pagado"];
+        $this->servicio=$columna["servicio"];
+        $this->frecuencia=$columna["frecuencia"];
+        $this->estado=$columna["estado"];
+        $this->id_proveedor=$columna["id_proveedores"];
+        $this->id_clasificacion=$columna["id_tipo"];
+
+    }
+
     public function obtener_id()
     {
         $query = "select ifnull(max(id_pagos_frecuentes) + 1, 1) as codigo 
@@ -204,6 +219,22 @@ class PagoFrecuente
             inner join tipos as t on pf.id_tipo = t.id_tipo 
             inner join proveedores p on pf.id_proveedores = p.id_proveedores
             where pf.fecha <= curdate() or month(pf.fecha) <= month(curdate())";
+        return $this->c_conectar->get_Cursor($query);
+    }
+    public function ver_filas_pago_movimiento()
+    {
+        $query = "SELECT 
+                  fp.id_movimiento,
+                  bm.fecha,
+                  ba.nombre AS banco,
+                  bm.sale 
+                FROM
+                  pagos_frecuentes_pagos AS fp 
+                  INNER JOIN banco_movimientos AS bm 
+                    ON fp.id_movimiento = bm.id_movimiento 
+                  INNER JOIN bancos AS ba 
+                    ON bm.id_banco = ba.id_banco 
+                WHERE fp.id_pagos_frecuentes = " . $this->id_frecuente;
         return $this->c_conectar->get_Cursor($query);
     }
 
