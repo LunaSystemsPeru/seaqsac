@@ -18,7 +18,7 @@ $c_orden = new OrdenInterna();
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
-    <link rel="stylesheet" href="../../iconfonts/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
@@ -54,10 +54,10 @@ $c_orden = new OrdenInterna();
                                         <tr>
                                             <th>Codigo</th>
                                             <th width="11%">Fecha Inicio</th>
-                                            <th width="11%">Fecha Termino</th>
-                                            <th>Cliente</th>
                                             <th>Descripcion</th>
+                                            <th width="11%">Fecha Termino</th>
                                             <th>Total</th>
+                                            <th>Plazo</th>
                                             <th>Estado</th>
                                             <th width="13%">Acciones</th>
                                         </tr>
@@ -71,16 +71,17 @@ $c_orden = new OrdenInterna();
                                             <tr>
                                                 <td><?php echo $fila['id_orden_interna']?></td>
                                                 <td><?php echo $fila['fecha']?></td>
+                                                <td><?php echo $fila['descripcion'] . " | " . $fila['razon_social']?></td>
                                                 <td><?php echo $fila['fecha_termino']?></td>
-                                                <td><?php echo $fila['razon_social']?></td>
-                                                <td><?php echo $fila['descripcion']?></td>
                                                 <td class="text-right"><?php echo $fila['monto_pactado']?></td>
+                                                <td class="text-center">
+                                                    <span class="badge badge-warning badge-lg"><?php echo number_format($fila['dias_restantes'],0)?> dias</td></span>
                                                 <td><label class="badge badge-warning badge-lg">Pendiente </label></td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-success btn-icons" title="Finalizar Servicio">
-                                                        <i class="fa fa-check"></i>
-                                                    </button>
-                                                    <button class="btn btn-danger btn-icons" title="Eliminar Orden Interna" onclick="eliminar('<?php echo $fila['id_orden_interna']?>')">
+                                                    <a href="#" type="button" class="btn btn-success btn-icons" title="Ver Servicio">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                    <button type="button" class="btn btn-danger btn-icons" title="Eliminar Orden Interna" onclick="eliminar('<?php echo $fila['id_orden_interna']?>')">
                                                         <i class="fa fa-close"></i>
                                                     </button>
                                                 </td>
@@ -137,7 +138,7 @@ $c_orden = new OrdenInterna();
             return false;
         }
         else {
-            document.location = "procesos/del_orden_interna.php?id_orden_interna=" + codigo;
+            document.location = "../controller/del_orden_interna.php?id_orden_interna=" + codigo;
             return true;
         }
     }

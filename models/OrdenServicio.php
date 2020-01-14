@@ -16,6 +16,7 @@ class OrdenServicio
     private $numero;
     private $total_facturado;
     private $descripcion;
+    private $archivo;
     private $c_conectar;
 
     /**
@@ -138,6 +139,22 @@ class OrdenServicio
         $this->descripcion = $descripcion;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getArchivo()
+    {
+        return $this->archivo;
+    }
+
+    /**
+     * @param mixed $archivo
+     */
+    public function setArchivo($archivo)
+    {
+        $this->archivo = $archivo;
+    }
+
     public function obtener_id()
     {
         $query = "select ifnull(max(id_orden_cliente) + 1, concat(year(curdate()), '001')) as codigo 
@@ -157,20 +174,20 @@ class OrdenServicio
         $this->numero = $columna['numero_orden'];
         $this->total_facturado = $columna['total_facturado'];
         $this->descripcion = $columna['descripcion'];
+        $this->archivo = $columna['archivo'];
     }
 
     public function insertar()
     {
         $query = "insert into orden_servicio_cliente "
             . "values ('" . $this->id_orden . "', '" . $this->fecha . "', '" . $this->monto . "', '" . $this->id_cliente . "', 
-            '" . $this->numero . "', '" . $this->total_facturado . "', '" . $this->descripcion . "')";
-        $resultado = $this->c_conectar->ejecutar_idu($query);
-        return $resultado;
+            '" . $this->numero . "', '0', '" . $this->descripcion . "', '$this->archivo')";
+        return $this->c_conectar->ejecutar_idu($query);
     }
 
     public function ver_filas()
     {
-        $query = "select os.id_orden_cliente, os.numero_orden, os.fecha, os.descripcion, os.total, os.total_facturado, c.razon_social 
+        $query = "select os.id_orden_cliente, os.numero_orden, os.fecha, os.descripcion, os.total, os.total_facturado, c.razon_social, os.archivo
         from orden_servicio_cliente as os 
         inner join clientes c on os.id_clientes = c.id_clientes";
         return $this->c_conectar->get_Cursor($query);
@@ -180,7 +197,6 @@ class OrdenServicio
     {
         $query = "delete from orden_servicio_cliente 
         where id_orden_cliente = '" . $this->id_orden . "'";
-        $resultado = $this->c_conectar->ejecutar_idu($query);
-        return $resultado;
+        return $this->c_conectar->ejecutar_idu($query);
     }
 }

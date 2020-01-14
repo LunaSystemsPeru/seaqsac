@@ -1,6 +1,9 @@
 <?php
 require '../../models/Compra.php';
+require '../../tools/cl_varios.php';
+
 $c_compra = new Compra();
+$c_varios = new cl_varios();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -57,7 +60,7 @@ $c_compra = new Compra();
                                             <th>Documento</th>
                                             <th>Proveedor</th>
                                             <th>Total</th>
-                                            <th>Pagado</th>
+                                            <th>Deuda</th>
                                             <th>Estado</th>
                                             <th width="18%">Acciones</th>
                                         </tr>
@@ -66,13 +69,14 @@ $c_compra = new Compra();
                                         <?php
                                         $a_compras = $c_compra->ver_filas();
                                         foreach ($a_compras as $fila) {
+                                            $doc_sunat = $fila['doc_sunat'] . " | " . $fila['serie'] . " - " . $fila['numero'];
                                             ?>
                                             <tr>
-                                                <td>05/05/2019</td>
-                                                <td><a href="../archivos/compras/a.pdf" target="_blank" s>FT | E001 - 00012</a></td>
-                                                <td>OYANGUREN GIRON LUIS ENRIQUE</td>
-                                                <td>1,800.00</td>
-                                                <td>350.00</td>
+                                                <td class="text-center"><?php echo $c_varios->fecha_mysql_web($fila['fecha'])?></td>
+                                                <td class="text-center"><a href="../archivos/compras/a.pdf" target="_blank" ><?php echo $doc_sunat?></a></td>
+                                                <td><?php echo $fila['razon_social']?></td>
+                                                <td class="text-right"><?php echo number_format($fila['total'],2)?></td>
+                                                <td class="text-right"><?php echo number_format($fila['total'] - $fila['pagado'],2)?></td>
                                                 <td><label class="badge badge-warning">Pendiente </label></td>
                                                 <td>
                                                     <button class="btn btn-info btn-icons"><i class="fa fa-edit"></i></button>

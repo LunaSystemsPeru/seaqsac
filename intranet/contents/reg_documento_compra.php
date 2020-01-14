@@ -23,6 +23,7 @@ $c_tipo = new TipoClasificacion();
     <!-- endinject -->
     <!-- plugin css for this page -->
     <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
@@ -45,7 +46,7 @@ $c_tipo = new TipoClasificacion();
                 <div class="row">
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
-                            <form class="form-sample" method="post" action="../controller/reg_compra.php">
+                            <form class="form-sample" enctype="multipart/form-data" method="post" action="../controller/reg_documento_compra.php">
                                 <div class="card-header">
                                     <h4 class="h3">Agregar Documento de Compra</h4>
                                 </div>
@@ -54,7 +55,7 @@ $c_tipo = new TipoClasificacion();
                                         <label class="col-md-2 col-form-label">Periodo</label>
                                         <div class="col-md-3">
                                             <input type="text" class="form-control text-center" maxlength="6"
-                                                   name="input_periodo" id="input_periodo" value="201905"
+                                                   name="input_periodo" id="input_periodo" value="<?php echo date("Ym")?>"
                                                    required="true"/>
                                         </div>
                                     </div>
@@ -94,7 +95,7 @@ $c_tipo = new TipoClasificacion();
                                         <label class="col-md-2 col-form-label">Proveedor:</label>
                                         <div class="col-md-8">
                                             <input type="text" name="input_proveedor" id="input_proveedor" class="form-control">
-                                            <input type="hidden" name="hidden_proveedor" id="hidden_proveedor">
+                                            <input type="hidden" name="hidden_id_proveedor" id="hidden_id_proveedor">
                                         </div>
                                         <div class="col-md-2">
                                             <a href="reg_proveedor.php" class="btn btn-success" name="btn_crear_proveedor"
@@ -134,12 +135,13 @@ $c_tipo = new TipoClasificacion();
                                         <div class="col-md-3">
                                             <input type="text" class="form-control text-right" placeholder="0.00"
                                                    name="input_total" id="input_total" required readonly="true"/>
+                                            <input type="hidden" name="hidden_total" id="hidden_total">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-2 col-form-label">Cargar Archivo</label>
                                         <div class="col-md-9">
-                                            <input type="file" class="form-control" />
+                                            <input type="file" class="form-control" name="input_archivo"/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -190,6 +192,9 @@ $c_tipo = new TipoClasificacion();
 <!-- plugins:js -->
 <script src="../../vendors/js/vendor.bundle.base.js"></script>
 <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page-->
 <!-- End plugin js for this page-->
@@ -200,6 +205,8 @@ $c_tipo = new TipoClasificacion();
 <!-- Custom js for this page-->
 <script src="../../vendors/assets/js/dashboard.js"></script>
 <script src="../../vendors/assets/js/funciones_basicas.js"></script>
+
+<script src="../../vendors/assets/js/funciones_autocomplete.js"></script>
 <!-- End custom js for this page-->
 
 <script>
@@ -214,32 +221,6 @@ $c_tipo = new TipoClasificacion();
         cargar_sucursales();
     });
 
-</script>
-<script>
-    function cargar_sucursales() {
-        var ssucursal = $("#select_sucursal");
-        var scliente = $("#select_cliente");
-        var id_cliente = scliente.val();
-        $.ajax({
-            data: {"id_cliente": id_cliente},
-            url: 'peticiones_post_json/ver_sucursales_cliente.php',
-            type: 'post',
-            beforeSend: function () {
-                ssucursal.prop("disabled", true);
-            },
-            success: function (response) {
-                ssucursal.prop("disabled", false);
-                ssucursal.find('option').remove();
-                var json = JSON.parse(response);
-                $(json.data).each(function (key, registro) {
-                    ssucursal.append('<option value="' + registro.id_sucursal + '">' + registro.nombre + '</option>');
-                });
-            },
-            error: function () {
-                ssucursal.prop("disabled", true);
-            }
-        });
-    }
 </script>
 </body>
 

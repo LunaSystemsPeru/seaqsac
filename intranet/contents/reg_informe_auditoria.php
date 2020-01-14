@@ -183,7 +183,7 @@ $c_tipo = new TipoClasificacion();
         var id_cliente = scliente.val();
         $.ajax({
             data: {"id_cliente": id_cliente},
-            url: 'peticiones_post_json/ver_sucursales_cliente.php',
+            url: '../../data/ajax/ver_sucursales_cliente.php',
             type: 'post',
             beforeSend: function () {
                 ssucursal.prop("disabled", true);
@@ -212,7 +212,7 @@ $c_tipo = new TipoClasificacion();
             data: {
                 "id_tipo": id_tipo
             },
-            url: 'peticiones_post_json/ver_clases_tipo.php',
+            url: '../../data/ajax/ver_clases_tipo.php',
             type: 'post',
             beforeSend: function () {
                 sclase.prop("disabled", true);

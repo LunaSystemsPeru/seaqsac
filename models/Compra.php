@@ -243,8 +243,9 @@ class Compra
                 '" . $this->tipo_compra . "' ,
                 '" . $this->total . "', 
                 '0', 
-                '0',
+                '1',
                 '$this->archivo')";
+        echo $query;
         return $this->c_conectar->ejecutar_idu($query);
     }
 
