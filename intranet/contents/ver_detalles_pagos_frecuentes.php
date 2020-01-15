@@ -85,6 +85,61 @@ $listaBancos = $c_banco->ver_filas();
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Datos del Contrato</h4>
+                                <div class="form-group">
+                                    <label for="" class="font-weight-bold">Codigo Contrato:</label>
+                                    <label for=""></label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="font-weight-bold">Proveedor:</label>
+                                    <label for=""></label>
+                                </div>
+
+                                <br>
+                                <div class="form-group">
+                                    <label for="" class="font-weight-bold">Duracion:</label>
+                                    <label for=""> dias</label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="font-weight-bold">Servicio:</label>
+                                    <label for=""></label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="font-weight-bold">Fecha Inicio:</label>
+                                    <label for=""></label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="font-weight-bold">Fecha de termino:</label>
+                                    <label for=""></label>
+                                </div>
+
+                                <br>
+                                <div class="form-group">
+                                    <label for="" class="font-weight-bold">Total a Pagar:</label>
+                                    <label for=""></label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="font-weight-bold">Total Pagado:</label>
+                                    <label for=""></label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="font-weight-bold">Faltante:</label>
+                                    <label for=""></label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="font-weight-bold">Estado:</label>
+                                    <label class='badge badge-success badge-lg' >Activo</label>
+                                    <label class='badge badge-danger badge-lg' >Finalizado</label>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
 
                     <div class="col-md-6 grid-margin stretch-card">
 

@@ -85,7 +85,6 @@ $c_pagos->setIdContrato($contrato->getIdContrato());
                                     </button>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
