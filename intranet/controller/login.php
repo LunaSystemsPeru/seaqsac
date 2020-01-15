@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
 /**
  * Created by PhpStorm.
@@ -41,6 +43,7 @@ if ($id_error > 0) {
 //echo $id_error;
 
 if ($id_error == 0 & ($siusuario)) {
-   // echo "si_usuario = " . $siusuario;
+   //echo "si_usuario = " . $siusuario;
     header("Location: ../index.php");
 }
+

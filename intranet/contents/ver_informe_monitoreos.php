@@ -141,7 +141,7 @@ $c_monitoreo = new Monitoreo();
             return false;
         }
         else {
-            document.location = "procesos/del_monitoreo.php?id_monitoreo=" + codigo;
+            document.location = "../controller/del_monitoreo.php?id_monitoreo=" + codigo;
             return true;
         }
     }

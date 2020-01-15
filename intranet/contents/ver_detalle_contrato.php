@@ -3,6 +3,7 @@ require 'init_page.php';
 
 require '../../models/Proveedor.php';
 require '../../models/Contrato.php';
+require '../../models/ContratoPago.php';
 require '../../models/Banco.php';
 require '../../models/TipoClasificacion.php';
 require '../../tools/cl_varios.php';
@@ -13,6 +14,7 @@ $tipoClasificacion = new TipoClasificacion();
 $c_proveedor = new Proveedor();
 $contrato = new Contrato();
 $c_varios = new cl_varios();
+$c_pagos = new ContratoPago();
 
 
 $listaBancos = $c_banco->ver_filas();
@@ -27,6 +29,8 @@ $contrato->obtener_datos();
 
 $c_proveedor->setIdProveedor($contrato->getIdProveedor());
 $c_proveedor->obtener_datos();
+
+$c_pagos->setIdContrato($contrato->getIdContrato());
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -70,6 +74,9 @@ $c_proveedor->obtener_datos();
                             <div class="card-header">
                                 <h4 class="h3">Detalle del contrato</h4>
                                 <div class="">
+                                    <a href="ver_contrato.php"
+                                       class="btn btn-info"><i class="fa fa-arrow-left"></i>ver Contratos
+                                    </a>
                                     <button data-toggle="modal" data-target="#modal_pago_frecuente"
                                             class="btn btn-behance"><i class="fa fa-edit"></i>Modificar Pago
                                     </button>
@@ -163,12 +170,27 @@ $c_proveedor->obtener_datos();
                                             <th>Fecha</th>
                                             <th>Banco</th>
                                             <th>Monto</th>
+                                            <th>Deuda</th>
                                             <th>Acciones</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <?php
-
+                                        $saldo = $contrato->getMontoPactado();
+                                        foreach ($c_pagos->verFilas() as $fila) {
+                                            $saldo -= $fila['sale'];
+                                            ?>
+                                            <tr>
+                                                <td class="text-center"><?php echo $c_varios->fecha_mysql_web($fila['fecha'])?></td>
+                                                <td><?php echo $fila['nombre']?></td>
+                                                <td class="text-right"><?php echo number_format($fila['sale'],2)?></td>
+                                                <td class="text-right"><?php echo number_format($saldo,2)?></td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-icons btn-danger" title="Eliminar Pago"><i class="fa fa-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
                                         ?>
                                         </tbody>
                                     </table>
@@ -176,24 +198,6 @@ $c_proveedor->obtener_datos();
                             </div>
                         </div>
 
-                        <!--div class="card">
-                            <div class="card-body">
-                                <h3 class="card-title text-bold">Ver Todos los Pagos</h3>
-                            </div>
-                            <div class="card-body">
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>Fecha</th>
-                                        <th>Banco</th>
-                                        <th>Monto</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div-->
                     </div>
                 </div>
             </div>
@@ -212,14 +216,14 @@ $c_proveedor->obtener_datos();
      style="display: none;" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel-4">Agregar Pago</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="formulario_modal_pago" action="../controller/reg_frecuencia_movimiento.php" method="post">
+            <form id="formulario_modal_pago" action="../controller/reg_contrato_pago.php" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel-4">Agregar Pago</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
                     <input type="hidden" name="id_pago" value="<?php echo $idPago ?>">
                     <div class="form-group">
 
@@ -227,10 +231,18 @@ $c_proveedor->obtener_datos();
                         <select name="id_banco" class="form-control" id="banco">
                             <?php foreach ($listaBancos as $item) {
 
-                                echo "<option value='{$item['id_banco']}'>{$item['nombre']}</option>";
+                                echo "<option value='{$item['id_banco']}'>" . $item['nombre'] . " - S/ " . $item['monto'] . "</option>";
                             } ?>
 
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="monto" class="col-form-label">Monto total:</label>
+                        <input type="text" name="monto_total" value="<?php echo number_format($contrato->getMontoPactado(), 2) ?>" class="form-control" id="monto_total" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="monto" class="col-form-label">Monto Pagado:</label>
+                        <input type="text" name="monto_pagado" value="<?php echo number_format($contrato->getMontoPagado(), 2) ?>" class="form-control" id="monto_pagado" readonly>
                     </div>
                     <div class="form-group">
                         <label for="monto" class="col-form-label">Monto:</label>
@@ -241,12 +253,13 @@ $c_proveedor->obtener_datos();
                         <input type="date" value="<?php echo date("Y-m-d"); ?>" name="fecha" class="form-control"
                                id="fecha">
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" onclick="enviarformularioRegistro()">Registrar</button>
-                <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id_contrato" value="<?php echo $contrato->getIdContrato() ?>">
+                    <button type="submit" class="btn btn-success">Registrar</button>
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
