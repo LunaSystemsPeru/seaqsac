@@ -234,14 +234,35 @@ class PagoFrecuente
                     ON fp.id_movimiento = bm.id_movimiento 
                   INNER JOIN bancos AS ba 
                     ON bm.id_banco = ba.id_banco 
-                WHERE fp.id_pagos_frecuentes = " . $this->id_frecuente;
+                WHERE fp.id_pagos_frecuentes = '$this->id_frecuente' AND YEAR('$this->fecha') = YEAR(bm.fecha) AND MONTH('$this->fecha') = MONTH(bm.fecha)" ;
         return $this->c_conectar->get_Cursor($query);
     }
 
     public function eliminar()
     {
-        $query = "delete from compras_sunat 
-        where id_compras = '" . $this->id_compra . "' ";
+        $query = "delete from pagos_frecuentes 
+        where id_pagos_frecuentes = '" . $this->id_frecuente . "' ";
+        return $this->c_conectar->ejecutar_idu($query);
+    }
+    public function deternet(){
+        $query = "UPDATE pagos_frecuentes SET 
+          estado = '2'
+        WHERE id_pagos_frecuentes = '$this->id_frecuente';";
+        return $this->c_conectar->ejecutar_idu($query);
+    }
+    public function pasarMes(){
+        $query = "UPDATE pagos_frecuentes SET 
+          fecha = DATE_ADD(fecha, INTERVAL 1 MONTH)
+        WHERE id_pagos_frecuentes = '$this->id_frecuente';";
+
+        return $this->c_conectar->ejecutar_idu($query);
+    }
+
+    public function modificar(){
+        $query = "UPDATE pagos_frecuentes SET 
+          fecha = '$this->fecha',
+          monto_pactado='$this->monto_pactado'
+        WHERE id_pagos_frecuentes = '$this->id_frecuente';";
         return $this->c_conectar->ejecutar_idu($query);
     }
 }

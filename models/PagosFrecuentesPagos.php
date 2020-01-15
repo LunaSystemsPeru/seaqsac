@@ -55,4 +55,12 @@ class PagosFrecuentesPagos
         return $this->c_conectar->ejecutar_idu($query);
     }
 
+    public function eliminar()
+    {
+        $query = "DELETE
+                    FROM pagos_frecuentes_pagos
+                    WHERE id_pagos_frecuentes = '$this->id_pagos_frecuentes'
+                        AND id_movimiento = '$this->id_movimiento'";
+        return $this->c_conectar->ejecutar_idu($query);
+    }
 }
