@@ -264,7 +264,7 @@ class Cliente
         $sql = "select id_clientes
         from clientes 
         where ruc = '$this->ruc' ";
-        echo $sql;
+       // echo $sql;
         $this->id_cliente = $this->c_conectar->get_valor_query($sql, 'id_clientes');
         if ($this->id_cliente == NULL || $this->id_cliente == "") {
             return false;

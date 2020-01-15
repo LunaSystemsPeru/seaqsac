@@ -129,4 +129,10 @@ class Banco
         return $this->c_conectar->get_Cursor($query);
     }
 
+    public function ver_otros_bancos()
+    {
+        $query = "select * from bancos where id_banco != '$this->id_banco'";
+        return $this->c_conectar->get_Cursor($query);
+    }
+
 }

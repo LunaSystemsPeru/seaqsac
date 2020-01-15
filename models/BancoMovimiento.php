@@ -172,8 +172,16 @@ class BancoMovimiento
         $query = "select bm.id_movimiento, bm.fecha, bm.ingresa, bm.sale, bm.descripcion, t.nombre as clasificacion 
         from banco_movimientos as bm
         inner join tipos t on bm.id_tipo = t.id_tipo
-        where bm.id_banco = '$this->id_banco'";
+        where bm.id_banco = '$this->id_banco' and date_format(bm.fecha, '%Y%m') = date_format(curdate(), '%Y%m') 
+        order by bm.fecha, bm.id_movimiento asc";
         return $this->c_conectar->get_Cursor($query);
+    }
+
+    public  function  verSaldoAnterior () {
+        $sql = "select ifnull(sum(ingresa - sale),0)  as saldo
+        from banco_movimientos 
+        where date_format(fecha, '%Y%m') < date_format(curdate(), '%Y%m') and id_banco = '$this->id_banco'";
+        return $this->c_conectar->get_valor_query($sql, 'saldo');
     }
 
 }
