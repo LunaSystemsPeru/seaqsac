@@ -18,8 +18,7 @@ $c_venta->setIdCliente(filter_input(INPUT_POST, 'select_cliente'));
 $c_venta->setIdOrdenInterna(filter_input(INPUT_POST, 'select_orden_interna'));
 $c_venta->setIdOrdenCliente(filter_input(INPUT_POST, 'select_orden_servicio'));
 $c_venta->setPorcentaje(filter_input(INPUT_POST, 'input_porcentaje'));
-$c_venta->setTotal(filter_input(INPUT_POST, 'hidden_total'));
-$c_venta->setPeriodoVenta(filter_input(INPUT_POST, 'input_periodo'));
+$c_venta->setTotal(filter_input(INPUT_POST, 'hidden_total_factura'));
 $c_venta->obtener_id();
 
 if (!empty($_FILES["input_file"])) {
@@ -37,7 +36,7 @@ if (!empty($_FILES["input_file"])) {
         $dir_subida = '../../archivos/ventas/';
 
         //establecer nombre de archivo
-        $c_venta->setArchivo($c_venta->getPeriodoVenta() . $c_venta->getIdVenta() . '.' . $file_extension);
+        $c_venta->setArchivo($c_venta->getIdVenta() . '.' . $file_extension);
 
         if (move_uploaded_file($file_temporal, $dir_subida . $c_venta->getArchivo())) {
             //print "El archivo fue subido con éxito.";

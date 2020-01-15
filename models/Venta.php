@@ -284,19 +284,31 @@ class Venta
         return $this->c_conectar->ejecutar_idu($query);
     }
 
+    public function eliminar()
+    {
+        $query = "delete from ventas where id_ventas = '$this->id_venta'";
+        return $this->c_conectar->ejecutar_idu($query);
+    }
+
     public function ver_filas()
     {
-        $query = "SELECT v.fecha,
-                       ds.nombre,
+        $query = "SELECT v.id_ventas,
+                       v.fecha,
+                       ds.abreviado,
                        c.razon_social,
                        oi.id_orden_interna,
+                       osc.numero_orden,
+                       v.serie, 
+                       v.numero,
                        v.total,
                        v.pagado,
                        v.estado
                 FROM ventas as v
                          INNER JOIN documentos_sunat as ds ON ds.id_tido = v.id_tido
                          INNER JOIN clientes as c ON c.id_clientes = v.id_clientes
-                         INNER JOIN orden_interna as oi ON oi.id_orden_interna = v.id_orden_interna";
+                         INNER JOIN orden_interna as oi ON oi.id_orden_interna = v.id_orden_interna 
+                         inner join orden_servicio_cliente osc on c.id_clientes = osc.id_clientes";
+
         return $this->c_conectar->get_Cursor($query);
     }
 

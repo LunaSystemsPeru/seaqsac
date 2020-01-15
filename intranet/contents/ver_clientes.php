@@ -133,7 +133,8 @@ $c_cliente = new Cliente();
 
         // Initialize Example 1
         $('#tabla').dataTable({
-            responsive: true
+            responsive: true,
+            "order": [[ 1, "asc" ]]
         });
 
     });

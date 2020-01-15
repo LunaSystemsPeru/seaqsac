@@ -168,13 +168,18 @@ class OrdenServicio
         $query = "select * from orden_servicio_cliente 
         where id_orden_cliente = '" . $this->id_orden . "'";
         $columna = $this->c_conectar->get_Row($query);
-        $this->fecha = $columna['fecha'];
-        $this->monto = $columna['total'];
-        $this->id_cliente= $columna['id_cliente'];
-        $this->numero = $columna['numero_orden'];
-        $this->total_facturado = $columna['total_facturado'];
-        $this->descripcion = $columna['descripcion'];
-        $this->archivo = $columna['archivo'];
+        if (!empty($columna)) {
+            $this->fecha = $columna['fecha'];
+            $this->monto = $columna['total'];
+            $this->id_cliente = $columna['id_clientes'];
+            $this->numero = $columna['numero_orden'];
+            $this->total_facturado = $columna['total_facturado'];
+            $this->descripcion = $columna['descripcion'];
+            $this->archivo = $columna['archivo'];
+            return json_encode($columna);
+        } else {
+            return false;
+        }
     }
 
     public function insertar()
@@ -191,6 +196,15 @@ class OrdenServicio
         from orden_servicio_cliente as os 
         inner join clientes c on os.id_clientes = c.id_clientes";
         return $this->c_conectar->get_Cursor($query);
+    }
+
+    public function ver_orden_cliente()
+    {
+        $query = "select * 
+        from orden_servicio_cliente as os 
+        where os.id_clientes = '$this->id_cliente' and total_facturado < total 
+        order by fecha desc";
+        return $this->c_conectar->get_json_rows($query);
     }
 
     public function eliminar()
