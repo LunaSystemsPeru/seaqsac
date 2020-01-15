@@ -101,7 +101,7 @@ $c_contrato = new Contrato();
                                                     <div class="badge badge-success">Activo</div>
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="#" class="btn btn-dark btn-sm"><i class="fa fa-eye"></i></a>
+                                                    <a href="ver_detalle_contrato.php?contrato=<?php echo $row['id_contrato']?>" class="btn btn-dark btn-sm"><i class="fa fa-eye"></i></a>
                                                 </td>
                                             </tr>
                                             <?php

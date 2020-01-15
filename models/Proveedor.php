@@ -133,6 +133,7 @@ class Proveedor
     public function obtener_datos()
     {
         $query = "SELECT * FROM proveedores WHERE id_proveedores = '" . $this->id_proveedor . "' ";
+
         $columna = $this->c_conectar->get_Row($query);
         $this->ruc=$columna["ruc"];
         $this->razon_social=$columna["razon_social"];
