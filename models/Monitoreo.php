@@ -215,9 +215,8 @@ class Monitoreo
                 '1',
                 '1000-01-01',
                 '$this->id_clase')";
-        echo $query;
-        $resultado = $this->c_conectar->ejecutar_idu($query);
-        return $resultado;
+        //echo $query;
+        return $this->c_conectar->ejecutar_idu($query);
     }
 
     public function sucursales()
@@ -256,8 +255,7 @@ class Monitoreo
     public function eliminar()
     {
         $query = "delete from monitoreos where id_monitoreos = '" . $this->id_monitoreo . "'";
-        $resultado = $this->c_conectar->ejecutar_idu($query);
-        return $resultado;
+        return $this->c_conectar->ejecutar_idu($query);
     }
 
 }

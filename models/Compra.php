@@ -245,7 +245,7 @@ class Compra
                 '0', 
                 '1',
                 '$this->archivo')";
-        echo $query;
+        //echo $query;
         return $this->c_conectar->ejecutar_idu($query);
     }
 
