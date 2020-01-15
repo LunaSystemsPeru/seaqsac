@@ -76,7 +76,7 @@ $c_cliente = new Cliente();
                                     <div class="form-group row">
                                         <label class="col-md-2 col-form-label">Cliente:</label>
                                         <div class="col-md-8">
-                                            <select class="form-control" name="select_cliente" id="select_cliente">
+                                            <select class="form-control" name="select_cliente" id="select_cliente" onchange="obtener_ordenes()">
                                                 <?php
                                                 $resultado = $c_cliente->ver_clientes();
                                                 while ($row = $resultado->fetch_assoc()) {
@@ -95,20 +95,14 @@ $c_cliente = new Cliente();
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-2 col-form-label">Orden Interna</label>
-                                        <div class="col-md-4">
+                                        <div class="col-md-8">
                                             <select class="form-control" name="select_orden_interna" id="select_orden_interna">
                                                     <option value="0">SIN ORDEN INTERNA</option>
                                             </select>
                                         </div>
-                                        <label class="col-md-2 col-form-label">Orden de Servicio</label>
-                                        <div class="col-md-4">
-                                            <select class="form-control" name="select_orden_servicio" id="select_orden_servicio">
-                                                onchange="ver_datos_orden()">
-                                                <option value="0">SIN ORDEN</option>
-                                            </select>
-                                        </div>
+
                                     </div>
-                                    <div class="form-group row">
+                                    <!--<div class="form-group row">
                                         <label class="col-md-2 col-form-label">Moneda</label>
                                         <div class="col-md-3">
                                             <select class="form-control" name="select_moneda" id="select_moneda"
@@ -126,7 +120,22 @@ $c_cliente = new Cliente();
                                         <label class="col-md-2 col-form-label">Porcentaje O.S.</label>
                                         <div class="col-md-2">
                                             <input type="text" class="form-control text-center" name="input_porcentaje"
-                                                   id="input_porcentaje" onkeyup="facturado()" maxlength="8" value="100"
+                                                   id="input_porcentaje" maxlength="8" value="100"
+                                                   required/>
+                                        </div>
+                                    </div>-->
+                                    <div class="form-group row">
+                                        <label class="col-md-2 col-form-label">Orden de Servicio</label>
+                                        <div class="col-md-7">
+                                            <select class="form-control" name="select_orden_servicio" id="select_orden_servicio"
+                                                onchange="obtener_datos_orden_servicio()">
+                                                <option value="0">SIN ORDEN</option>
+                                            </select>
+                                        </div>
+                                        <label class="col-md-1 col-form-label">Porcentaje O.S.</label>
+                                        <div class="col-md-2">
+                                            <input type="text" class="form-control text-center" name="input_porcentaje"
+                                                   id="input_porcentaje" maxlength="8" value="100" onkeyup="facturado()"
                                                    required/>
                                         </div>
                                     </div>
@@ -134,19 +143,23 @@ $c_cliente = new Cliente();
                                         <label class="col-md-2 col-form-label">Sub Total</label>
                                         <div class="col-md-3">
                                             <input type="text" class="form-control text-right" placeholder="0.00"
-                                                   onkeyup="calcular_total()" name="input_subtotal" id="input_subtotal"
+                                                   onkeyup="calcular_total_venta()" name="input_subtotal" id="input_subtotal"
                                                    required/>
                                         </div>
-                                        <label class="col-md-1 col-form-label">IGV</label>
-                                        <div class="col-md-2">
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-2 col-form-label">IGV</label>
+                                        <div class="col-md-3">
                                             <input type="text" class="form-control text-right" placeholder="0.00"
                                                    name="input_igv" id="input_igv" required/>
-                                        </div>
-                                        <label class="col-md-1 col-form-label">Total</label>
+                                        </div> </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-2 col-form-label">Total</label>
                                         <div class="col-md-3">
                                             <input type="text" class="form-control text-right" placeholder="0.00"
                                                    name="input_total" id="input_total" required readonly="true"/>
-                                            <input type="hidden" name="hidden_total" id="hidden_total"/>
+                                            <input type="hidden" name="hidden_total_factura" id="hidden_total_factura"/>
+                                            <input type="hidden" name="hidden_total_orden" id="hidden_total_orden"/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -189,11 +202,14 @@ $c_cliente = new Cliente();
 <!-- Custom js for this page-->
 <script src="../../vendors/assets/js/dashboard.js"></script>
 <script src="../../vendors/assets/js/funciones_basicas.js"></script>
+<script src="../../vendors/assets/js/funciones_ventas.js"></script>
 <!-- End custom js for this page-->
 
 <script>
 
     $(function () {
+        obtener_ordenes();
+
         obtener_tc();
         // Initialize Example 1
         $('#tabla').dataTable({
@@ -201,6 +217,13 @@ $c_cliente = new Cliente();
         });
 
     });
+/*
+    $('#select_cliente').on('change', function()
+    {
+       // obtener_ordenes_internas();
+    });
+
+ */
 
 </script>
 

@@ -1,20 +1,22 @@
 <?php
+require 'init_page.php';
 
 require '../../models/Proveedor.php';
 require '../../models/Contrato.php';
 require '../../models/Banco.php';
 require '../../models/TipoClasificacion.php';
+require '../../tools/cl_varios.php';
 
 
 $c_banco = new Banco();
 $tipoClasificacion = new TipoClasificacion();
-
-
 $c_proveedor = new Proveedor();
 $contrato = new Contrato();
+$c_varios = new cl_varios();
 
 
 $listaBancos = $c_banco->ver_filas();
+
 $idcontrado = filter_input(INPUT_GET, 'contrato');
 if (is_null($idcontrado)) {
     header("Location: ver_contrato.php");
@@ -88,54 +90,56 @@ $c_proveedor->obtener_datos();
 
 
                             <div class="card-body">
-                                <h4 class="card-title">Detalle del Contrato</h4>
+                                <h4 class="card-title">Datos del Contrato</h4>
+
+
                                 <div class="form-group">
-                                    <label for="">Codigo Contrato:</label>
+                                    <label for="" class="font-weight-bold">Codigo Contrato:</label>
                                     <label for=""><?php echo $contrato->getIdContrato() ?></label>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Proveedor:</label>
+                                    <label for="" class="font-weight-bold">Proveedor:</label>
                                     <label for=""><?php echo $c_proveedor->getRazonSocial() ?></label>
                                 </div>
 
                                 <br>
                                 <div class="form-group">
-                                    <label for="">Duracion:</label>
-                                    <label for=""><?php echo $contrato->getDuracion() ?></label>
+                                    <label for="" class="font-weight-bold">Duracion:</label>
+                                    <label for=""><?php echo $contrato->getDuracion() ?> dias</label>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Servicio:</label>
+                                    <label for="" class="font-weight-bold">Servicio:</label>
                                     <label for=""><?php echo $contrato->getServicio() ?></label>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Fecha Inicio:</label>
-                                    <label for=""><?php echo $contrato->getFechaInicio() ?></label>
+                                    <label for="" class="font-weight-bold">Fecha Inicio:</label>
+                                    <label for=""><?php echo $c_varios->fecha_mysql_web($contrato->getFechaInicio()) ?></label>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Fecha de termino:</label>
-                                    <label for=""><?php echo $contrato->getFechaFin() ?></label>
+                                    <label for="" class="font-weight-bold">Fecha de termino:</label>
+                                    <label for=""><?php echo $c_varios->fecha_mysql_web($contrato->getFechaFin()) ?></label>
                                 </div>
 
                                 <br>
                                 <div class="form-group">
-                                    <label for="">Total a Pagar:</label>
+                                    <label for="" class="font-weight-bold">Total a Pagar:</label>
                                     <label for=""><?php echo number_format($contrato->getMontoPactado(), 2) ?></label>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Total Pagado:</label>
+                                    <label for="" class="font-weight-bold">Total Pagado:</label>
                                     <label for=""><?php echo number_format($contrato->getMontoPagado(), 2) ?></label>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Faltante:</label>
+                                    <label for="" class="font-weight-bold">Faltante:</label>
                                     <label for=""><?php echo number_format(($contrato->getMontoPactado() - $contrato->getMontoPagado()), 2) ?></label>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Estado:</label>
+                                    <label for="" class="font-weight-bold">Estado:</label>
                                     <?php
                                     if ($contrato->getEstado() == 1) {
-                                        echo "<label class='badge badge-success' >Activo</label>";
+                                        echo "<label class='badge badge-success badge-lg' >Activo</label>";
                                     } elseif ($contrato->getEstado() == 2) {
-                                        echo "<label class='badge badge-danger' >Finalizado</label>";
+                                        echo "<label class='badge badge-danger badge-lg' >Finalizado</label>";
                                     }
                                     ?>
 

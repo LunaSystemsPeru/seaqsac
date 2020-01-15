@@ -185,6 +185,16 @@ class OrdenInterna
         return $this->c_conectar->get_Cursor($query);
     }
 
+    public function ver_orden_cliente($id_cliente)
+    {
+        $query = "select oi.id_orden_interna, oi.fecha, oi.monto_pactado, c.descripcion 
+        from orden_interna as oi 
+        inner join cotizaciones c on oi.id_cotizaciones = c.id_cotizaciones 
+        where c.id_clientes = '$id_cliente' and oi.estado = 1 
+        order by oi.fecha desc";
+        return $this->c_conectar->get_json_rows($query);
+    }
+
     public function eliminar()
     {
         $query = "delete from orden_interna 

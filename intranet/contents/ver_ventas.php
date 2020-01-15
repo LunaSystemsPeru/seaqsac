@@ -56,9 +56,10 @@ $c_venta = new Venta();
                                             <th width="11%">Fecha</th>
                                             <th width="11%">Documento</th>
                                             <th>Cliente</th>
-                                            <th>Orden Interna</th>
+                                            <th>OTI</th>
+                                            <th>O/S</th>
                                             <th width="10%">Total</th>
-                                            <th>Pagado</th>
+                                            <th>por Cobrar</th>
                                             <th>Estado</th>
                                             <th width="13%" class="text-center">Acciones</th>
                                         </tr>
@@ -66,29 +67,47 @@ $c_venta = new Venta();
                                         <tbody>
                                         <?php
                                         $a_ventas = $c_venta->ver_filas();
+                                        $total = 0;
+                                        $deuda = 0;
                                         foreach ($a_ventas as $fila) {
+                                            $total += $fila['total'];
+                                            $deuda += $fila['total'] - $fila['pagado'];
                                             ?>
                                             <tr>
-                                                <td><?php echo $fila['fecha'] ?></td>
-                                                <td>
+                                                <td class="text-center"><?php echo $fila['fecha'] ?></td>
+                                                <td class="text-center">
                                                     <a href="../archivos/ventas/<?php echo $fila['archivo'] ?>" target="_blank">
                                                         <?php echo $fila['abreviado'] . " | " . $fila['serie'] . " - " . $fila['numero'] ?>
                                                     </a>
                                                 </td>
                                                 <td><?php echo $fila['razon_social'] ?></td>
-                                                <td><?php echo $fila['id_orden_interna'] ?></td>
+                                                <td class="text-center"><?php echo $fila['id_orden_interna'] ?></td>
+                                                <td class="text-center"><?php echo $fila['numero_orden'] ?></td>
                                                 <td class="text-right"><?php echo number_format($fila['total'], 2) ?></td>
-                                                <td class="text-right"><?php echo number_format($fila['pagado'], 2) ?></td>
+                                                <td class="text-right"><?php echo number_format($fila['total'] - $fila['pagado'], 2) ?></td>
                                                 <td><label class="badge badge-warning">Pendiente </label></td>
                                                 <td>
                                                     <a href="ver_venta_cobro.php" class="btn btn-success btn-icons"><i class="fa fa-dollar"></i></a>
-                                                    <button class="btn btn-danger btn-icons" title="Eliminar Documento de Venta" onclick="eliminar('<?php echo $fila['id_ventas'] ?>', '<?php echo $fila['periodo'] ?>')"><i class="fa fa-close"></i></button>
+                                                    <button class="btn btn-danger btn-icons" title="Eliminar Documento de Venta" onclick="eliminar('<?php echo $fila['id_ventas'] ?>')"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>
                                             <?php
                                         }
+                                        $porcentaje_deuda = 0;
+                                        if ($total > 0) {
+                                            $porcentaje_deuda = $deuda / $total * 100;
+                                        }
                                         ?>
                                         </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <td class="text-right" colspan="5">TOTALES</td>
+                                            <td class="text-right"><?php echo number_format($total, 2) ?></td>
+                                            <td class="text-right"><?php echo number_format($deuda, 2) ?></td>
+                                            <td class="text-right"><?php echo number_format($porcentaje_deuda, 2) ?> %</td>
+                                            <td></td>
+                                        </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
@@ -132,12 +151,11 @@ $c_venta = new Venta();
 
     });
 
-    function eliminar(codigo, periodo) {
+    function eliminar(codigo) {
         if (!confirm("¿Está seguro de que desea eliminar el Documento Seleccionado?")) {
             return false;
-        }
-        else {
-            document.location = "procesos/del_venta.php?id_venta=" + codigo + "&periodo=" + periodo;
+        } else {
+            document.location = "../controller/del_documento_venta.php?id_venta=" + codigo;
             return true;
         }
     }

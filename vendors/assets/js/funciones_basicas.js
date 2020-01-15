@@ -106,7 +106,7 @@ function obtener_tc() {
             success: function (response) {
                 var json = response;
                 var json_tc = JSON.parse(json);
-                var tc_venta = json_tc.Cotizacion[0].Venta;
+                var tc_venta = json_tc.cotizacion[0].Venta;
                 $("#hidden_tc").val(tc_venta);
             }
         });
