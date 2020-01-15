@@ -264,8 +264,8 @@ $listaBancos = $c_banco->ver_filas();
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form id="formulario_modal_pago" action="../controller/reg_frecuencia_movimiento.php" method="post">
+            <div class="modal-body">monto_pagado
+                <form id="formulario_modal_pago" action="../controllmonto_pactadoer/reg_frecuencia_movimiento.php" method="post">
                     <input type="hidden" name="id_pago" value="<?php echo $idPago ?>">
                     <div class="form-group">
 
