@@ -175,77 +175,47 @@ $c_tipo->setCodigo(4);
      style="display: none;" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="card-title">Agregar Pago Venta</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <div class="modal-body">
-                    <form id="formulario_modal_pago" action="../" method="post">
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label">Proveedor</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="input_proveedor" id="input_proveedor" required>
-                                <input type="hidden" name="hidden_id_proveedor" id="hidden_id_proveedor">
-                            </div>
-                            <div class="col-sm-2">
-                                <a href="reg_proveedor.php" class="btn btn-info"><i class="fa fa-plus"></i> Crear</a>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Servicio</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="input_servicio" name="input_servicio" required/>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Fecha</label>
-                            <div class="col-sm-4">
-                                <input type="date" class="form-control" id="input_fecha" name="input_fecha" required/>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Monto a Pagar</label>
-                            <div class="col-sm-3">
-                                <input type="text" placeholder="0.00" class="form-control text-right" id="input_monto" name="input_monto" required/>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Tipo de Pago</label>
-                            <div class="col-sm-5">
-                                <label class="col-sm-3.4 col-form-label">Cuota</label>
-                                <input type="radio">
-                                <label  class="col-sm-3.4 col-form-label">Contado</label>
-                                <input type="radio">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Cuotas</label>
-                            <div class="col-sm-3">
-                                <select class="form-control" name="select_cuota" id="select_cuota">
-                                    <option value="0">Seleccionar</option>
-                                    <option value="1">2</option>
-                                    <option value="2">3</option>
-                                    <option value="3">4</option>
-                                    <option value="4">5</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Total de Cuotas</label>
-                            <div class="col-sm-3">
-                                <input type="text" placeholder="0.00" class="form-control text-right" id="input_monto" name="input_monto" required/>
-                            </div>
-                            <div class="form-group row">
-                                <button type="submit" class="btn btn-success mr-2">Guardar</button>
-                            </div>
-                        </div>
-                    </form>
-
+            <form id="formulario_modal_pago" action="../controller/reg_contrato_pago.php" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel-4">Agregar Pago</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                 </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id_pago" value="">
+                    <div class="form-group">
 
-            </div>
+                        <label for="banco" class="col-form-label">Banco:</label>
+                        <select name="id_banco" class="form-control" id="banco">
+                            <option value='1'>2 </option>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="monto" class="col-form-label">Monto total:</label>
+                        <input type="text" name="monto_total" value="" class="form-control" id="monto_total" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="monto" class="col-form-label">Monto Pagado:</label>
+                        <input type="text" name="monto_pagado" value="" class="form-control" id="monto_pagado" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="monto" class="col-form-label">Monto:</label>
+                        <input required type="number" name="monto" class="form-control" id="monto">
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha" class="col-form-label">Fecha:</label>
+                        <input type="date" value="" name="fecha" class="form-control"
+                               id="fecha">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id_contrato" value="">
+                    <button type="submit" class="btn btn-success">Registrar</button>
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
