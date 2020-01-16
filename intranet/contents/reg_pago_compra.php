@@ -13,7 +13,7 @@ $c_tipo->setCodigo(4);
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Agregar Pago Venta | SEAQ SAC - Software de Gestion </title>
+    <title>Agregar Pago Compra | SEAQ SAC - Software de Gestion </title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
@@ -46,7 +46,7 @@ $c_tipo->setCodigo(4);
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="h3">Detalle de Pago Venta</h4>
+                                <h4 class="h3">Detalle de Pago Compra</h4>
                                 <div class="">
                                     <button data-toggle="modal" data-target="#modal_pago_frecuente"
                                             class="btn btn-behance"><i class="fa fa-edit"></i>Modificar Pago
@@ -63,7 +63,7 @@ $c_tipo->setCodigo(4);
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Detalle de Pago venta</h4>
+                                <h4 class="card-title">Detalle de Pago Compra</h4>
                                 <div class="form-group">
                                     <label for="">Codigo Contrato:</label>
                                     <label for=""></label>
@@ -120,7 +120,7 @@ $c_tipo->setCodigo(4);
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Ver Pago de este Contrato</h4>
+                                <h4 class="card-title">Ver Pago de Compra</h4>
                                 <div class="panel-body">
                                     <span data-toggle="modal" data-target="#modal_pago_fre" class="btn btn-behance"><i class="fa fa-plus"></i>Agregar</span>
                                     <table class="table table-striped">
@@ -177,7 +177,7 @@ $c_tipo->setCodigo(4);
         <div class="modal-content">
             <form id="formulario_modal_pago" action="../controller/reg_contrato_pago.php" method="post">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel-4">Agregar Pago</h5>
+                    <h5 class="modal-title" id="exampleModalLabel-4">Agregar Pago Compra</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
