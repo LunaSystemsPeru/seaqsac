@@ -18,6 +18,8 @@ class Presupuesto
     private $total;
     private $estado;
     private $archivo;
+    private $codigo;
+
     private $c_conectar;
 
     /**
@@ -27,6 +29,24 @@ class Presupuesto
     {
         $this->c_conectar = Conectar::getInstancia();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCodigo()
+    {
+        return $this->codigo;
+    }
+
+    /**
+     * @param mixed $codigo
+     */
+    public function setCodigo($codigo)
+    {
+        $this->codigo = $codigo;
+    }
+
+
 
     /**
      * @return mixed
@@ -180,7 +200,7 @@ class Presupuesto
     {
         $query = "insert into cotizaciones "
             . "values ('" . $this->id_cotizacion . "', '" . $this->anio . "', '" . $this->fecha . "', '" . $this->id_cliente . "', 
-            '" . $this->descripcion . "', '" . $this->total . "', '0', '" . $this->archivo . "')";
+            '" . $this->descripcion . "', '" . $this->total . "', '0', '" . $this->archivo . "', '" . $this->codigo . "')";
         $resultado = $this->c_conectar->ejecutar_idu($query);
         return $resultado;
     }

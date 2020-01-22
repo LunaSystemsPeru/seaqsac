@@ -25,6 +25,9 @@ $c_cliente = new Cliente();
     <link rel="stylesheet" href="../../vendors/assets/css/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="../../vendors/assets/images/favicon.png"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
+
 </head>
 
 <body>
@@ -47,7 +50,8 @@ $c_cliente = new Cliente();
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="tabla" class="table table-striped">
+
+                                    <table id="tabla" class="table table-striped ">
                                         <thead>
                                         <tr>
                                             <th>RUC</th>
@@ -127,19 +131,30 @@ $c_cliente = new Cliente();
 <script src="../../vendors/assets/js/dashboard.js"></script>
 <!-- End custom js for this page-->
 
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+
 <script>
 
-    $(function () {
-
-        // Initialize Example 1
-        $('#tabla').dataTable({
+    $(document).ready(function() {
+        $('#tabla').DataTable( {
             responsive: true,
-            "order": [[ 1, "asc" ]]
-        });
+            order: [[ 1, "asc" ]],
+            dom: 'Bfrtip',
+            buttons: [
+                 'excel', 'pdf', 'print'
+            ]
+        } );
+    } );
 
-    });
-
-</script>
+</script>"order": [[ 1, "asc" ]]
 </body>
 
 

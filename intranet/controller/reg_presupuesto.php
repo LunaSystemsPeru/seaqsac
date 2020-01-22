@@ -15,6 +15,7 @@ $c_presupuesto->setAnio(date("Y"));
 $c_presupuesto->setIdCliente(filter_input(INPUT_POST, 'select_cliente'));
 $c_presupuesto->setDescripcion(filter_input(INPUT_POST, 'input_descripcion'));
 $c_presupuesto->setTotal(filter_input(INPUT_POST, 'input_total'));
+$c_presupuesto->setCodigo(filter_input(INPUT_POST, 'input_codigo'));
 $c_presupuesto->obtener_id();
 
 if (!empty($_FILES["input_archivo"])) {
