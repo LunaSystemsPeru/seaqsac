@@ -108,11 +108,30 @@ if (filter_input(INPUT_GET, 'id')) {
                                         </div>
                                         <div class='col-3'>
                                             <div id="image_preview">
-                                                <img id="previewing" class="col-md-12" src="../../vendors/assets/images/faces/face1.jpg"/>
+                                                <?php
+                                                    if (strlen($c_cliente->getLogo()) >0){
+                                                        echo '<img id="previewing" class="col-md-12" src="../../archivos/clientes/logos/'.$c_cliente->getLogo().'"/>';
+                                                    }else{
+                                                        echo '<img id="previewing" class="col-md-12" src="../../vendors/assets/images/faces/face1.jpg"/>';
+                                                    }
+                                                ?>
+
                                             </div>
                                             <hr id="line">
-                                            <div id="selectImage">
-                                                <input class="form-control" type="file" name="file" id="file" required/>
+                                            <div id="selectImage form-group">
+                                                <!--input class="form-control" type="file" name="file" id="file" required/-->
+                                                <div class="form-group">
+                                                    <input accept="image/*"  id="file" type="file" name="file" class="file-upload-default">
+                                                    <div class="input-group col-xs-12">
+                                                        <input id="nom_archivo" type="text" class="form-control file-upload-info" disabled=""
+                                                               placeholder="selecione">
+                                                        <span class="input-group-append">
+                                                            <button onclick="selectArchivo()" class="file-upload-browse btn btn-info"
+                                                                    type="button"><i class="fa fa-cloud-upload"></i>Subir</button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                             <div id="message"></div>
                                         </div>
@@ -210,6 +229,7 @@ if (filter_input(INPUT_GET, 'id')) {
                     var reader = new FileReader();
                     reader.onload = imageIsLoaded;
                     reader.readAsDataURL(this.files[0]);
+                    $('#nom_archivo').val($(this).val().replace(/C:\\fakepath\\/i, ''));
                 }
             });
         });
@@ -250,6 +270,10 @@ if (filter_input(INPUT_GET, 'id')) {
                 $("#select_empresa").prop("disabled", true);
             }
         });
+    }
+
+    function selectArchivo() {
+        $('#file').trigger('click');
     }
 
 </script>

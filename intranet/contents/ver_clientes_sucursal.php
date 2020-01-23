@@ -59,10 +59,10 @@ $c_sucursal->setIdCliente($c_cliente->getIdCliente());
                                         <h4 class="h3">Datos del Cliente</h4>
                                     </div>
                                     <div class="card-body">
-                                        <p><span class="font-weight-bold">Razon Social =</span> <?php echo $c_cliente->getRazonSocial() ?></p>
-                                        <p><span class="font-weight-bold">RUC =</span> <?php echo $c_cliente->getRuc() ?></p>
-                                        <p><span class="font-weight-bold">Direccion =</span> <?php echo $c_cliente->getDireccion() ?></p>
-                                        <p><span class="font-weight-bold">Ultimo Servicio =</span> <?php echo $c_cliente->getUltimoServicio() ?></p>
+                                        <p><span class="font-weight-bold">Razon Social: </span> <?php echo $c_cliente->getRazonSocial() ?></p>
+                                        <p><span class="font-weight-bold">RUC: </span> <?php echo $c_cliente->getRuc() ?></p>
+                                        <p><span class="font-weight-bold">Direccion: </span> <?php echo $c_cliente->getDireccion() ?></p>
+                                        <p><span class="font-weight-bold">Ultimo Servicio: </span> <?php echo $c_cliente->getUltimoServicio() ?></p>
                                         <?php
                                         if ($c_cliente->getTipo() == 1) {
                                             ?>
@@ -72,15 +72,15 @@ $c_sucursal->setIdCliente($c_cliente->getIdCliente());
                                         ?>
                                     </div>
                                     <div class = "card-body">
-                                        <p><span class = "font-weight-bold">Contacto = </span> <?php echo $c_cliente->getContacto()
+                                        <p><span class = "font-weight-bold">Contacto: </span> <?php echo $c_cliente->getContacto()
                                         ?></p>
-                                        <p><span class="font-weight-bold">Email =</span> <?php echo $c_cliente->getEmail() ?></p>
-                                        <p><span class="font-weight-bold">Telefono =</span> <?php echo $c_cliente->getCelular() ?></p>
+                                        <p><span class="font-weight-bold">Email: </span> <?php echo $c_cliente->getEmail() ?></p>
+                                        <p><span class="font-weight-bold">Telefono: </span> <?php echo $c_cliente->getCelular() ?></p>
                                     </div>
                                     
                                     <div class = "card-body">
                                         <h5>Cliente de:</h5>
-                                        <p><span class = "font-weight-bold">Empresa = </span> <?php echo $c_empresa->getRazonSocial()
+                                        <p><span class = "font-weight-bold">Empresa: </span> <?php echo $c_empresa->getRazonSocial()
                                         ?></p>
                                     </div>
                                 </div>
