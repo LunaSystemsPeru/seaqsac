@@ -177,7 +177,7 @@ $c_pesupuesto = new Presupuesto();
             return false;
         }
         else {
-            document.location = "procesos/del_presupuesto.php?id_cotizacion=" + codigo;
+            document.location = "../controller/del_presupuesto.php?id_cotizacion=" + codigo;
             return true;
         }
     }

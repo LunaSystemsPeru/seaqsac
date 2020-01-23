@@ -76,7 +76,7 @@ $c_venta = new Venta();
                                             <tr>
                                                 <td class="text-center"><?php echo $fila['fecha'] ?></td>
                                                 <td class="text-center">
-                                                    <a href="../archivos/ventas/<?php echo $fila['archivo'] ?>" target="_blank">
+                                                    <a href="../../archivos/ventas/<?php echo $fila['archivo'] ?>" target="_blank">
                                                         <?php echo $fila['abreviado'] . " | " . $fila['serie'] . " - " . $fila['numero'] ?>
                                                     </a>
                                                 </td>

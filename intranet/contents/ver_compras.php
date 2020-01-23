@@ -73,7 +73,7 @@ $c_varios = new cl_varios();
                                             ?>
                                             <tr>
                                                 <td class="text-center"><?php echo $c_varios->fecha_mysql_web($fila['fecha'])?></td>
-                                                <td class="text-center"><a href="../archivos/compras/a.pdf" target="_blank" ><?php echo $doc_sunat?></a></td>
+                                                <td class="text-center"><a href="../../archivos/compras/a.pdf" target="_blank" ><?php echo $doc_sunat?></a></td>
                                                 <td><?php echo $fila['razon_social']?></td>
                                                 <td class="text-right"><?php echo number_format($fila['total'],2)?></td>
                                                 <td class="text-right"><?php echo number_format($fila['total'] - $fila['pagado'],2)?></td>

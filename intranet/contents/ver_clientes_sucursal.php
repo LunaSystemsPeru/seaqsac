@@ -197,7 +197,7 @@ $c_sucursal->setIdCliente($c_cliente->getIdCliente());
                     return false;
                 }
                 else {
-                    document.location = "procesos/del_cliente_sucursal.php?id_cliente=" + id_cliente + "&id_sucursal=" + id_sucursal;
+                    document.location = "../controller/del_cliente_sucursal.php?id_cliente=" + id_cliente + "&id_sucursal=" + id_sucursal;
                     return true;
                 }
             }

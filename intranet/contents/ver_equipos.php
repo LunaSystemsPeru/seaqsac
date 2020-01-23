@@ -75,7 +75,7 @@ $c_equipo = new Equipo();
                                                 <td><?php echo $fila['costo_alquiler']?></td>
                                                 <td><label class="badge badge-success badge-lg">Normal </label></td>
                                                 <td>
-                                                    <a href="../archivos/equipos/<?php echo $fila['certificado']?>" target="_blank" class="btn btn-link btn-icons"><i class="fa fa-download"></i></a>
+                                                    <a href="../../archivos/equipos/<?php echo $fila['certificado']?>" target="_blank" class="btn btn-link btn-icons"><i class="fa fa-download"></i></a>
                                                     <button class="btn btn-info btn-icons"><i class="fa fa-edit"></i></button>
                                                     <button class="btn btn-danger btn-icons" onclick="eliminar('<?php echo $fila['id_equipo']?>')" title="Eliminar Equipo">
                                                         <i class="fa fa-close"></i>
@@ -134,7 +134,7 @@ $c_equipo = new Equipo();
             return false;
         }
         else {
-            document.location = "procesos/del_equipo.php?id_equipo=" + codigo;
+            document.location = "../controller/del_equipo.php?id_equipo=" + codigo;
             return true;
         }
     }
