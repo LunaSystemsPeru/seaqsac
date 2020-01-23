@@ -76,7 +76,7 @@ $c_varios = new cl_varios();
                                                 <td class="text-center"><?php echo $c_varios->fecha_mysql_web($fila['fecha_session'])?></td>
                                                 <td class="text-center">
                                                     <a href="ver_tipos_categoria.php?id_tipo=1" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
-                                                    <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i></button>
+                                                    <a href="reg_empresa.php?id=<?php echo $fila['id_usuarios'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
                                                     <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>
