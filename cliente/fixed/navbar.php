@@ -153,7 +153,7 @@
                     <a class="dropdown-item">
                         Check Inbox
                     </a>-->
-                    <a href="procesos/logout.php" class="dropdown-item">
+                    <a href="../controller/logout.php" class="dropdown-item">
                         Salir
                     </a>
                 </div>

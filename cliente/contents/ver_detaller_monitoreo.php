@@ -114,7 +114,7 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
                             if ($c_monitoreo->getestado() == 1) {
                                 $valor_estado = '<label class="badge badge-warning">Pendiente</label>';
                             }
-                            $url_informe = "../archivos/clientes/monitoreos/" . $c_monitoreo->getIdCliente() . "/" . $c_monitoreo->getIdSucursal() . "/" . $c_monitoreo->getUrlInforme();
+                            $url_informe = "../../archivos/clientes/monitoreos/" . $c_monitoreo->getIdCliente() . "/" . $c_monitoreo->getIdSucursal() . "/" . $c_monitoreo->getUrlInforme();
                             $temporary = explode(".", $c_monitoreo->getUrlInforme());
                             $file_extension = end($temporary);
                             $nombre_archivo = $c_cliente->getRazonSocial() . " - " . $c_sucursal->getNombre() . " - " . $c_tipo->getNombre() . " - " . $c_clase->getNombre() . "." . $file_extension;

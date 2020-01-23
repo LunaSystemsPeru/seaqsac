@@ -172,7 +172,7 @@ $c_tipo->setCodigo(2);
         var id_cliente = scliente.val();
         $.ajax({
             data: {"id_cliente": id_cliente},
-            url: 'peticiones_post_json/ver_sucursales_cliente.php',
+            url: '../../data/ajax/ver_sucursales_cliente.php',
             type: 'post',
             beforeSend: function () {
                 ssucursal.prop("disabled", true);

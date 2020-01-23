@@ -93,7 +93,7 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
                             if ($c_monitoreo->getestado() == 1) {
                                 $valor_estado = '<label class="badge badge-warning">Pendiente</label>';
                             }
-                            $url_informe = "../archivos/clientes/monitoreos/" . $c_monitoreo->getIdCliente() . "/" . $c_monitoreo->getIdSucursal() . "/" . $c_monitoreo->getUrlInforme();
+                            $url_informe = "../../archivos/clientes/monitoreos/" . $c_monitoreo->getIdCliente() . "/" . $c_monitoreo->getIdSucursal() . "/" . $c_monitoreo->getUrlInforme();
                             $temporary = explode(".", $c_monitoreo->getUrlInforme());
                             $file_extension = end($temporary);
                             $nombre_archivo = $c_cliente->getRazonSocial() . " - " . $c_sucursal->getNombre() . " - " . $c_tipo->getNombre() . " - " . $c_clase->getNombre() . "." . $file_extension;
@@ -293,7 +293,7 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
                                         <?php
                                         $a_anexos = $c_anexo->ver_filas();
                                         foreach ($a_anexos as $fila) {
-                                            $archivo = "../archivos/clientes/monitoreos/" . $fila['id_clientes'] . "/" . $fila['id_sucursal'] . "/" . $fila['archivo'];
+                                            $archivo = "../../archivos/clientes/monitoreos/" . $fila['id_clientes'] . "/" . $fila['id_sucursal'] . "/" . $fila['archivo'];
                                             ?>
                                             <tr>
                                                 <td><?php echo $fila['descripcion'] ?></td>
@@ -374,7 +374,7 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
                                             ?>
                                             <tr>
                                                 <td>
-                                                    <a href="../archivos/equipos/<?php echo $fila['certificado']?>" target="_blank"><?php echo $mequipo?></a>
+                                                    <a href="../../archivos/equipos/<?php echo $fila['certificado']?>" target="_blank"><?php echo $mequipo?></a>
                                                 </td>
                                                 <td>
                                                     <button class="btn btn-danger btn-icons" title="Eliminar Equipo" onclick="eliminar_equipo('<?php echo $fila['id_monitoreos']?>', '<?php echo $fila['id_equipo']?>')"><i class="fa fa-close"></i></button>
@@ -432,7 +432,7 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
             return false;
         }
         else {
-            document.location = "procesos/del_monitoreo_equipo.php?id_monitoreo=" + id_monitoreo + "&id_equipo=" + id_equipo;
+            document.location = "../controller/del_monitoreo_equipo.php?id_monitoreo=" + id_monitoreo + "&id_equipo=" + id_equipo;
             return true;
         }
     }
@@ -442,7 +442,7 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
             return false;
         }
         else {
-            document.location = "procesos/del_monitoreo_anexo.php?id_monitoreo=" + id_monitoreo + "&id_anexo=" + id_anexo;
+            document.location = "../controller/del_monitoreo_anexo.php?id_monitoreo=" + id_monitoreo + "&id_anexo=" + id_anexo;
             return true;
         }
     }
@@ -452,7 +452,7 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
             return false;
         }
         else {
-            document.location = "procesos/del_monitoreo_comentario.php?id_monitoreo=" + id_monitoreo + "&id_comentario=" + id_comentario;
+            document.location = "../controller/del_monitoreo_comentario.php?id_monitoreo=" + id_monitoreo + "&id_comentario=" + id_comentario;
             return true;
         }
     }
