@@ -68,7 +68,7 @@ $c_proveedor = new Proveedor();
                                                 <td><?php echo $row['email'] ?></td>
                                                 <td class="text-center"><?php echo $row['telefono'] ?></td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i></button>
+                                                    <a href="reg_proveedor.php?id=<?php echo $row['id_proveedores'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
                                                     <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>

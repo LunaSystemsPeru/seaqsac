@@ -1,3 +1,15 @@
+<?php
+require '../../models/Empresa.php';
+
+$c_empresa = new Empresa();
+
+if (filter_input(INPUT_GET, 'id')) {
+    $c_empresa->setIdEmpresa(filter_input(INPUT_GET, 'id'));
+    $c_empresa->obtener_datos();
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -45,7 +57,7 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">RUC</label>
                                                 <div class="input-group col-sm-5">
-                                                    <input type="text" class="form-control text-center" placeholder="Ingrese RUC" id="input_ruc" name="input_ruc" maxlength="11" />
+                                                    <input type="text" class="form-control text-center" placeholder="Ingrese RUC" id="input_ruc" name="input_ruc" value="<?php echo $c_empresa->getRuc()?>" maxlength="11" />
                                                     <span class="input-group-append">
                                                         <button class="btn btn-info" type="button" onclick="enviar_ruc()">
                                                             <i class="fa fa-search"></i> Validar RUC
@@ -56,31 +68,31 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Razon Social</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="input_razon_social" name="input_razon_social"/>
+                                                    <input type="text" class="form-control" id="input_razon_social" name="input_razon_social" value="<?php echo $c_empresa->getRazonSocial()?>"/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Nombre Comercial</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="input_nombre_comercial" name="input_nombre_comercial"/>
+                                                    <input type="text" class="form-control" id="input_nombre_comercial" name="input_nombre_comercial" value="<?php echo $c_empresa->getComercial()?>"/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Direccion</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="input_direccion" name="input_direccion"/>
+                                                    <input type="text" class="form-control" id="input_direccion" name="input_direccion" value="<?php echo $c_empresa->getDireccion()?>"/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Condicion</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="input_condicion" name="input_condicion"/>
+                                                    <input type="text" class="form-control" id="input_condicion" name="input_condicion" value="<?php echo $c_empresa->getCondicion()?>"/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Estado</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="input_estado" name="input_estado"/>
+                                                    <input type="text" class="form-control" id="input_estado" name="input_estado" value="<?php echo $c_empresa->getEstado()?>"/>
                                                 </div>
                                             </div>
                                             <hr>
@@ -103,6 +115,7 @@
                                             </div>
                                         </div>
                                         <div class="card-footer">
+                                            <input type="hidden" name="hidden_id_cliente" value="<?php echo $c_empresa->getIdEmpresa()?>">
                                             <button type="submit" class="btn btn-success mr-2">Guardar</button>
                                         </div>
                                     </form>
@@ -146,6 +159,37 @@
                 });
 
             });
+
+        </script>
+        <script>
+
+            function cargar_empresas(tipo) {
+                $.ajax({
+                    data: {"input_tipo": tipo},
+                    url: '../../data/ajax/ver_empresas_tipo.php',
+                    type: 'post',
+                    beforeSend: function () {
+                        $("#select_empresa").prop("disabled", true);
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        $("#select_empresa").prop("disabled", false);
+                        $("#select_empresa").find('option').remove();
+                        var json = JSON.parse(response);
+                        $(json.data).each(function (key, registro) {
+                            console.log(registro);
+                            $("#select_empresa").append('<option value="' + registro.id_empresas + '">' + registro.razon_social + '</option>');
+                        });
+                    },
+                    error: function () {
+                        $("#select_empresa").prop("disabled", true);
+                    }
+                });
+            }
+
+            function selectArchivo() {
+                $('#file').trigger('click');
+            }
 
         </script>
     </body>

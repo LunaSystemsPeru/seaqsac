@@ -1,7 +1,17 @@
+<?php
+require '../../models/Proveedor.php';
+
+$c_proveedor = new Proveedor();
+
+if (filter_input(INPUT_GET, 'id')) {
+    $c_proveedor->setIdProveedor(filter_input(INPUT_GET, 'id'));
+    $c_proveedor->obtener_datos();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
-
-
 <!-- Mirrored from www.bootstrapdash.com/demo/star-admin-free/jquery/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 29 Apr 2019 14:35:52 GMT -->
 <head>
     <!-- Required meta tags -->
@@ -45,7 +55,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">RUC</label>
                                         <div class="input-group col-sm-7">
-                                            <input type="text" class="form-control text-center" placeholder="Ingrese RUC" maxlength="11" id="input_ruc" name="input_ruc" required>
+                                            <input type="text" class="form-control text-center" placeholder="Ingrese RUC" maxlength="11" id="input_ruc" name="input_ruc" value="<?php echo $c_proveedor->getRuc()?>" required>
                                             <span class="input-group-append">
                                                 <button class="btn btn-info" type="button" onclick="enviar_ruc()">
                                                 <i class="fa fa-search"></i> Validar RUC
@@ -56,13 +66,13 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Razon Social</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="input_razon_social" name="input_razon_social" required/>
+                                            <input type="text" class="form-control" id="input_razon_social" name="input_razon_social" value="<?php echo $c_proveedor->getRazonSocial()?>" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Direccion</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="input_direccion" name="input_direccion" required/>
+                                            <input type="text" class="form-control" id="input_direccion" name="input_direccion" value="<?php echo $c_proveedor->getDireccion()?>" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -70,7 +80,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-radio">
                                                 <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="radio_tipo" id="radio_tipo1" value="1" checked> Normal
+                                                    <input type="radio" class="form-check-input" name="radio_tipo" id="radio_tipo1" value="1""> Normal
                                                 </label>
                                             </div>
                                         </div>
@@ -85,17 +95,18 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Correo</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="input_correo" name="input_correo" required/>
+                                            <input type="text" class="form-control" id="input_correo" name="input_correo" value="<?php echo $c_proveedor->getEmail()?>" required/>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Telefono</label>
                                         <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="input_telefono" name="input_telefono"/>
+                                            <input type="text" class="form-control" id="input_telefono" name="input_telefono" value="<?php echo $c_proveedor->getTelefono()?>"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer">
+                                    <input type="hidden" name="hidden_id_cliente" value="<?php echo $c_proveedor->getIdProveedor()?>">
                                     <button type="submit" class="btn btn-success mr-2">Guardar</button>
                                 </div>
                             </form>

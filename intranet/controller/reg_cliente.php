@@ -54,3 +54,6 @@ if (!empty($_FILES["file"])) {
 } else {
     print "no hay archivo seleccionado";
 }
+if ($c_cliente->insertar()) {
+    header("Location: ../contents/ver_clientes.php");
+}

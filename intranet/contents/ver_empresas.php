@@ -73,7 +73,7 @@ $c_empresa = new Empresa();
                                                 <td><?php echo $row['razon_social'] ?></td>
                                                 <td><?php echo $valor_tipo ?></td>
                                                 <td>
-                                                    <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i></button>
+                                                    <a href="reg_empresa.php?id=<?php echo $row['id_empresas'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
                                                     <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
                                                     <button class="btn btn-success btn-sm"><i class="fa fa-eye-slash"></i></button>
                                                 </td>
