@@ -216,10 +216,20 @@ class Equipo
 
     public function obtener_datos()
     {
+
         $query = "select * from equipos 
         where id_equipo = '" . $this->id_equipo . "'";
         $columna = $this->c_conectar->get_Row($query);
-        $this->archivo = $columna['archivo'];
+        $this->nombre=$columna["nombre"];
+        $this->marca=$columna["marca"];
+        $this->modelo=$columna["modelo"];
+        $this->serie=$columna["serie"];
+        $this->costo=$columna["costo_equipo"];
+        $this->alquiler=$columna["costo_alquiler"];
+        $this->ultima_calibracion=$columna["ultima_calibracion"];
+        $this->periodo=$columna["periodo_calibracion"];
+        $this->archivo = $columna["certificado"];
+        $this->estado=$columna["estado"];
     }
 
     public function insertar()
@@ -234,6 +244,24 @@ class Equipo
         $query = "select id_equipo, nombre, marca, modelo, serie, periodo_calibracion, ultima_calibracion, costo_alquiler, estado, certificado 
         from equipos";
         return $this->c_conectar->get_Cursor($query);
+    }
+
+    public function actualizar()
+    {
+        $query = "UPDATE equipos
+                    SET 
+                      nombre = '$this->nombre',
+                      marca = '$this->marca',
+                      modelo = '$this->modelo',
+                      serie = '$this->serie',
+                      costo_equipo = '$this->costo',
+                      costo_alquiler = '$this->alquiler',
+                      ultima_calibracion = '$this->ultima_calibracion',
+                      periodo_calibracion = '$this->periodo',
+                      certificado = '$this->archivo',
+                      estado = '$this->estado'
+                    WHERE id_equipo = '$this->id_equipo'";
+        return $this->c_conectar->ejecutar_idu($query);
     }
 
     public function eliminar()

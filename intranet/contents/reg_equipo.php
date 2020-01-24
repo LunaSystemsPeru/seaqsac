@@ -1,3 +1,18 @@
+<?php
+require '../../models/Equipo.php';
+
+$equipo=new Equipo();
+
+$idEquipo=filter_input(INPUT_GET, 'equipo');
+
+$tipoEntrada = isset($_GET["equipo"]);
+if ($tipoEntrada){
+    $equipo->setIdEquipo($idEquipo);
+    $equipo->obtener_datos();
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -37,43 +52,85 @@
                         <div class="row">
                             <div class="col-lg-12 grid-margin stretch-card">
                                 <div class="card">
-                                    <form class="form-sample" enctype="multipart/form-data" method="post" action="../controller/reg_equipo.php">
+                                    <form class="form-sample" enctype="multipart/form-data" method="post" action="<?php echo ($tipoEntrada)?"../controller/udp_equipo.php":"../controller/reg_equipo.php"?>">
                                         <div class="card-header">
-                                            <h4 class="h3">Agregar Equipo de Medicion</h4>
+                                            <h4 class="h3"><?php echo ($tipoEntrada)?"Editar Equipo de Medicion":"Agregar Equipo de Medicion" ?></h4>
                                         </div>
                                         <div class="card-body">
+                                            <?php if($tipoEntrada){
+                                                echo "<input value=\"$idEquipo\" name=\"hidden_id_producto\" type=\"hidden\">";
+
+                                            }
+                                            ?>
+
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Nombre</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="input_nombre" name="input_nombre" required/>
+                                                    <?php if($tipoEntrada){
+                                                       echo "<input value='{$equipo->getNombre()}' type=\"text\" class=\"form-control\" id=\"input_nombre\" name=\"input_nombre\" required/>";
+
+                                                    }else{
+                                                        echo "<input  type=\"text\" class=\"form-control\" id=\"input_nombre\" name=\"input_nombre\" required/>";
+                                                    }
+                                                    ?>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Marca</label>
                                                 <div class="col-sm-5">
-                                                    <input type="text" class="form-control" id="input_marca" name="input_marca" required/>
+                                                    <?php if($tipoEntrada){
+                                                        echo "<input value='{$equipo->getMarca()}' type=\"text\" class=\"form-control\" id=\"input_marca\" name=\"input_marca\" required/>";
+                                                    }else{
+                                                        echo "<input type=\"text\" class=\"form-control\" id=\"input_marca\" name=\"input_marca\" required/>";
+                                                    }
+                                                    ?>
+
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Modelo</label>
                                                 <div class="col-sm-5">
-                                                    <input type="text" class="form-control" id="input_modelo" name="input_modelo" required/>
+                                                    <?php if($tipoEntrada){
+                                                        echo "<input value='{$equipo->getModelo()}' type=\"text\" class=\"form-control\" id=\"input_modelo\" name=\"input_modelo\" required/>";
+                                                    }else{
+                                                        echo "<input type=\"text\" class=\"form-control\" id=\"input_modelo\" name=\"input_modelo\" required/>";
+                                                    }
+                                                    ?>
+
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Serie</label>
                                                 <div class="col-sm-5">
-                                                    <input type="text" class="form-control" id="input_serie" name="input_serie" required/>
+                                                    <?php if($tipoEntrada){
+                                                        echo "<input value='{$equipo->getSerie()}' type=\"text\" class=\"form-control\" id=\"input_serie\" name=\"input_serie\" required/>";
+                                                    }else{
+                                                        echo "<input type=\"text\" class=\"form-control\" id=\"input_serie\" name=\"input_serie\" required/>";
+                                                    }
+                                                    ?>
+
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Costo Equipo</label>
                                                 <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="input_costo" name="input_costo" required/>
+                                                    <?php if($tipoEntrada){
+                                                        echo "<input value='{$equipo->getCosto()}' type=\"text\" class=\"form-control\" id=\"input_costo\" name=\"input_costo\" required/>";
+                                                    }else{
+                                                        echo "<input type=\"text\" class=\"form-control\" id=\"input_costo\" name=\"input_costo\" required/>";
+                                                    }
+                                                    ?>
+
                                                 </div>
                                                 <label class="col-sm-2 col-form-label">Costo Alquiler</label>
                                                 <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="input_alquiler" name="input_alquiler" required/>
+                                                    <?php if($tipoEntrada){
+                                                        echo "<input value='{$equipo->getAlquiler()}' type=\"text\" class=\"form-control\" id=\"input_alquiler\" name=\"input_alquiler\" required/>";
+                                                    }else{
+                                                        echo "<input type=\"text\" class=\"form-control\" id=\"input_alquiler\" name=\"input_alquiler\" required/>";
+                                                    }
+                                                    ?>
+
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -81,14 +138,19 @@
                                                 <div class="col-sm-10">
                                                     <select class="form-control" name="select_periodo" id="select_periodo">
                                                         <option value="1">6 meses</option>
-                                                        <option value="1">1 año</option>
+                                                        <option value="2">1 año</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Fecha Calibracion</label>
                                                 <div class="col-sm-4">
-                                                    <input type="date" class="form-control" id="input_calibracion" name="input_calibracion" required/>
+                                                    <?php if($tipoEntrada){
+                                                        echo "<input value='{$equipo->getUltimaCalibracion()}' type=\"date\" class=\"form-control\" id=\"input_calibracion\" name=\"input_calibracion\" required/>";
+                                                    }else{
+                                                        echo "<input type=\"date\" class=\"form-control\" id=\"input_calibracion\" name=\"input_calibracion\" required/>";
+                                                    }
+                                                    ?>
                                                 </div>
                                             </div>
                                             <div class="form-group row">

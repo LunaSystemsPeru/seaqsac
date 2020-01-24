@@ -15,4 +15,6 @@ $c_compra->obtener_id();
 
 $c_compra->setArchivo(filter_input(INPUT_POST, 'input_archivo'));
 
-$c_compra->insertar();
+if($c_compra->insertar()){
+    header("Location: ../contents/ver_compras.php");
+}

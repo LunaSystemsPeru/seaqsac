@@ -141,7 +141,7 @@ $c_sucursal->setIdCliente($c_cliente->getIdCliente());
                                                             <td><?php echo $row['nombre'] ?></td>
                                                             <td><?php echo $row['direccion'] ?></td>
                                                             <td>
-                                                                <button class="btn btn-info btn-icons"><i class="fa fa-edit"></i></button>
+                                                                <button onclick="setDatos(<?php echo $row['id_sucursal'].", '{$row['nombre'] }','{$row['direccion']}'" ?>)" data-toggle="modal" data-target="#formActualizar" class="btn btn-info btn-icons"><i class="fa fa-edit"></i></button>
                                                                 <button class="btn btn-danger btn-icons" title="Eliminar Sucursal" onclick="eliminar('<?php echo $row['id_clientes']?>', '<?php echo $row['id_sucursal']?>')"><i class="fa fa-close"></i></button>
                                                             </td>
                                                         </tr>
@@ -167,6 +167,37 @@ $c_sucursal->setIdCliente($c_cliente->getIdCliente());
         </div>
         <!-- container-scroller -->
 
+        <div class="modal fade" id="formActualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-4" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel-4">Modificar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formedicion">
+                            <input type="hidden" name="hidden_id_cliente" value="<?php echo $c_sucursal->getIdCliente() ?>">
+                            <input id="idsucursal" name="idsucursal" type="hidden" value="">
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">nombre:</label>
+                                <input type="text" class="form-control" id="nombre_su" name="nombre">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Direccion:</label>
+                                <input type="text" class="form-control" id="direccion_su" name="direccion">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button onclick="actualizar()" type="button" class="btn btn-success">Guardar</button>
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- plugins:js -->
         <script src="../../vendors/js/vendor.bundle.base.js"></script>
         <script src="../../vendors/js/vendor.bundle.addons.js"></script>
@@ -182,7 +213,27 @@ $c_sucursal->setIdCliente($c_cliente->getIdCliente());
         <!-- End custom js for this page-->
 
         <script>
-
+            
+            function actualizar() {
+                $.ajax({
+                    type: "POST",
+                    url: "../controller/udt_sucursal.php",
+                    data: $("#formedicion").serialize(),
+                    success: function (data) {
+                        console.log(data);
+                        if (IsJsonString(data)){
+                            location.reload();
+                        }else{
+                            alert("Error al editar");
+                        }
+                    }
+                });
+            }
+            function setDatos(id,nombre,descrip){
+                $("#idsucursal").val(id);
+                $("#nombre_su").val(nombre);
+                $("#direccion_su").val(descrip);
+            }
             $(function () {
 
                 // Initialize Example 1
@@ -202,6 +253,14 @@ $c_sucursal->setIdCliente($c_cliente->getIdCliente());
                 }
             }
 
+            function IsJsonString(str) {
+                try {
+                    JSON.parse(str);
+                } catch (e) {
+                    return false;
+                }
+                return true;
+            }
 
         </script>
     </body>

@@ -248,6 +248,35 @@ class Compra
         //echo $query;
         return $this->c_conectar->ejecutar_idu($query);
     }
+    public function obtenerDatos()
+    {
+        $sql = "select * from compras_sunat 
+        where id_compras = '$this->id_compra'" ;
+        $resultado = $this->c_conectar->get_Row($sql);
+        $this->fecha = $resultado['fecha'];
+        $this->id_tido = $resultado['id_tido'];
+        $this->serie = $resultado['serie'];
+        $this->numero = $resultado['numero'];
+        $this->id_proveedor = $resultado['id_proveedores'];
+        $this->total = $resultado['total'];
+        $this->pagado = $resultado['pagado'];
+        $this->tipo_compra = $resultado['id_tipo'];
+    }
+
+    public function ver_pagos_compra(){
+        $query = "SELECT 
+                        cp.id_compras,
+                      bm.*,
+                      ba.nombre 
+                    FROM
+                      compra_pagos AS cp 
+                      INNER JOIN banco_movimientos AS bm 
+                        ON cp.id_movimiento = bm.id_movimiento 
+                      INNER JOIN bancos AS ba 
+                        ON bm.id_banco = ba.id_banco 
+                        WHERE cp.id_compras ='$this->id_compra' ";
+        return $this->c_conectar->get_Cursor($query);
+    }
 
     public function ver_filas()
     {

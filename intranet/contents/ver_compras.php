@@ -1,9 +1,13 @@
 <?php
 require '../../models/Compra.php';
 require '../../tools/cl_varios.php';
+require '../../models/Banco.php';
 
 $c_compra = new Compra();
 $c_varios = new cl_varios();
+$c_banco = new Banco();
+
+$listaBancos = $c_banco->ver_filas();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -79,9 +83,8 @@ $c_varios = new cl_varios();
                                                 <td class="text-right"><?php echo number_format($fila['total'] - $fila['pagado'],2)?></td>
                                                 <td><label class="badge badge-warning">Pendiente </label></td>
                                                 <td>
-                                                    <button class="btn btn-info btn-icons"><i class="fa fa-edit"></i></button>
-                                                    <button class="btn btn-success btn-icons"><i class="fa fa-dollar"></i></button>
-                                                    <button class="btn btn-danger btn-icons"><i class="fa fa-close"></i></button>
+                                                    <button onclick="cargarData(<?php echo $fila['id_compras']?>)" data-toggle="modal" data-target="#registroPago" class="btn btn-success btn-icons"><i class="fa fa-dollar"></i></button>
+                                                    <button onclick="eliminarCompra(<?php echo $fila['id_compras']?>)" class="btn btn-danger btn-icons"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>
                                             <?php
@@ -105,6 +108,82 @@ $c_varios = new cl_varios();
     <!-- page-body-wrapper ends -->
 </div>
 <!-- container-scroller -->
+<div class="modal fade" id="registroPago" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-4" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel-4">Pago de Compra</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="formhacerpago">
+                    <div class="form-group">
+                        <input id="idcomprar" type="hidden" name="idcompra" value="">
+                        <label for="recipient-name" class="col-form-label">Hacer pago:</label>
+                        <div class="col-md-12 row">
+                            <label for="recipient-name" class="col-form-label col-md-2">Monto</label>
+                            <div class="col-md-3">
+                                <input id="montoPago" name="monto" class="form-control">
+                            </div>
+                            <label for="recipient-name" class="col-form-label col-md-2">Fecha</label>
+                            <div class="col-md-5">
+                                <input id="fechaPago" name="fecha" type="date" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-12 row" style="margin-top: 5px">
+                            <label for="recipient-name" class="col-form-label col-md-2">Banco</label>
+                            <div class="col-md-6">
+                                <select name="banco" class="form-control" >
+                                    <?php foreach ($listaBancos as $item) {
+
+                                        echo "<option value='{$item['id_banco']}'>" . $item['nombre'] . "  S/  " . $item['monto'] . "</option>";
+                                    } ?>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                            </div>
+                            <div class="col-md-4">
+                                <button onclick="hacerpago()" type="button" class="btn btn-primary">Pagar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group" style="background-color: white">
+                        <label for="message-text" class="col-form-label">Pagos:</label>
+                        <div class="">
+                            <div class="">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Banco</th>
+                                        <th>Monto</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="contenPagos">
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- plugins:js -->
 <script src="../../vendors/js/vendor.bundle.base.js"></script>
@@ -121,6 +200,74 @@ $c_varios = new cl_varios();
 <!-- End custom js for this page-->
 
 <script>
+    var idStado=-1;
+    var cambio=false;
+    function eliminarCompra(id) {
+        $.ajax({
+            type: "GET",
+            url: "../controller/del_compra.php?id="+id,
+            success: function (data) {
+                console.log(data);
+                if (IsJsonString(data)){
+                    location.reload();
+                }else{
+                    alert("No se puede eliminar la compra");
+                }
+            }
+        });
+    }
+
+    function eliminarPagoCompra(idC,idM) {
+        $.ajax({
+            type: "GET",
+            url: "../controller/del_pago_compra.php?idC="+idC+"&idM="+idM,
+            success: function (data) {
+                console.log(data);
+                if (IsJsonString(data)){
+                    cargarData(idStado);
+                    cambio=true;
+                }else{
+                    alert("No se puede eliminar el pago");
+                }
+            }
+        });
+    }
+
+    function cargarData(id){
+        $("#montoPago").val("");
+        $("#fechaPago").val("");
+
+        $("#idcomprar").val(id+"");
+        idStado=id;
+        $.ajax({
+            type: "GET",
+            url: "../controller/ajax/ver_pagos_compra_sunat.php?id="+id,
+            success: function (data) {
+
+                document.getElementById("contenPagos").innerHTML=data;
+
+            }
+        });
+    }
+
+
+    function hacerpago(){
+        console.log($("#formhacerpago").serialize());
+        $.ajax({
+            type: "POST",
+            url: "../controller/reg_pago_compra.php",
+            data: $("#formhacerpago").serialize(),
+            success: function (data) {
+                console.log(data);
+                if (IsJsonString(data)){
+                    cargarData(idStado);
+                    cambio=true;
+                }else{
+                    alert("Error al Guardar el pago");
+                }
+            }
+        });
+    }
 
     $(function () {
 
@@ -128,9 +275,21 @@ $c_varios = new cl_varios();
         $('#tabla').dataTable({
             responsive: true
         });
+        $('#registroPago').on('hidden.bs.modal', function () {
+            if (cambio){
+                location.reload();
+            }
+        });
 
     });
-
+    function IsJsonString(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
 </script>
 </body>
 

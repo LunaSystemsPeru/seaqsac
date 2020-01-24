@@ -128,4 +128,16 @@ class ClienteSucursal
         $resultado = $this->c_conectar->ejecutar_idu($query);
         return $resultado;
     }
+
+    public function actualizar()
+    {
+        $query = "UPDATE clientes_sucursal
+                    SET
+                      nombre = '$this->nombre',
+                      direccion = '$this->direccion'
+                    WHERE id_sucursal = '$this->id_sucursal'
+                        AND id_clientes = '$this->id_cliente';";
+        $resultado = $this->c_conectar->ejecutar_idu($query);
+        return $resultado;
+    }
 }

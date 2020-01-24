@@ -76,7 +76,7 @@ $c_equipo = new Equipo();
                                                 <td><label class="badge badge-success badge-lg">Normal </label></td>
                                                 <td>
                                                     <a href="../../archivos/equipos/<?php echo $fila['certificado']?>" target="_blank" class="btn btn-link btn-icons"><i class="fa fa-download"></i></a>
-                                                    <button class="btn btn-info btn-icons"><i class="fa fa-edit"></i></button>
+                                                    <a href="reg_equipo.php?equipo=<?php echo $fila['id_equipo']?>"><button class="btn btn-info btn-icons"><i class="fa fa-edit"></i></button></a>
                                                     <button class="btn btn-danger btn-icons" onclick="eliminar('<?php echo $fila['id_equipo']?>')" title="Eliminar Equipo">
                                                         <i class="fa fa-close"></i>
                                                     </button>
@@ -139,6 +139,14 @@ $c_equipo = new Equipo();
         }
     }
 
+    function IsJsonString(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
 
 </script>
 </body>
