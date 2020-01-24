@@ -106,8 +106,8 @@ $c_general = new TipoGeneral();
                                                 <td><?php echo $row['ncodigo'] ?></td>
                                                 <td>
                                                     <a href="ver_tipos_categoria.php?id_tipo=<?php echo $row['id_tipo'] ?>" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
-                                                    <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i></button>
-                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
+                                                    <button onclick="setdata(<?php echo $row['id_tipo'].",'".$row['nombre']."','".$row['codigo']."'"?>)" class="btn btn-info btn-sm" data-target="#modaledit" data-toggle="modal"><i class="fa fa-edit"></i></button>
+                                                    <button onclick="eliminar(<?php echo $row['id_tipo'] ?>)" class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>
                                             <?php
@@ -131,7 +131,42 @@ $c_general = new TipoGeneral();
     <!-- page-body-wrapper ends -->
 </div>
 <!-- container-scroller -->
-
+<div class="modal fade" id="modaledit" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="forms-sample" method="post" action="../controller/udt_tipo.php">
+                <div class="color-line"></div>
+                <div class="modal-header text-center">
+                    <h4 class="modal-title">Agregar Tipo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputName1">Descripcion </label>
+                        <input type="text" class="form-control" id="input_desc" name="input_desc">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Categoria</label>
+                        <input type="hidden" name="id_tipo" value="" id="id_tipo">
+                        <select class="form-control" id="select_cat" name="select_cat">
+                            <?php
+                            $resultado = $c_general->ver_tipos();
+                            while ($row = $resultado->fetch_assoc()) {
+                                ?>
+                                <option value="<?php echo $row['id_codigo']?>"><?php echo $row['nombre']?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <!-- plugins:js -->
 <script src="../../vendors/js/vendor.bundle.base.js"></script>
 <script src="../../vendors/js/vendor.bundle.addons.js"></script>
@@ -148,6 +183,13 @@ $c_general = new TipoGeneral();
 
 <script>
 
+    function setdata(id, nombre, idcodigo)
+    {
+        console.log(id +"-" + "-" + nombre + "-" + idcodigo);
+        $('#input_desc').val(nombre);
+        $('#select_cat option[value='+idcodigo+']').attr("selected", true);
+        $('#id_tipo').val(id);
+    }
     $(function () {
 
         // Initialize Example 1
@@ -156,6 +198,30 @@ $c_general = new TipoGeneral();
         });
 
     });
+
+    function eliminar(id ) {
+        $.ajax({
+            type:"GET",
+            url: '../controller/del_tipo.php?id_tipo='+id,
+            success: function(respuesta) {
+                console.log("error: "+respuesta);
+                if (IsJsonString(respuesta)){
+                    location.reload();
+                }else {
+                    alert("No se puede eliminar");
+                }
+            }
+
+        });
+    }
+    function IsJsonString(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
 
 </script>
 </body>

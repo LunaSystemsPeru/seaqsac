@@ -94,7 +94,7 @@ class TipoClasificacion
 
     public function ver_tipos()
     {
-        $query = "select t.id_tipo, t.nombre, tc.nombre as ncodigo 
+        $query = "select t.id_tipo, t.nombre, tc.nombre as ncodigo, tc.id_codigo as codigo
         from tipos as t 
         inner join tabla_codigo tc on t.id_codigo = tc.id_codigo 
           order by t.nombre asc";
@@ -109,4 +109,22 @@ class TipoClasificacion
         return $this->c_conectar->get_Cursor($query);
     }
 
+    public function actualizar()
+    {
+        $query = "UPDATE tipos
+                    SET
+                      nombre = '$this->nombre',
+                      id_codigo = '$this->codigo'
+                    WHERE 
+                        id_tipo = '$this->id';";
+        //echo $query;
+        $resultado = $this->c_conectar->ejecutar_idu($query);
+        return $resultado;
+    }
+    public function eliminar()
+    {
+        $query = "DELETE FROM tipos 
+                    WHERE id_tipo = '$this->id';";
+        return $this->c_conectar->get_Cursor($query);
+    }
 }
