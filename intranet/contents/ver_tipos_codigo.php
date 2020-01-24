@@ -87,8 +87,8 @@ $c_general = new TipoGeneral();
                                                 <td><?php echo $row['id_codigo'] ?></td>
                                                 <td><?php echo $row['nombre'] ?></td>
                                                 <td>
-                                                    <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i></button>
-                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
+                                                    <button onclick="setdata(<?php echo $row['id_codigo'].",'".$row['nombre']."'" ?>)" class="btn btn-info btn-sm" data-target="#modaledit" data-toggle="modal"><i class="fa fa-edit"></i></button>
+                                                    <button onclick="eliminar(<?php echo $row['id_codigo'] ?>)" class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>
                                             <?php
@@ -113,6 +113,29 @@ $c_general = new TipoGeneral();
 </div>
 <!-- container-scroller -->
 
+<div class="modal fade" id="modaledit" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="forms-sample" method="post" action="../controller/udt_tipo_codigo.php">
+                <div class="color-line"></div>
+                <div class="modal-header text-center">
+                    <h4 class="modal-title">Agregar Item</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputName1">Descripcion </label>
+                        <input type="text" class="form-control" id="input_desc" name="input_descripcion">
+                        <input type="hidden" name="id_tipo" value="" id="id_tipo">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <!-- plugins:js -->
 <script src="../../vendors/js/vendor.bundle.base.js"></script>
 <script src="../../vendors/js/vendor.bundle.addons.js"></script>
@@ -129,6 +152,12 @@ $c_general = new TipoGeneral();
 
 <script>
 
+    function setdata(id, descripcion)
+    {
+        console.log(id +"-" + descripcion);
+        $('#input_desc').val(descripcion);
+        $('#id_tipo').val(id);
+    }
     $(function () {
 
         // Initialize Example 1
@@ -137,6 +166,30 @@ $c_general = new TipoGeneral();
         });
 
     });
+
+    function eliminar(id ) {
+        $.ajax({
+            type:"GET",
+            url: '../controller/del_general.php?id_tipo='+id,
+            success: function(respuesta) {
+                console.log("error: "+respuesta);
+                if (IsJsonString(respuesta)){
+                    location.reload();
+                }else {
+                    alert("No se puede eliminar");
+                }
+            }
+
+        });
+    }
+    function IsJsonString(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
 
 </script>
 </body>
