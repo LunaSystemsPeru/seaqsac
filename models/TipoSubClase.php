@@ -89,7 +89,7 @@ class TipoSubClase
 
     public function insertar()
     {
-        $query = "insert into tipo_subclase values ('" . $this->id_tipo . "', '" . $this->id_clase . "', '" . $this->nombre . "')";
+        $query = "insert into tipo_subclase values ('" . $this->id_clase . "',  '" . $this->nombre . "','" . $this->id_tipo . "')";
         $resultado = $this->c_conectar->ejecutar_idu($query);
         return $resultado;
     }
@@ -106,5 +106,23 @@ class TipoSubClase
         from tipo_subclase where id_tipo = '" . $this->id_tipo . "'  
         order by nombre asc";
         return $this->c_conectar->get_json_rows($query);
+    }
+
+    public function actualizar()
+    {
+        $query = "UPDATE tipo_subclase
+                    SET
+                      nombre = '$this->nombre',
+                      id_tipo = '$this->id_tipo'
+                    WHERE 
+                        id_subclase = '$this->id_clase';";
+        $resultado = $this->c_conectar->ejecutar_idu($query);
+        return $resultado;
+    }
+    public function eliminar()
+    {
+        $query = "DELETE FROM tipo_subclase
+                    WHERE id_subclase = '$this->id';";
+        return $this->c_conectar->get_Cursor($query);
     }
 }

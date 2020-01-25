@@ -87,6 +87,7 @@ $c_general = new TipoGeneral();
                                                 <td><?php echo $row['id_codigo'] ?></td>
                                                 <td><?php echo $row['nombre'] ?></td>
                                                 <td>
+                                                    <a href="ver_tipos.php" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
                                                     <button onclick="setdata(<?php echo $row['id_codigo'].",'".$row['nombre']."'" ?>)" class="btn btn-info btn-sm" data-target="#modaledit" data-toggle="modal"><i class="fa fa-edit"></i></button>
                                                     <button onclick="eliminar(<?php echo $row['id_codigo'] ?>)" class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
                                                 </td>
