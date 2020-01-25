@@ -87,7 +87,7 @@ $c_venta = new Venta();
                                                 <td class="text-right"><?php echo number_format($fila['total'] - $fila['pagado'], 2) ?></td>
                                                 <td><label class="badge badge-warning">Pendiente </label></td>
                                                 <td>
-                                                    <a href="ver_venta_cobro.php" class="btn btn-success btn-icons"><i class="fa fa-dollar"></i></a>
+                                                    <a href="ver_venta_cobro.php?venta=<?php echo $fila['id_ventas'] ?>" class="btn btn-success btn-icons"><i class="fa fa-dollar"></i></a>
                                                     <button class="btn btn-danger btn-icons" title="Eliminar Documento de Venta" onclick="eliminar('<?php echo $fila['id_ventas'] ?>')"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>

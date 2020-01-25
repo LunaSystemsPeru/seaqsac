@@ -68,6 +68,7 @@ class CompraPago
     {
         $query = "delete from compra_pagos 
         where id_compras = '$this->id_compra' and id_movimiento = '$this->id_movimiento'";
+
         return $this->c_conectar->ejecutar_idu($query);
     }
 

@@ -283,6 +283,7 @@ class Cliente
     public function obtener_datos()
     {
         $query = "select * from clientes where id_clientes = '" . $this->id_cliente . "' ";
+        //echo $query;
         $columna = $this->c_conectar->get_Row($query);
         $this->ruc = $columna['ruc'];
         $this->razon_social = $columna['razon_social'];

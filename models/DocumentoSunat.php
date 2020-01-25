@@ -95,6 +95,17 @@ class DocumentoSunat
         $this->id_tido = $this->c_conectar->get_valor_query($query, "codigo");
     }
 
+    public function obtener_datos()
+    {
+        $query = "SELECT * FROM documentos_sunat WHERE id_tido = '$this->id_tido'";
+        //echo $query;
+        $columna = $this->c_conectar->get_Row($query);
+        $this->nombre = $columna['nombre'];
+        $this->cod_sunat = $columna['cod_sunat'];
+        $this->abreviado = $columna['abreviado'];
+
+    }
+
     public function insertar()
     {
         $query = "insert into documentos_sunat values ('" . $this->id_tido . "', '" . $this->nombre . "', '" . $this->cod_sunat . "', '" . $this->abreviado . "')";

@@ -54,7 +54,7 @@ $c_proveedor = new Proveedor();
                                             <th>Razon Social</th>
                                             <th>Email</th>
                                             <th>Telefono</th>
-                                            <th width="10%">Acciones</th>
+                                            <th width="15%">Acciones</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -69,7 +69,7 @@ $c_proveedor = new Proveedor();
                                                 <td class="text-center"><?php echo $row['telefono'] ?></td>
                                                 <td class="text-center">
                                                     <a href="reg_proveedor.php?id=<?php echo $row['id_proveedores'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
-                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
+                                                    <button onclick="eliminar(<?php echo $row['id_proveedores'] ?>)" class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>
                                             <?php
@@ -118,6 +118,37 @@ $c_proveedor = new Proveedor();
         });
 
     });
+
+    function eliminar(idP) {
+
+        if (!confirm("¿Está seguro de que desea eliminar el Equipo Seleccionado?")) {
+            return false;
+        }
+        else {
+            $.ajax({
+                type: "GET",
+                url: "../controller/del_proveedor.php?idP="+idP,
+                success: function (data) {
+                    console.log(data);
+                    if (IsJsonString(data)){
+                        location.reload();
+                    } else{
+                        alert("No de pudo eliminar este Proveedor");
+                    }
+                }
+            });
+            return true;
+        }
+    }
+
+    function IsJsonString(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
 
 </script>
 </body>

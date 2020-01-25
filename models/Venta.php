@@ -258,6 +258,27 @@ class Venta
         $this->archivo = $archivo;
     }
 
+    public function obtener_datos()
+    {
+
+        $query = "SELECT * FROM ventas WHERE id_ventas = '$this->id_venta'";
+
+        $columna = $this->c_conectar->get_Row($query);
+        $this->fecha=$columna["fecha"];
+        $this->id_cliente=$columna["id_clientes"];
+        $this->id_documento=$columna["id_tido"];
+        $this->serie=$columna["serie"];
+        $this->numero=$columna["numero"];
+        $this->total=$columna["total"];
+        $this->pagado=$columna["pagado"];
+        $this->estado=$columna["estado"];
+        $this->id_orden_cliente=$columna["id_orden_cliente"];
+        $this->porcentaje=$columna["porcentaje_os"];
+        $this->id_orden_interna=$columna["id_orden_interna"];
+        $this->archivo=$columna["archivo"];
+
+    }
+
     public function obtener_id()
     {
         $query = "select ifnull(max(id_ventas) + 1, 1) as codigo 

@@ -157,6 +157,7 @@ class BancoMovimiento
     {
         $query = "insert into banco_movimientos 
         values ('" . $this->id_movimiento . "', '" . $this->id_banco . "', '" . $this->fecha . "', '" . $this->descripcion . "', '" . $this->ingresa . "', '" . $this->sale . "', '" . $this->id_tipo . "')";
+        echo $query;
         return $this->c_conectar->ejecutar_idu($query);
     }
 

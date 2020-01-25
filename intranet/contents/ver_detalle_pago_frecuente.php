@@ -1,9 +1,8 @@
 <?php
-require 'init_page.php';
 
 require '../../models/Proveedor.php';
-require '../../models/Contrato.php';
-require '../../models/ContratoPago.php';
+require '../../models/PagoFrecuente.php';
+require '../../models/PagosFrecuentesPagos.php';
 require '../../models/Banco.php';
 require '../../models/TipoClasificacion.php';
 require '../../tools/cl_varios.php';
@@ -12,25 +11,26 @@ require '../../tools/cl_varios.php';
 $c_banco = new Banco();
 $tipoClasificacion = new TipoClasificacion();
 $c_proveedor = new Proveedor();
-$contrato = new Contrato();
+$pagoFrecuente = new PagoFrecuente();
 $c_varios = new cl_varios();
-$c_pagos = new ContratoPago();
+$c_pagos = new PagosFrecuentesPagos();
 
 
 $listaBancos = $c_banco->ver_filas();
 
-$idcontrado = filter_input(INPUT_GET, 'contrato');
-if (is_null($idcontrado)) {
-    header("Location: ver_contrato.php");
+$idPagoFrecuente = filter_input(INPUT_GET, 'pago_f');
+if (is_null($idPagoFrecuente)) {
+    header("Location: ver_pagos_frecuentes.php");
 }
-$contrato->setIdContrato($idcontrado);
+$pagoFrecuente->setIdFrecuente($idPagoFrecuente);
 
-$contrato->obtener_datos();
+$pagoFrecuente->obtener_datos();
 
-$c_proveedor->setIdProveedor($contrato->getIdProveedor());
+$c_proveedor->setIdProveedor($pagoFrecuente->getIdProveedor());
 $c_proveedor->obtener_datos();
 
-$c_pagos->setIdContrato($contrato->getIdContrato());
+$c_pagos->setIdPagosFrecuentes($pagoFrecuente->getIdFrecuente());
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -72,15 +72,15 @@ $c_pagos->setIdContrato($contrato->getIdContrato());
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="h3">Detalle del contrato</h4>
+                                <h4 class="h3">Detalle del Pago Frecuente</h4>
                                 <div class="">
-                                    <a href="ver_contrato.php"
-                                       class="btn btn-info"><i class="fa fa-arrow-left"></i>ver Contratos
+                                    <a href="ver_pagos_frecuentes.php"
+                                       class="btn btn-info"><i class="fa fa-arrow-left"></i>ver Pagos
                                     </a>
                                     <button data-toggle="modal" data-target="#modal_pago_frecuente"
                                             class="btn btn-behance"><i class="fa fa-edit"></i>Modificar Pago
                                     </button>
-                                    <button onclick=""
+                                    <button onclick="eliminarPagoFrecuente(<?php echo $idPagoFrecuente?>)"
                                             class="btn btn-danger"><i class="fa fa-trash"></i>Eliminar
                                     </button>
                                 </div>
@@ -96,12 +96,12 @@ $c_pagos->setIdContrato($contrato->getIdContrato());
 
 
                             <div class="card-body">
-                                <h4 class="card-title">Datos del Contrato</h4>
+                                <h4 class="card-title">Datos del Pago Frecuente</h4>
 
 
                                 <div class="form-group">
-                                    <label for="" class="font-weight-bold">Codigo Contrato:</label>
-                                    <label for=""><?php echo $contrato->getIdContrato() ?></label>
+                                    <label for="" class="font-weight-bold">Codigo de Pago:</label>
+                                    <label for=""><?php echo $pagoFrecuente->getIdFrecuente() ?></label>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="font-weight-bold">Proveedor:</label>
@@ -110,39 +110,35 @@ $c_pagos->setIdContrato($contrato->getIdContrato());
 
                                 <br>
                                 <div class="form-group">
-                                    <label for="" class="font-weight-bold">Duracion:</label>
-                                    <label for=""><?php echo $contrato->getDuracion() ?> dias</label>
+                                    <label for="" class="font-weight-bold">Frecuencia:</label>
+                                    <label for=""><?php echo $pagoFrecuente->getFrecuencia() ?> dias</label>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="font-weight-bold">Servicio:</label>
-                                    <label for=""><?php echo $contrato->getServicio() ?></label>
+                                    <label for=""><?php echo $pagoFrecuente->getServicio() ?></label>
                                 </div>
                                 <div class="form-group">
-                                    <label for="" class="font-weight-bold">Fecha Inicio:</label>
-                                    <label for=""><?php echo $c_varios->fecha_mysql_web($contrato->getFechaInicio()) ?></label>
-                                </div>
-                                <div class="form-group">
-                                    <label for="" class="font-weight-bold">Fecha de termino:</label>
-                                    <label for=""><?php echo $c_varios->fecha_mysql_web($contrato->getFechaFin()) ?></label>
+                                    <label for="" class="font-weight-bold">Fecha:</label>
+                                    <label for=""><?php echo $c_varios->fecha_mysql_web($pagoFrecuente->getFecha()) ?></label>
                                 </div>
 
                                 <br>
                                 <div class="form-group">
                                     <label for="" class="font-weight-bold">Total a Pagar:</label>
-                                    <label for=""><?php echo number_format($contrato->getMontoPactado(), 2) ?></label>
+                                    <label for=""><?php echo number_format($pagoFrecuente->getMontoPactado(), 2) ?></label>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="font-weight-bold">Total Pagado:</label>
-                                    <label for=""><?php echo number_format($contrato->getMontoPagado(), 2) ?></label>
+                                    <label for=""><?php echo number_format($pagoFrecuente->getMontoPagado(), 2) ?></label>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="font-weight-bold">Faltante:</label>
-                                    <label for=""><?php echo number_format(($contrato->getMontoPactado() - $contrato->getMontoPagado()), 2) ?></label>
+                                    <label for=""><?php echo number_format(($pagoFrecuente->getMontoPactado() - $pagoFrecuente->getMontoPagado()), 2) ?></label>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="font-weight-bold">Estado:</label>
                                     <?php
-                                    if ($contrato->getEstado() == 1) {
+                                    if ($pagoFrecuente->getEstado() == 1) {
                                         echo "<label class='badge badge-success badge-lg' >Activo</label>";
                                     } elseif ($contrato->getEstado() == 2) {
                                         echo "<label class='badge badge-danger badge-lg' >Finalizado</label>";
@@ -159,7 +155,7 @@ $c_pagos->setIdContrato($contrato->getIdContrato());
                             <div class="card-body">
                                 <h4 class="card-title">Ver Pago de este Contrato</h4>
                                 <div class="panel-body">
-                                    <?php if ($contrato->getMontoPagado() < $contrato->getMontoPactado() && $contrato->getEstado() == 1) {
+                                    <?php if ($pagoFrecuente->getMontoPagado() < $pagoFrecuente->getMontoPactado() && $pagoFrecuente->getEstado() == 1) {
                                         echo '<span data-toggle="modal" data-target="#modal_pago_fre" class="btn btn-behance"><i class="fa fa-plus"></i>Agregar</span>';
                                     } ?>
 
@@ -175,8 +171,8 @@ $c_pagos->setIdContrato($contrato->getIdContrato());
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $saldo = $contrato->getMontoPactado();
-                                        foreach ($c_pagos->verFilas() as $fila) {
+                                        $saldo = $pagoFrecuente->getMontoPagado();
+                                        foreach ($c_pagos->ver_filas() as $fila) {
                                             $saldo -= $fila['sale'];
                                             ?>
                                             <tr>
@@ -185,7 +181,7 @@ $c_pagos->setIdContrato($contrato->getIdContrato());
                                                 <td class="text-right"><?php echo number_format($fila['sale'],2)?></td>
                                                 <td class="text-right"><?php echo number_format($saldo,2)?></td>
                                                 <td class="text-center">
-                                                    <button onclick="eliminar(<?php echo $fila['id_movimiento'] . ','.$idcontrado?>)" class="btn btn-icons btn-danger" title="Eliminar Pago"><i class="fa fa-trash"></i></button>
+                                                    <button onclick="eliminar(<?php echo $fila['id_movimiento'] . ','.$idPagoFrecuente?>)" class="btn btn-icons btn-danger" title="Eliminar Pago"><i class="fa fa-trash"></i></button>
                                                 </td>
                                             </tr>
                                             <?php
@@ -215,7 +211,7 @@ $c_pagos->setIdContrato($contrato->getIdContrato());
      style="display: none;" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form id="formulario_modal_pago" action="../controller/reg_contrato_pago.php" method="post">
+            <form id="formulario_modal_pago" action="../controller/reg_frecuente_pago.php" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel-4">Agregar Pago</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -223,7 +219,7 @@ $c_pagos->setIdContrato($contrato->getIdContrato());
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="id_pago" value="<?php echo $idcontrado ?>">
+                    <input type="hidden" name="id_pago" value="<?php echo $idPagoFrecuente ?>">
                     <div class="form-group">
 
                         <label for="banco" class="col-form-label">Banco:</label>
@@ -237,11 +233,11 @@ $c_pagos->setIdContrato($contrato->getIdContrato());
                     </div>
                     <div class="form-group">
                         <label for="monto" class="col-form-label">Monto total:</label>
-                        <input type="text" name="monto_total" value="<?php echo number_format($contrato->getMontoPactado(), 2) ?>" class="form-control" id="monto_total" readonly>
+                        <input type="text" name="monto_total" value="<?php echo number_format($pagoFrecuente->getMontoPactado(), 2) ?>" class="form-control" id="monto_total" readonly>
                     </div>
                     <div class="form-group">
                         <label for="monto" class="col-form-label">Monto Pagado:</label>
-                        <input type="text" name="monto_pagado" value="<?php echo number_format($contrato->getMontoPagado(), 2) ?>" class="form-control" id="monto_pagado" readonly>
+                        <input type="text" name="monto_pagado" value="<?php echo number_format($pagoFrecuente->getMontoPagado(), 2) ?>" class="form-control" id="monto_pagado" readonly>
                     </div>
                     <div class="form-group">
                         <label for="monto" class="col-form-label">Monto:</label>
@@ -254,7 +250,7 @@ $c_pagos->setIdContrato($contrato->getIdContrato());
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" name="id_contrato" value="<?php echo $contrato->getIdContrato() ?>">
+                    <input type="hidden" name="id_pagofrecuente" value="<?php echo $pagoFrecuente->getIdFrecuente() ?>">
                     <button type="submit" class="btn btn-success">Registrar</button>
                     <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
                 </div>
@@ -300,11 +296,25 @@ $c_pagos->setIdContrato($contrato->getIdContrato());
         });
 
     });
-
-    function eliminar(idM,idC) {
+    function eliminarPagoFrecuente(idF) {
         $.ajax({
             type: "GET",
-            url: "../controller/del_contrato_pago.php?idC="+idC+"&idM="+idM,
+            url: "../controller/del_frecuente.php?idF="+idF,
+            success: function (data) {
+                console.log(data);
+                if (IsJsonString(data)){
+                    location.reload();
+                } else{
+                    alert("No de pudo eliminar est cobro");
+                }
+            }
+        });
+    }
+
+    function eliminar(idM,idF) {
+        $.ajax({
+            type: "GET",
+            url: "../controller/del_frecuente_pago.php?idF="+idF+"&idM="+idM,
             success: function (data) {
                 console.log(data);
                 if (IsJsonString(data)){

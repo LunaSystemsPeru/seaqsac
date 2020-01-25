@@ -1,34 +1,32 @@
 <?php
 require_once 'Conectar.php';
 
-class PagosFrecuentesPagos
+class VentasCobro
 {
-    private $id_pagos_frecuentes;
+    private $id_ventas;
     private $id_movimiento;
 
     private $c_conectar;
-
 
     public function __construct()
     {
         $this->c_conectar = Conectar::getInstancia();
     }
 
-
     /**
      * @return mixed
      */
-    public function getIdPagosFrecuentes()
+    public function getIdVentas()
     {
-        return $this->id_pagos_frecuentes;
+        return $this->id_ventas;
     }
 
     /**
-     * @param mixed $id_pagos_frecuentes
+     * @param mixed $id_ventas
      */
-    public function setIdPagosFrecuentes($id_pagos_frecuentes)
+    public function setIdVentas($id_ventas)
     {
-        $this->id_pagos_frecuentes = $id_pagos_frecuentes;
+        $this->id_ventas = $id_ventas;
     }
 
     /**
@@ -47,36 +45,34 @@ class PagosFrecuentesPagos
         $this->id_movimiento = $id_movimiento;
     }
 
+
+
     public function insertar()
     {
-        $query = "insert into pagos_frecuentes_pagos 
-        values ('$this->id_pagos_frecuentes', 
-                '$this->id_movimiento')";
+        $query = "INSERT INTO ventas_cobros  VALUES ('$this->id_ventas', '$this->id_movimiento')";
         return $this->c_conectar->ejecutar_idu($query);
     }
 
     public function eliminar()
     {
-        $query = "DELETE
-                    FROM pagos_frecuentes_pagos
-                    WHERE id_pagos_frecuentes = '$this->id_pagos_frecuentes'
-                        AND id_movimiento = '$this->id_movimiento'";
+        $query =  "DELETE
+                    FROM ventas_cobros
+                    WHERE id_ventas = '$this->id_ventas'
+                        AND id_movimiento = '$this->id_movimiento';";
         return $this->c_conectar->ejecutar_idu($query);
     }
-    public function ver_filas()
-    {
-        $query = "SELECT 
-                  bm.id_movimiento , ba.nombre, bm.fecha ,bm.sale 
+
+    public function verFilas () {
+        $sql = "SELECT 
+                  bm.id_movimiento , ba.nombre, bm.fecha ,bm.ingresa 
                 FROM
-                  pagos_frecuentes_pagos AS vc 
+                  ventas_cobros AS vc 
                   INNER JOIN banco_movimientos AS bm 
                     ON vc.id_movimiento = bm.id_movimiento 
                   INNER JOIN bancos AS ba 
                     ON bm.id_banco = ba.id_banco 
-                    WHERE vc.id_pagos_frecuentes= '$this->id_pagos_frecuentes'";
-        return $this->c_conectar->get_Cursor($query);
+                    WHERE vc.id_ventas = '$this->id_ventas'";
+        return $this->c_conectar->get_Cursor($sql);
     }
-
-
 
 }

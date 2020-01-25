@@ -5,7 +5,7 @@
  * Date: 12/07/19
  * Time: 03:50 PM
  */
-require 'Conectar.php';
+require_once 'Conectar.php';
 
 class OrdenServicio
 {
