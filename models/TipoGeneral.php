@@ -80,4 +80,20 @@ class TipoGeneral
         return $this->c_conectar->get_Cursor($query);
     }
 
+    public function actualizar()
+    {
+        $query = "UPDATE tabla_codigo
+                    SET
+                      nombre = '$this->nombre'
+                    WHERE 
+                        id_codigo = '$this->id';";
+        $resultado = $this->c_conectar->ejecutar_idu($query);
+        return $resultado;
+    }
+    public function eliminar()
+    {
+        $query = "DELETE FROM tabla_codigo 
+                    WHERE id_codigo = '$this->id';";
+        return $this->c_conectar->get_Cursor($query);
+    }
 }
