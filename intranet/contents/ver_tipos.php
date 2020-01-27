@@ -4,15 +4,18 @@ $c_tipo = new TipoClasificacion();
 
 require '../../models/TipoGeneral.php';
 $c_general = new TipoGeneral();
+
+$id_general = filter_input(INPUT_GET, 'id_general');
+$c_tipo->setCodigo($id_general);
 ?>
 <!DOCTYPE html>
 <html lang="es">
 
 
 <!-- Mirrored from www.bootstrapdash.com/demo/star-admin-free/jquery/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 29 Apr 2019 14:35:52 GMT -->
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Generales Nivel II | SEAQ SAC - Software de Gestion </title>
     <!-- plugins:css -->
@@ -46,6 +49,7 @@ $c_general = new TipoGeneral();
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="h3">Relacion de Tipos</h4>
+                                <a href="ver_tipos_codigo.php" class="btn btn-info" ><i class="fa fa-arrow-left"></i>ver Lista General</a>
                                 <button class="btn btn-info" data-target="#modalcrear" data-toggle="modal"><i class="fa fa-plus"></i>Agregar</button>
                             </div>
 

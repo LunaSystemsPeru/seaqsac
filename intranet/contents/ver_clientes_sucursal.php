@@ -21,9 +21,9 @@ $c_sucursal->setIdCliente($c_cliente->getIdCliente());
 
 
     <!-- Mirrored from www.bootstrapdash.com/demo/star-admin-free/jquery/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 29 Apr 2019 14:35:52 GMT -->
-    <head>
+    <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <!-- Required meta tags -->
-        <meta charset="utf-8">
+        
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Ubicaciones del Cliente | SEAQ SAC - Software de Gestion </title>
         <!-- plugins:css -->
@@ -134,10 +134,11 @@ $c_sucursal->setIdCliente($c_cliente->getIdCliente());
                                                 <tbody>
                                                     <?php
                                                     $resultado = $c_sucursal->ver_sucursales();
+                                                    $item = 1;
                                                     while ($row = $resultado->fetch_assoc()) {
                                                         ?>
                                                         <tr>
-                                                            <td><?php echo $row['id_sucursal'] ?></td>
+                                                            <td><?php echo $item ?></td>
                                                             <td><?php echo $row['nombre'] ?></td>
                                                             <td><?php echo $row['direccion'] ?></td>
                                                             <td>
@@ -146,6 +147,7 @@ $c_sucursal->setIdCliente($c_cliente->getIdCliente());
                                                             </td>
                                                         </tr>
                                                         <?php
+                                                        $item++;
                                                     }
                                                     ?>
                                                 </tbody>

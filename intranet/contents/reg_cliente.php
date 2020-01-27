@@ -16,9 +16,9 @@ if (filter_input(INPUT_GET, 'id')) {
 
 
 <!-- Mirrored from www.bootstrapdash.com/demo/star-admin-free/jquery/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 29 Apr 2019 14:35:52 GMT -->
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Agregar Cliente | SEAQ SAC - Software de Gestion </title>
     <!-- plugins:css -->
@@ -165,6 +165,7 @@ if (filter_input(INPUT_GET, 'id')) {
                                 </div>
                                 <div class="card-footer">
                                     <input type="hidden" name="hidden_id_cliente" value="<?php echo $c_cliente->getIdCliente()?>">
+                                    <a href="ver_clientes.php" class="btn btn-info mr-2"><i class="fa fa-arrow-left"></i> Regresar</a>
                                     <button type="submit" class="btn btn-success mr-2">Guardar</button>
                                 </div>
                             </form>
