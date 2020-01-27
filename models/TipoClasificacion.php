@@ -97,7 +97,7 @@ class TipoClasificacion
         $query = "select t.id_tipo, t.nombre, tc.nombre as ncodigo, tc.id_codigo as codigo
         from tipos as t 
         inner join tabla_codigo tc on t.id_codigo = tc.id_codigo 
-        where t.id_codigo = '$this->codigo' 
+         
           order by t.nombre asc";
         return $this->c_conectar->get_Cursor($query);
     }

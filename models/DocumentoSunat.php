@@ -125,5 +125,16 @@ class DocumentoSunat
         return $this->c_conectar->ejecutar_idu($query);
     }
 
+    public function actualizar()
+    {
+        $query = "UPDATE documentos_sunat
+                    SET
+                    nombre = '$this->nombre',
+                    cod_sunat = '$this->cod_sunat',
+                    abreviado = '$this->abreviado'
+                    WHERE 
+                        id_tido = '$this->id_tido ';";
+        return $this->c_conectar->ejecutar_idu($query);
+    }
 
 }
