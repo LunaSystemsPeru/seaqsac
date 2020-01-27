@@ -130,6 +130,34 @@ class Conectar
      * @param $sql
      * @return json
      * Funcion que ejecuta el SQL y retorna un jSon
+     * data: [{...}] con N cantidad de registros
+     */
+    public function get_json_rows_normal($sql)
+    {
+        if (!self::es_string($sql))
+            exit();
+        $db = Conectar::getInstancia();
+        $mysqli = $db->getConnection();
+        $resultado = $mysqli->query($sql);
+        // Si hay un error en el SQL, este es el error de MySQL
+        if (!$resultado) {
+            return "class.Conectar.class: error " . $mysqli->error;
+        }
+
+        $i = 0;
+        $registros = array();
+        while ($row = $resultado->fetch_assoc()) {
+            $registros[$i] = $row;
+            $i++;
+        };
+        //return json_encode(array('data' => $registros));
+        return json_encode($registros);
+    }
+
+    /**
+     * @param $sql
+     * @return json
+     * Funcion que ejecuta el SQL y retorna un jSon
      * de una sola linea. Ideal para imprimir un
      * Query que solo retorne una linea
      */

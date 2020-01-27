@@ -178,11 +178,21 @@ class BancoMovimiento
         return $this->c_conectar->get_Cursor($query);
     }
 
-    public  function  verSaldoAnterior () {
+    public function verSaldoAnterior()
+    {
         $sql = "select ifnull(sum(ingresa - sale),0)  as saldo
         from banco_movimientos 
         where date_format(fecha, '%Y%m') < date_format(curdate(), '%Y%m') and id_banco = '$this->id_banco'";
         return $this->c_conectar->get_valor_query($sql, 'saldo');
+    }
+
+    public function verMovimientosMensuales()
+    {
+        $sql = "select m.id, m.nombre, ifnull(sum(bm.ingresa), 0) as ingresa, ifnull(sum(bm.sale),0) as egresa
+        from meses as m
+        left join banco_movimientos as bm on month(bm.fecha) = m.id and year(bm.fecha) = year(curdate())
+        group by m.id";
+        return $this->c_conectar->get_json_rows_normal($sql);
     }
 
 }
