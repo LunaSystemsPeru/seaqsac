@@ -9,5 +9,5 @@ $c_tipo->setNombre(filter_input(INPUT_POST, 'input_nom'));
 
 if ($c_tipo->actualizar()){
 
-    header("Location: ../contents/ver_tipos_categoria.php");
+    header("Location: ../contents/ver_tipos_categoria.php?id_tipo=" . $c_tipo->getIdTipo());
 }

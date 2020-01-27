@@ -183,8 +183,8 @@ $c_clase->setIdTipo(filter_input(INPUT_GET, 'id_tipo'));
 
     function eliminar(id ) {
         $.ajax({
-            type:"GET",
-            url: '../controller/del_tipo_subclase.php?id_tipo='+id,
+            type:"POST",
+            url: '../controller/del_tipo_subclase.php?id_subclase ='+id,
             success: function(respuesta) {
                 console.log("error: "+respuesta);
                 if (IsJsonString(respuesta)){

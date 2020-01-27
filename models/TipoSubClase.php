@@ -122,7 +122,7 @@ class TipoSubClase
     public function eliminar()
     {
         $query = "DELETE FROM tipo_subclase
-                    WHERE id_subclase = '$this->id';";
+                    WHERE id_subclase = '$this->id_clase';";
         return $this->c_conectar->get_Cursor($query);
     }
 }
