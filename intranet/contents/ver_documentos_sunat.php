@@ -101,7 +101,7 @@ $c_documentos = new DocumentoSunat();
                                                 <td><?php echo $row['cod_sunat'] ?></td>
                                                 <td>
                                                     <button onclick="setdata(<?php echo $row['id_tido'].",'".$row['nombre']."','".$row['abreviado']."','" .$row['cod_sunat']."'" ?>)" class="btn btn-info btn-sm" data-target="#modaledit" data-toggle="modal"><i class="fa fa-edit"></i></button>
-                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
+                                                    <button onclick="eliminar(<?php echo $row['id_tido'] ?>)" class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>
                                             <?php
@@ -190,6 +190,29 @@ $c_documentos = new DocumentoSunat();
         });
 
     });
+    function eliminar(id ) {
+        $.ajax({
+            type:"GET",
+            url: '../controller/del_documento_sunat.php?id_tido='+id,
+            success: function(respuesta) {
+                console.log("error: "+respuesta);
+                if (IsJsonString(respuesta)){
+                    location.reload();
+                }else {
+                    alert("No se puede eliminar");
+                }
+            }
+
+        });
+    }
+    function IsJsonString(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
 
 </script>
 </body>

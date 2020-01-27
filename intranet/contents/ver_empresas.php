@@ -72,9 +72,10 @@ $c_empresa = new Empresa();
                                                 <td><?php echo $row['ruc'] ?></td>
                                                 <td><?php echo $row['razon_social'] ?></td>
                                                 <td><?php echo $valor_tipo ?></td>
+                                                <input type="hidden" name="id_empresas" id="id_empresas" value="">
                                                 <td>
                                                     <a href="reg_empresa.php?id=<?php echo $row['id_empresas'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
-                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
+                                                    <button onclick="eliminar(<?php echo $row['id_empresas'] ?>)" class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
                                                     <button class="btn btn-success btn-sm"><i class="fa fa-eye-slash"></i></button>
                                                 </td>
                                             </tr>
@@ -124,6 +125,29 @@ $c_empresa = new Empresa();
         });
 
     });
+    function eliminar(id ) {
+        $.ajax({
+            type:"GET",
+            url: '../controller/del_empresa.php?id_tido='+id,
+            success: function(respuesta) {
+                console.log("error: "+respuesta);
+                if (IsJsonString(respuesta)){
+                    location.reload();
+                }else {
+                    alert("No se puede eliminar");
+                }
+            }
+
+        });
+    }
+    function IsJsonString(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
 
 </script>
 </body>

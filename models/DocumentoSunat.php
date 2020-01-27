@@ -121,7 +121,7 @@ class DocumentoSunat
     public function eliminar()
     {
         $query = "delete from documentos_sunat 
-        where id_tido = '" . $this->id_tido . "'";
+                    where id_tido = '" . $this->id_tido . "'";
         return $this->c_conectar->ejecutar_idu($query);
     }
 

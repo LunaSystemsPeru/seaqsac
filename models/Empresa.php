@@ -182,4 +182,11 @@ class Empresa {
         return $this->c_conectar->get_json_rows($query);
     }
 
+    public function eliminar()
+    {
+        $query = "DELETE FROM empresas
+                    WHERE 
+                    id_empresas = '$this->id_empresa'";
+        return $this->c_conectar->ejecutar_idu($query);
+    }
 }

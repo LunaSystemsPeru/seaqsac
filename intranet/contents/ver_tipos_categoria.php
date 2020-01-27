@@ -98,7 +98,7 @@ $c_clase->setIdTipo(filter_input(INPUT_GET, 'id_tipo'));
                                                 <td><?php echo $row['id_subclase'] ?></td>
                                                 <td><?php echo $row['nombre'] ?></td>
                                                 <td>
-                                                    <button onclick="setdata(<?php echo $row['id_subclase'].",'".$row['nombre']."','".$row['id_tipo']."'"?>)"class="btn btn-info btn-sm" data-target="#modaledit" data-toggle="modal"><i class="fa fa-edit"></i></button>
+                                                    <button onclick="setdata(<?php echo $row['id_subclase'].",'".$row['nombre']."','".$row['id_tipo']."'"?>)" class="btn btn-info btn-sm" data-target="#modaledit" data-toggle="modal"><i class="fa fa-edit"></i></button>
                                                     <button onclick="eliminar(<?php echo $row['id_subclase'] ?>)"class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>

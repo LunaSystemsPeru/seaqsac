@@ -96,7 +96,7 @@ class TipoSubClase
 
     public function ver_clases()
     {
-        $query = "select * from tipo_subclase where id_tipo = '" . $this->id_tipo . "'  order by nombre asc";
+        $query = "select id_subclase, nombre, id_tipo from tipo_subclase where id_tipo = '" . $this->id_tipo . "'  order by nombre asc";
         return $this->c_conectar->get_Cursor($query);
     }
 
