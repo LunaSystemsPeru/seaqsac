@@ -100,7 +100,7 @@ $c_documentos = new DocumentoSunat();
                                                 <td><?php echo $row['abreviado'] ?></td>
                                                 <td><?php echo $row['cod_sunat'] ?></td>
                                                 <td>
-                                                    <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i></button>
+                                                    <button onclick="setdata(<?php echo $row['id_tido'].",'".$row['nombre']."','".$row['abreviado']."','" .$row['cod_sunat']."'" ?>)" class="btn btn-info btn-sm" data-target="#modaledit" data-toggle="modal"><i class="fa fa-edit"></i></button>
                                                     <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>
@@ -125,7 +125,38 @@ $c_documentos = new DocumentoSunat();
     <!-- page-body-wrapper ends -->
 </div>
 <!-- container-scroller -->
+<div class="modal fade" id="modaledit" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="forms-sample" method="post" action="../controller/udt_documento_sunat.php">
+                <div class="color-line"></div>
+                <div class="modal-header text-center">
+                    <h4 class="modal-title">Agregar Documento</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputName1">Descripcion </label>
+                        <input type="text" class="form-control" id="input_desc" name="input_desc">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName1">Nombre Corto </label>
+                        <input type="text" class="form-control" id="input_ncort" name="input_ncort">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName1">Cod. SUNAT </label>
+                        <input type="hidden" id="id_tido" name="id_tido" value="">
+                        <input type="text" class="form-control" id="input_codsu" name="input_codsu">
+                    </div>
+                </div>
 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <!-- plugins:js -->
 <script src="../../vendors/js/vendor.bundle.base.js"></script>
 <script src="../../vendors/js/vendor.bundle.addons.js"></script>
@@ -141,6 +172,16 @@ $c_documentos = new DocumentoSunat();
 <!-- End custom js for this page-->
 
 <script>
+
+    function setdata(id, nombre, codsu, abrev)
+    {
+        console.log(id + "-" + nombre + "-" + codsu +"-"+ abrev);
+        $('#input_descripcion').val(nombre);
+        $('#input_codsunat').val(codsu);
+        $('#input_ncorto').val(abrev);
+        //$('#select_cat option[value='+idcodigo+']').attr("selected", true);
+        $('#id_tido').val(id);
+    }
 
     $(function () {
 

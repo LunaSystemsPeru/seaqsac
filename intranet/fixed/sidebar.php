@@ -161,9 +161,6 @@
                         <a class="nav-link" href="../contents/ver_documentos_sunat.php"> Documentos SUNAT </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../contents/ver_mis_documentos_sunat.php"> Mis Documentos - SUNAT </a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="../contents/ver_tipos.php"> Tabla Clasificacion </a>
                     </li>
                     <li class="nav-item">
