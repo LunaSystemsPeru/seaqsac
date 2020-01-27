@@ -46,4 +46,12 @@ class Gasto
         where date_format(bm.fecha, '%Y%m') = date_format(curdate(), '%Y%m')";
         return $this->c_conectar->get_Cursor($query);
     }
+
+    public function eliminar ()
+    {
+        $query = "DELETE FROM gastos
+                    WHERE 
+                    id_movimiento = '$this->id_movimiento'";
+        return $this->c_conectar->ejecutar_idu($query);
+    }
 }

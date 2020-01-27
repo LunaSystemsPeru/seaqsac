@@ -140,7 +140,7 @@ $c_tipo->setCodigo(4);
                                                 <td class="text-right"><?php echo number_format($row['sale'], 2) ?></td>
                                                 <td class="text-center"><?php echo $row['clasificacion'] ?></td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
+                                                    <button onclick="eliminar(<?php echo $row['id_movimiento'] ?>)" class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>
                                             <?php
@@ -195,8 +195,30 @@ $c_tipo->setCodigo(4);
         $('#tabla').dataTable({
             responsive: true
         });
-
     });
+
+    function eliminar(id ) {
+        $.ajax({
+            type:"GET",
+            url: '../controller/del_gastos.php?id_movimiento='+id,
+            success: function(respuesta) {
+                console.log("error: "+respuesta);
+                if (IsJsonString(respuesta)){
+                    location.reload();
+                }else {
+                    alert("No se puede eliminar");
+                }
+            }
+        });
+    }
+    function IsJsonString(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
 
 </script>
 </body>
