@@ -83,9 +83,6 @@
                         <a class="nav-link" href="../contents/ver_presupuestos.php">Presupuestos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../contents/ver_alquileres.php">Alquileres</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="../contents/ver_orden_interna.php">Orden Interna</a>
                     </li>
                     <li class="nav-item">
@@ -108,9 +105,6 @@
             </a>
             <div class="collapse" id="bancos">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../contents/ver_prestamos.php"> Prestamos </a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../contents/ver_bancos.php"> Bancos</a>
                     </li>

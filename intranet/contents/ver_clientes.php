@@ -20,11 +20,11 @@ $c_cliente = new Cliente();
     <!-- plugin css for this page -->
     <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
     <!-- plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="../../vendors/assets/css/style.css">
+    <!-- End plugin css for this page -->e.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../../vendors/assets/images/favicon.png"/>
+    <link rel="shortcut icon" href="../../vendors/assets/images
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../vendors/assets/css/styl/favicon.png"/>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
 

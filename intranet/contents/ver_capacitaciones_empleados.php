@@ -64,11 +64,11 @@ $c_asistente->setIdCapacitacion($c_capacitacion->getIdCapacitacion());
                                 <h4 class="h3">Datos de la Capacitacion</h4>
                             </div>
                             <div class="card-body">
-                                <p><span class="font-weight-bold">Nombre =</span> <?php echo $c_capacitacion->getNombre() ?></p>
-                                <p><span class="font-weight-bold">Cliente =</span> <?php echo $c_cliente->getRazonSocial() ?></p>
-                                <p><span class="font-weight-bold">Tipo =</span> <?php echo $c_tipo->getNombre() ?></p>
-                                <p><span class="font-weight-bold">Fecha =</span> <?php echo $c_capacitacion->getFecha() ?></p>
-                                <p><span class="font-weight-bold">Tot. Horas =</span> <?php echo $c_capacitacion->getTotHoras() ?></p>
+                                <p><span class="font-weight-bold">Nombre :</span> <?php echo $c_capacitacion->getNombre() ?></p>
+                                <p><span class="font-weight-bold">Cliente :</span> <?php echo $c_cliente->getRazonSocial() ?></p>
+                                <p><span class="font-weight-bold">Tipo :</span> <?php echo $c_tipo->getNombre() ?></p>
+                                <p><span class="font-weight-bold">Fecha :</span> <?php echo $c_capacitacion->getFecha() ?></p>
+                                <p><span class="font-weight-bold">Tot. Horas :</span> <?php echo $c_capacitacion->getTotHoras() ?></p>
                             </div>
                         </div>
                     </div>
