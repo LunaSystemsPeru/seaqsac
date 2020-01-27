@@ -128,7 +128,7 @@ $c_documentos = new DocumentoSunat();
 <div class="modal fade" id="modaledit" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form class="forms-sample" method="post" action="../controller/udt_documento_sunat.php">
+            <form class="forms-sample" method="GET" action="../controller/udt_documento_sunat.php">
                 <div class="color-line"></div>
                 <div class="modal-header text-center">
                     <h4 class="modal-title">Agregar Documento</h4>
@@ -173,13 +173,12 @@ $c_documentos = new DocumentoSunat();
 
 <script>
 
-    function setdata(id, nombre, codsu, abrev)
+    function setdata(id, nombre, abrev, codsu)
     {
         console.log(id + "-" + nombre + "-" + codsu +"-"+ abrev);
-        $('#input_descripcion').val(nombre);
-        $('#input_codsunat').val(codsu);
-        $('#input_ncorto').val(abrev);
-        //$('#select_cat option[value='+idcodigo+']').attr("selected", true);
+        $('#input_desc').val(nombre);
+        $('#input_codsu').val(codsu);
+        $('#input_ncort').val(abrev);
         $('#id_tido').val(id);
     }
 
