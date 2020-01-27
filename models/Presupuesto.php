@@ -214,6 +214,22 @@ class Presupuesto
         return $this->c_conectar->get_Cursor($query);
     }
 
+    public function verCotizacionesMensualesxCantidad (){
+        $sql = "select m.id, m.nombre,
+       (select count(c.estado) from cotizaciones as c where month(c.fecha) = m.id and year(c.fecha) = year(curdate())) as contar_emitidas,
+       (select count(c.estado) from cotizaciones as c where month(c.fecha) = m.id and year(c.fecha) = year(curdate()) and c.estado = 1) as contar_aprobadas
+from meses as m";
+        return $this->c_conectar->get_json_rows_normal($sql);
+    }
+
+    public function verCotizacionesMensualesxCosto (){
+        $sql = "select m.id, m.nombre,
+       (select ifnull(sum(c.total),0) from cotizaciones as c where month(c.fecha) = m.id and year(c.fecha) = year(curdate())) as contar_emitidas,
+       (select ifnull(sum(c.total),0) from cotizaciones as c where month(c.fecha) = m.id and year(c.fecha) = year(curdate()) and c.estado = 1) as contar_aprobadas
+from meses as m";
+        return $this->c_conectar->get_json_rows_normal($sql);
+    }
+
     public function eliminar()
     {
         $query = "delete from cotizaciones 
