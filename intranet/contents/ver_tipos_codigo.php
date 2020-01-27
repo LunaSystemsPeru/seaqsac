@@ -7,9 +7,9 @@ $c_general = new TipoGeneral();
 
 
 <!-- Mirrored from www.bootstrapdash.com/demo/star-admin-free/jquery/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 29 Apr 2019 14:35:52 GMT -->
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Generales | SEAQ SAC - Software de Gestion </title>
     <!-- plugins:css -->
@@ -87,7 +87,7 @@ $c_general = new TipoGeneral();
                                                 <td><?php echo $row['id_codigo'] ?></td>
                                                 <td><?php echo $row['nombre'] ?></td>
                                                 <td>
-                                                    <a href="ver_tipos.php" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
+                                                    <a href="ver_tipos.php?id_general=<?php echo $row['id_codigo']?>" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
                                                     <button onclick="setdata(<?php echo $row['id_codigo'].",'".$row['nombre']."'" ?>)" class="btn btn-info btn-sm" data-target="#modaledit" data-toggle="modal"><i class="fa fa-edit"></i></button>
                                                     <button onclick="eliminar(<?php echo $row['id_codigo'] ?>)" class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
                                                 </td>
