@@ -308,6 +308,13 @@ class Cliente
         '1', '" . $this->contrasena . "', '" . $this->logo . "')";
         return $this->c_conectar->ejecutar_idu($query);
     }
+    public function eliminar()
+    {
+        $query = "DELETE
+                    FROM clientes
+                    WHERE id_clientes = '$this->id_cliente' ";
+        return $this->c_conectar->ejecutar_idu($query);
+    }
 
     public function modificar()
     {

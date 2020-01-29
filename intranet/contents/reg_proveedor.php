@@ -106,7 +106,7 @@ if (filter_input(INPUT_GET, 'id')) {
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <input type="hidden" name="hidden_id_cliente" value="<?php echo $c_proveedor->getIdProveedor()?>">
+                                    <input type="hidden" name="hidden_id_proveedor" value="<?php echo $c_proveedor->getIdProveedor()?>">
                                     <button type="submit" class="btn btn-success mr-2">Guardar</button>
                                 </div>
                             </form>

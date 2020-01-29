@@ -123,6 +123,19 @@ class Proveedor
         $this->telefono = $telefono;
     }
 
+    public function modificar()
+    {
+        $query = "UPDATE proveedores
+                    SET
+                      ruc = '$this->ruc',
+                      razon_social = '$this->razon_social',
+                      direccion = '$this->direccion',
+                      email = '$this->email',
+                      telefono = '$this->telefono'
+                    WHERE id_proveedores = '$this->id_proveedor';";
+        return $this->c_conectar->ejecutar_idu($query);
+    }
+
     public function obtener_id()
     {
         $query = "select ifnull(max(id_proveedores) + 1, 1) as codigo 

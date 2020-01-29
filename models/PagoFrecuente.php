@@ -265,4 +265,15 @@ class PagoFrecuente
         WHERE id_pagos_frecuentes = '$this->id_frecuente';";
         return $this->c_conectar->ejecutar_idu($query);
     }
+    public function actualizar(){
+        $query = "UPDATE pagos_frecuentes
+                    SET 
+                      fecha = '$this->fecha',
+                      monto_pactado = '$this->monto_pactado',
+                      servicio = '$this->servicio',
+                      frecuencia = '$this->frecuencia',
+                      id_tipo = '$this->id_clasificacion'
+                    WHERE id_pagos_frecuentes = '$this->id_frecuente' ";
+        return $this->c_conectar->ejecutar_idu($query);
+    }
 }

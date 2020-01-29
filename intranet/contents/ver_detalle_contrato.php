@@ -31,6 +31,8 @@ $c_proveedor->setIdProveedor($contrato->getIdProveedor());
 $c_proveedor->obtener_datos();
 
 $c_pagos->setIdContrato($contrato->getIdContrato());
+
+$listaClasificacion=$tipoClasificacion->ver_tipos();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -77,10 +79,10 @@ $c_pagos->setIdContrato($contrato->getIdContrato());
                                     <a href="ver_contrato.php"
                                        class="btn btn-info"><i class="fa fa-arrow-left"></i>ver Contratos
                                     </a>
-                                    <button data-toggle="modal" data-target="#modal_pago_frecuente"
+                                    <button data-toggle="modal" data-target="#modal_edit_contrato"
                                             class="btn btn-behance"><i class="fa fa-edit"></i>Modificar Pago
                                     </button>
-                                    <button onclick=""
+                                    <button onclick="eliminarContrato(<?php echo $contrato->getIdContrato() ?>)"
                                             class="btn btn-danger"><i class="fa fa-trash"></i>Eliminar
                                     </button>
                                 </div>
@@ -211,6 +213,70 @@ $c_pagos->setIdContrato($contrato->getIdContrato());
 </div>
 <!-- container-scroller -->
 
+<div class="modal fade" id="modal_edit_contrato" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-4"
+     style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="formulario_modal_pago"  class="form-horizontal" action="../controller/udt_contrato.php" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel-4">Contrato</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="inputFechaI" class="control-label">Fecha de Inicio</label>
+                        <div class="col-sm-10">
+                            <input type="date" name="fecha_inicio" value="<?php echo date("Y-m-d",strtotime($contrato->getFechaInicio()));?>" class="form-control" id="inputFechaI" >
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDur" class="control-label">Duracion</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="duracion" value="<?php echo $contrato->getDuracion() ?>"  class="form-control" id="inputDur" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSer" class="control-label">Servicio</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="servicio"  value="<?php echo $contrato->getServicio() ?>"  class="form-control" id="inputSer" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputTot" class="control-label">Total</label>
+                        <div class="col-sm-10">
+                            <input type="text"  name="total_pactado" value="<?php echo $contrato->getMontoPactado() ?>" class="form-control" id="inputTot" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="control-label">Tipo</label>
+                        <div class="col-sm-10">
+                            <select name="id_tipo" class="form-control">
+
+                                <?php foreach ($listaClasificacion as $item){
+                                    if ($item["id_tipo"]==$contrato->getIdClasificacion()){
+                                        echo "<option value='{$item['id_tipo']}' selected>{$item['nombre']}</option>";
+                                    }else{
+                                        echo "<option value='{$item['id_tipo']}'>{$item['nombre']}</option>";
+                                    }
+                                } ?>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id_contrato" value="<?php echo $contrato->getIdContrato() ?>">
+                    <button type="submit" class="btn btn-success">Actualizar</button>
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="modal_pago_fre" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-4"
      style="display: none;" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -301,6 +367,21 @@ $c_pagos->setIdContrato($contrato->getIdContrato());
 
     });
 
+    function eliminarContrato(idC) {
+        $.ajax({
+            type: "GET",
+            url: "../controller/del_contrato.php?idC="+idC,
+            success: function (data) {
+                console.log(data);
+                if (IsJsonString(data)){
+                    location.reload();
+                } else{
+                    alert("No de pudo eliminar el contrato");
+                }
+            }
+        });
+    }
+
     function eliminar(idM,idC) {
         $.ajax({
             type: "GET",
@@ -310,7 +391,7 @@ $c_pagos->setIdContrato($contrato->getIdContrato());
                 if (IsJsonString(data)){
                     location.reload();
                 } else{
-                    alert("No de pudo eliminar est cobro");
+                    alert("No de pudo eliminar este cobro");
                 }
             }
         });

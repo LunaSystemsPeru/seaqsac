@@ -246,4 +246,17 @@ class Contrato
         where id_contrato = '" . $this->id_contrato . "' ";
         return $this->c_conectar->ejecutar_idu($query);
     }
+
+    public function modificar()
+    {
+        $query = "UPDATE contratos
+                    SET 
+                      fecha_inicio = '$this->fecha_inicio',
+                      duracion = '$this->duracion',
+                      monto_pactado = '$this->monto_pactado',
+                      servicio = '$this->servicio',
+                      id_tipo = '$this->id_clasificacion'
+                    WHERE id_contrato = '$this->id_contrato';";
+        return $this->c_conectar->ejecutar_idu($query);
+    }
 }

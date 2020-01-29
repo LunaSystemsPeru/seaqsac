@@ -22,9 +22,9 @@ $c_cliente = new Cliente();
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->e.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../../vendors/assets/images
+    <link rel="shortcut icon" href="../../vendors/assets/images/favicon.png"/>
     <!-- inject:css -->
-    <link rel="stylesheet" href="../../vendors/assets/css/styl/favicon.png"/>
+    <link rel="stylesheet" href="../../vendors/assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
 
@@ -92,7 +92,7 @@ $c_cliente = new Cliente();
                                                 <td>
                                                     <a href="ver_clientes_sucursal.php?id_cliente=<?php echo $row['id_clientes'] ?>" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
                                                     <a href="reg_cliente.php?id=<?php echo $row['id_clientes'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
-                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
+                                                    <button onclick="eliminar(<?php echo $row['id_clientes'] ?>)" class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>
                                             <?php
@@ -153,6 +153,29 @@ $c_cliente = new Cliente();
             ]
         } );
     } );
+
+    function eliminar(id ) {
+        $.ajax({
+            type:"GET",
+            url: '../controller/del_cliente.php?id_cliente='+id,
+            success: function(respuesta) {
+                console.log("error: "+respuesta);
+                if (IsJsonString(respuesta)){
+                    location.reload();
+                }else {
+                    alert("No se puede eliminar");
+                }
+            }
+        });
+    }
+    function IsJsonString(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
 
 </script>"order": [[ 1, "asc" ]]
 </body>

@@ -129,7 +129,7 @@ $listaBancos = $c_banco->ver_filas();
                             </div>
                             <label for="recipient-name" class="col-form-label col-md-2">Fecha</label>
                             <div class="col-md-5">
-                                <input id="fechaPago" name="fecha" type="date" class="form-control">
+                                <input required type="date" id="fechaPago" name="fecha"  class="form-control" value="<?php echo date("Y-m-d");?>">
                             </div>
                         </div>
                         <div class="col-md-12 row" style="margin-top: 5px">
@@ -263,7 +263,7 @@ $listaBancos = $c_banco->ver_filas();
                     cargarData(idStado);
                     cambio=true;
                 }else{
-                    alert("Error al Guardar el pago");
+                    alert("Error al Guardar el pago, o faltan datos");
                 }
             }
         });

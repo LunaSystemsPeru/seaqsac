@@ -82,7 +82,7 @@ $c_pesupuesto = new Presupuesto();
                                                 <td class="text-right"><?php echo number_format($fila['total'], 2) ?></td>
                                                 <td><?php echo $label ?></td>
                                                 <td class="text-center">
-                                                    <a href="reg_envio_cotizacion.php" class="btn btn-info btn-icons" title="Enviar por Correo">
+                                                    <a href="reg_email_cotizacion.php?coti=<?php echo $fila['id_cotizaciones'] ?>" class="btn btn-info btn-icons" title="Enviar por Correo">
                                                         <i class="fa fa-mail-reply-all"></i>
                                                     </a>
                                                     <?php

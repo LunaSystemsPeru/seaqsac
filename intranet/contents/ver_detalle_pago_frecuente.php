@@ -31,6 +31,8 @@ $c_proveedor->obtener_datos();
 
 $c_pagos->setIdPagosFrecuentes($pagoFrecuente->getIdFrecuente());
 
+$listaClasificacion=$tipoClasificacion->ver_tipos();
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -77,7 +79,7 @@ $c_pagos->setIdPagosFrecuentes($pagoFrecuente->getIdFrecuente());
                                     <a href="ver_pagos_frecuentes.php"
                                        class="btn btn-info"><i class="fa fa-arrow-left"></i>ver Pagos
                                     </a>
-                                    <button data-toggle="modal" data-target="#modal_pago_frecuente"
+                                    <button data-toggle="modal" data-target="#modal_edit_frecuente"
                                             class="btn btn-behance"><i class="fa fa-edit"></i>Modificar Pago
                                     </button>
                                     <button onclick="eliminarPagoFrecuente(<?php echo $idPagoFrecuente?>)"
@@ -206,6 +208,69 @@ $c_pagos->setIdPagosFrecuentes($pagoFrecuente->getIdFrecuente());
     <!-- page-body-wrapper ends -->
 </div>
 <!-- container-scroller -->
+<div class="modal fade" id="modal_edit_frecuente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-4"
+     style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="formulario_modal_pago" action="../controller/udt_frecuente_pago.php" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel-4">Pago Frecuente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="inputFechaI" class="control-label">Fecha de Inicio</label>
+                        <div class="col-sm-10">
+                            <input type="date" name="fecha_inicio" value="<?php echo date("Y-m-d",strtotime($pagoFrecuente->getFecha()));?>" class="form-control" id="inputFechaI" >
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDur" class="control-label">Frecuencia</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="frecuencia" value="<?php echo $pagoFrecuente->getFrecuencia()  ?>"  class="form-control" id="inputDur" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSer" class="control-label">Servicio</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="servicio"  value="<?php echo $pagoFrecuente->getServicio() ?>"  class="form-control" id="inputSer" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputTot" class="control-label">Total</label>
+                        <div class="col-sm-10">
+                            <input type="text"  name="total_pactado" value="<?php echo $pagoFrecuente->getMontoPactado() ?>" class="form-control" id="inputTot" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="control-label">Tipo</label>
+                        <div class="col-sm-10">
+                            <select name="id_tipo" class="form-control">
+
+                                <?php foreach ($listaClasificacion as $item){
+                                    if ($item["id_tipo"]==$pagoFrecuente->getIdClasificacion()){
+                                        echo "<option value='{$item['id_tipo']}' selected>{$item['nombre']}</option>";
+                                    }else{
+                                        echo "<option value='{$item['id_tipo']}'>{$item['nombre']}</option>";
+                                    }
+                                } ?>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id_pagofrecuente" value="<?php echo $pagoFrecuente->getIdFrecuente() ?>">
+                    <button type="submit" class="btn btn-success">Actualizar</button>
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="modal_pago_fre" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-4"
      style="display: none;" aria-hidden="true">
@@ -303,7 +368,7 @@ $c_pagos->setIdPagosFrecuentes($pagoFrecuente->getIdFrecuente());
             success: function (data) {
                 console.log(data);
                 if (IsJsonString(data)){
-                    location.reload();
+                    window.location = "ver_pagos_frecuentes.php";
                 } else{
                     alert("No de pudo eliminar est cobro");
                 }

@@ -302,6 +302,7 @@ class Venta
                 '$this->porcentaje', 
                 '$this->id_orden_interna',
                 '$this->archivo')";
+        //echo $query;
         return $this->c_conectar->ejecutar_idu($query);
     }
 

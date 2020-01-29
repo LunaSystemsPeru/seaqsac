@@ -96,7 +96,7 @@ $listaCobros=$ventasCobro->verFilas();
                                     <div class="card-header">
                                         <h4 class="h3">Pagos del Documento </span><?php echo $documentoSunat->getAbreviado()." - {$venta->getSerie()} - {$venta->getNumero()}"?></h4>
                                         <button  class="btn btn-info" data-toggle="modal" data-target="#modalcrear"><i class="fa fa-user-plus"></i>agregar cobro</button>
-                                        <a href="ver_informe_monitoreos.php" class="btn btn-outline-success">
+                                        <a href="ver_ventas.php" class="btn btn-outline-success">
                                             <i class="fa fa-arrow-left"></i>Regresar a Ventas
                                         </a>
 
@@ -123,7 +123,7 @@ $listaCobros=$ventasCobro->verFilas();
 
                                                             <div class="form-group">
                                                                 <label for="exampleInputName1">Fecha: </label>
-                                                                <input type="date" class="form-control" name="input_fecha" id="input_fecha" required>
+                                                                <input type="date" class="form-control" name="input_fecha" id="input_fecha" value="<?php echo date("Y-m-d");?>" required>
                                                             </div>
 
                                                             <div class="form-group">
@@ -181,7 +181,7 @@ $listaCobros=$ventasCobro->verFilas();
                                                  <tr>
                                                      <td><?php echo $item['fecha'] ?></td>
                                                      <td><?php echo $item['nombre'] ?></td>
-                                                     <td class="text-right">9%</td>
+                                                     <td class="text-center"><?php echo  ceil(($item['ingresa']*100)/$venta->getTotal())."%" ?></td>
                                                      <td class="text-right"><?php echo number_format($item['ingresa'], 2) ?></td>
                                                      <td class="text-center">
                                                          <button onclick="eliminar(<?php echo  $item['id_movimiento'] .",".$idventa ?>)" class="btn btn-danger btn-icons"><i class="fa fa-close"></i></button>

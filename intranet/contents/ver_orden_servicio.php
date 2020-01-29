@@ -80,7 +80,7 @@ $c_orden = new OrdenServicio();
                                                     <span class="btn btn-warning btn-icons"><?php echo $porcentaje?>% </span>
                                                 </td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-info btn-icons" title="Ver Facturas Asociadas a la Orden" onclick="obtener_modal('<?php echo $fila['id_orden_cliente']?>')"><i class="fa fa-dollar"></i></button>
+                                                    <button  class="btn btn-info btn-icons" title="Ver Facturas Asociadas a la Orden" onclick="verFacturas('<?php echo $fila['id_orden_cliente']?>')"><i class="fa fa-eye"></i></button>
                                                     <button class="btn btn-danger btn-icons" title="Eliminar Orden de Servicio" onclick="eliminar('<?php echo $fila['id_orden_cliente']?>')"><i class="fa fa-close"></i></button>
                                                 </td>
                                             </tr>
@@ -102,26 +102,11 @@ $c_orden = new OrdenServicio();
                     <div class="modal-content" id="resultado">
                             <div class="color-line"></div>
                             <div class="modal-header text-center">
-                                <h4 class="modal-title">Agregar Archivo - Anexo</h4>
+                                <h4 class="modal-title">Facturas</h4>
                             </div>
                             <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="exampleInputName1">Fecha</label>
-                                    <div class="input-group col-xs-12">
-                                        <input type="date" class="form-control" id="input_fecha" name="input_fecha" required>
-                                    </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <label for="exampleInputName1">Descripcion: </label>
-                                    <input type="text" class="form-control" id="input_descripcion" name="input_descripcion" required>
-                                </div>
 
-                                <div class="form-group">
-                                    <label for="exampleInputName1">Archivo: </label>
-                                    <input type="file" class="form-control" id="input_archivo" name="input_archivo" accept="application/pdf" required>
-                                    <input type="hidden" name="MAX_FILE_SIZE" value="3145728"/>
-                                </div>
 
                                 <div class="table-responsive1">
                                     <table class="table table-striped">
@@ -135,22 +120,14 @@ $c_orden = new OrdenServicio();
                                             <th>Estado</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>FT | F001 - 012365</td>
-                                                <td>12/07/2019</td>
-                                                <td>CONMETAL Y SERVICIOS EIRL</td>
-                                                <td class="text-right">1,650.00</td>
-                                                <td class="text-right">1,650.00</td>
-                                                <td><label class="badge badge-success badge-lg">Pagado</label></td>
-                                            </tr>
+                                        <tbody id="listaFactura">
+
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
                     </div>
                 </div>
@@ -219,6 +196,20 @@ $c_orden = new OrdenServicio();
             return true;
         }
     }
+
+    function verFacturas(idCliete) {
+        $.ajax({
+            type: "GET",
+            url: "../../data/ajax/ver_facturas_clientes_ser.php?idC="+idCliete,
+            success: function (data) {
+                document.getElementById("listaFactura").innerHTML=data;
+                $("#modalcrear").modal("toggle");
+
+            }
+        });
+    }
+
+
 </script>
 </body>
 

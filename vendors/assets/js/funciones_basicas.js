@@ -21,11 +21,12 @@ function enviar_ruc() {
                 //$("#div_resultado").html("Procesando, espere por favor...");
             },
             success: function (response) {
+                console.log(response);
                 var json = response;
-                 //console.log(json);
+
 
                 var json_ruc = JSON.parse(json);
-                if (json_ruc.success == "true") {
+                if (json_ruc.success == true) {
                     toast_datos_encontrados();
                     $("#input_razon_social").val(json_ruc.result.RazonSocial);
                     $("#input_estado").val(json_ruc.result.Estado);

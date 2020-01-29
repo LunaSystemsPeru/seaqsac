@@ -4,10 +4,11 @@ require '../../models/Cliente.php';
 
 $c_empresa = new Empresa();
 $c_cliente = new Cliente();
-
+$estado=false;
 if (filter_input(INPUT_GET, 'id')) {
     $c_cliente->setIdCliente(filter_input(INPUT_GET, 'id'));
     $c_cliente->obtener_datos();
+    $estado=true;
 }
 ?>
 
@@ -53,7 +54,14 @@ if (filter_input(INPUT_GET, 'id')) {
                         <div class="card">
                             <form enctype="multipart/form-data" class="form-sample" method="post" action="../controller/reg_cliente.php">
                                 <div class="card-header">
-                                    <h4 class="h3">Agregar Cliente</h4>
+                                    <?php
+                                        if ($estado){
+                                            echo '<h4 class="h3">Editar Cliente</h4>';
+                                        }else{
+                                            echo '<h4 class="h3">Agregar Cliente</h4>';
+                                        }
+                                    ?>
+
                                 </div>
                                 <div class="card-body">
                                     <div class='row'>

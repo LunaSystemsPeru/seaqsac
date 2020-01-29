@@ -207,6 +207,20 @@ class OrdenServicio
         return $this->c_conectar->get_json_rows($query);
     }
 
+    public function ver_ventas_orden_cliente()
+    {
+        $query = "SELECT 
+                  ve.serie, ve.numero,ve.fecha,cli.razon_social,ve.total,ve.pagado, ve.estado 
+                FROM
+                  orden_servicio_cliente AS osc 
+                  INNER JOIN ventas AS ve 
+                    ON osc.id_orden_cliente = ve.id_orden_cliente 
+                    INNER JOIN clientes AS cli ON ve.id_clientes =cli.id_clientes
+                    WHERE osc.id_orden_cliente= '$this->id_orden'";
+
+        return $this->c_conectar->get_Cursor($query);
+    }
+
     public function eliminar()
     {
         $query = "delete from orden_servicio_cliente 
