@@ -231,6 +231,7 @@ class Usuario
         username = '$this->username',
         foto = '$this->foto'
         where id_usuarios = '$this->id_usuario'";
+        //echo $query;
         return $this->c_conectar->ejecutar_idu($query);
     }
 

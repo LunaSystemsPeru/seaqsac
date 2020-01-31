@@ -96,7 +96,7 @@ $estado=true;
                                             <div id="selectImage form-group">
                                                 <!--input class="form-control" type="file" name="file" id="file" required/-->
                                                 <div class="form-group">
-                                                    <input accept="image/*"  id="file" type="file" name="file" class="file-upload-default">
+                                                    <input accept="image/*" id="file" type="file" name="file" class="file-upload-default">
                                                     <div class="input-group col-xs-12">
                                                         <input id="nom_archivo" type="text" class="form-control file-upload-info" disabled=""
                                                                placeholder="selecione">
