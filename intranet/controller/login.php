@@ -29,8 +29,11 @@ if ($siusuario) {
         $c_usuario->actualizar_session();
         $_SESSION['id_usuario'] = $c_usuario->getIdUsuario();
         $_SESSION['id_empresa'] = $c_empresa->getIdEmpresa();
+        $_SESSION['foto'] = $c_usuario->getFoto();
+        $_SESSION['nombre'] = $c_usuario->getNombre();
+        $_SESSION['username'] = $c_usuario->getUsername();
     } else {
-        echo "contrasena incorrecta ";
+        //echo "contrasena incorrecta ";
         $id_error = 2;
     }
 } else {

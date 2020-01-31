@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 if (is_null(filter_input(INPUT_GET, 'id_cliente'))) {
     header("Location: ver_clientes.php");
 }

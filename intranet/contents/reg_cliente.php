@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 require '../../models/Empresa.php';
 require '../../models/Cliente.php';
 

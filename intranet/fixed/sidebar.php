@@ -3,13 +3,13 @@
         <li class="nav-item nav-profile">
             <div class="nav-link">
                 <div class="user-wrapper">
-                    <div class="profile-image">
-                        <img src="../../vendors/assets/images/faces/face1.jpg" alt="profile image">
-                    </div>
+<!--                    <div class="profile-image">-->
+<!--                        <img src="../../vendors/assets/images/faces/face1.jpg" alt="profile image">-->
+<!--                    </div>-->
                     <div class="text-wrapper">
                         <p class="profile-name">SEAQ SAC</p>
                         <div>
-                            <small class="designation text-muted">Admin</small>
+                            <small class="designation text-muted"><?php echo $_SESSION['username']?></small>
                             <span class="status-indicator online"></span>
                         </div>
                     </div>

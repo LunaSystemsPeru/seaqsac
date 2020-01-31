@@ -1,3 +1,6 @@
+<?php
+include 'cabeza.php';
+?>
 <!DOCTYPE html>
 <html lang="es">
 

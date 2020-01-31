@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 require '../../models/Capacitacion.php';
 $c_capacitacion = new Capacitacion();
 

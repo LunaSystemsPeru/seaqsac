@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 if (is_null(filter_input(INPUT_GET, 'id_tipo'))) {
     header("Location: ver_tipos.php");
 }

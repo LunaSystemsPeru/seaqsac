@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 require '../../models/TipoGeneral.php';
 $c_general = new TipoGeneral();
 ?>

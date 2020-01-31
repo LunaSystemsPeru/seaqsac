@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 require '../../models/BancoMovimiento.php';
 require '../../models/Banco.php';
 require '../../tools/cl_varios.php';

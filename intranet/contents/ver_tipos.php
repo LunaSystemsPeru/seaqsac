@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 require '../../models/TipoClasificacion.php';
 $c_tipo = new TipoClasificacion();
 

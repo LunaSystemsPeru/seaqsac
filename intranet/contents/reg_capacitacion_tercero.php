@@ -1,4 +1,5 @@
 <?php
+
 require '../../models/Cliente.php';
 $c_cliente = new Cliente();
 

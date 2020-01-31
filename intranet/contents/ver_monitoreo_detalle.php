@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 require '../../models/Monitoreo.php';
 require '../../models/MonitoreoComentario.php';
 require '../../models/MonitoreoAnexo.php';

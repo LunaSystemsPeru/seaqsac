@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 require '../../models/Gasto.php';
 require '../../models/Banco.php';
 require '../../models/TipoClasificacion.php';

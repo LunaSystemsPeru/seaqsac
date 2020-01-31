@@ -1,5 +1,5 @@
 <?php
-
+include 'cabeza.php';
 require '../../models/Proveedor.php';
 require '../../models/PagoFrecuente.php';
 require '../../models/PagosFrecuentesPagos.php';

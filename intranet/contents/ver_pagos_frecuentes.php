@@ -1,5 +1,5 @@
 <?php
-session_start();
+include 'cabeza.php';
 require '../../models/PagoFrecuente.php';
 $c_frecuente = new PagoFrecuente();
 ?>

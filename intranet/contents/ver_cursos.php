@@ -1,5 +1,5 @@
 <?php
-session_start();
+include 'cabeza.php';
 require '../../models/Curso.php';
  $c_curso = new Curso();
 $lista_curso  = $c_curso->ver_cursos();

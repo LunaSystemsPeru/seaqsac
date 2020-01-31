@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 require '../../models/Usuario.php';
 
 $c_usuario = new Usuario();
