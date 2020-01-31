@@ -57,10 +57,10 @@ $c_cliente = new Cliente();
                                         <tr>
                                             <th>RUC</th>
                                             <th>Razon Social</th>
-                                            <th>Tipo</th>
-                                            <th>Ultima Accion</th>
-                                            <th>Estado</th>
-                                            <th>Acciones</th>
+                                            <th>Contacto</th>
+                                            <th>Email</th>
+                                            <th>Telefono</th>
+                                            <th width="20%">Acciones</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -85,11 +85,9 @@ $c_cliente = new Cliente();
                                             <tr>
                                                 <td><?php echo $row['ruc'] ?></td>
                                                 <td><?php echo $row['razon_social'] ?></td>
-                                                <td><?php echo $valor_tipo ?></td>
-                                                <td><?php echo $row['ultimo_servicio'] ?></td>
-                                                <td>
-                                                    <?php echo $valor_estado ?>
-                                                </td>
+                                                <td><?php echo $row['contacto'] . " - " . $row['cargo'] ?></td>
+                                                <td><?php echo $row['email'] ?></td>
+                                                <td><?php echo $row['telefono'] ?></td>
                                                 <td>
                                                     <a href="ver_clientes_sucursal.php?id_cliente=<?php echo $row['id_clientes'] ?>" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
                                                     <a href="reg_cliente.php?id=<?php echo $row['id_clientes'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
