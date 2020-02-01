@@ -75,8 +75,10 @@ $c_varios = new cl_varios();
                                                 <td><?php echo $fila['nombre'] ?></td>
                                                 <td class="text-center"><?php echo $c_varios->fecha_mysql_web($fila['fecha_session']) ?></td>
                                                 <td class="text-center">
-                                                    <a href="mod_usuario.php?id=<?php echo $fila['id_usuarios'] ?>"
+                                                    <a href="mod_usuario.php?id=<?php echo $fila['id_usuarios'] ?>"  title="Modificar Usuario"
                                                        class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
+                                                    <a href="ver_usuarios_permisos.php?id=<?php echo $fila['id_usuarios'] ?>"
+                                                       class="btn btn-success btn-sm"  title="Asignar Permisos"><i class="fa fa-lock"></i></a>
                                                     <button class="btn btn-danger btn-sm" onclick="eliminar('<?php echo $fila['id_usuarios'] ?>')"><i class="fa fa-close"></i>
                                                     </button>
                                                 </td>

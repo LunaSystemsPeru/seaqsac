@@ -21,7 +21,7 @@ $c_cliente = new Cliente();
     <!-- plugin css for this page -->
     <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
     <!-- plugin css for this page -->
-    <!-- End plugin css for this page -->e.css">
+    <!-- End plugin css for this page -->
     <!-- endinject -->
     <link rel="shortcut icon" href="../../vendors/assets/images/favicon.png"/>
     <!-- inject:css -->
@@ -176,7 +176,7 @@ $c_cliente = new Cliente();
         return true;
     }
 
-</script>"order": [[ 1, "asc" ]]
+</script>
 </body>
 
 
