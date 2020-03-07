@@ -1,4 +1,10 @@
 <?php
+
+ini_set('display_errors', 1);
+
+ini_set('display_startup_errors', 1);
+
+error_reporting(E_ALL);
 require  'cabeza.php';
 require  '../../models/PlanResiduos.php';
 require  '../../models/Cliente.php';
@@ -18,7 +24,7 @@ $listaClientes=$c_cliente->ver_clientes();
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Bancos | SEAQ SAC - Software de Gestion </title>
+    <title>Plan de Residuos Solidos | SEAQ SAC - Software de Gestion </title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
