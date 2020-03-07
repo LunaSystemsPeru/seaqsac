@@ -15,11 +15,15 @@ $planResiduos->obtener_datos_cliente();
 $idPlan=$planResiduos->getIdPlan();
 
 $listaArchivos=[];
-$ruta="../../archivos/clientes/$idPlan/";
+$ruta="../../archivos/clientes/pgrs/$idPlan/";
+echo $ruta;
 if (is_dir($ruta)){
     $gestor = opendir($ruta);
     while (($archivo = readdir($gestor)) !== false)  {
-        $listaArchivos[]=$archivo;
+        if ($archivo != "." && $archivo != ".."){
+            $listaArchivos[]=$archivo;
+        }
+
     }
     closedir($gestor);
 }
@@ -90,33 +94,26 @@ foreach ($listaArchivos as $item){
                         <div class="card">
 
                             <div class="card-body">
-                                <p><span class="font-weight-bold">cliente =</span> </p>
-                                <p><span class="font-weight-bold">ubicacion =</span> </p>
-                                <p><span class="font-weight-bold">direccion =</span> ></p>
-                                <p><span class="font-weight-bold">fecha =</span> </p>
-                                <p><span class="font-weight-bold">tipo =</span> </p>
+                                <table style="width:100%">
+                                    <tr>
+                                        <th>Archivo</th>
+                                        <th></th>
+                                    </tr>
+                                    <?php
+                                        foreach ($listaArchivos as $item){  ?>
+                                            <tr>
+                                                <td><?php echo $item ?></td>
+                                                <td><span class="badge badge-primary click" onclick="cargarDocumento('../../archivos/clientes/pgrs/<?php echo $idPlan;?>/<?php echo $item ;?>')">Ver</span></td>
+                                            </tr>
+                                        <?php      }
+                                    ?>
 
-                                <p><span class="font-weight-bold">estado =</span>  echo $valor_estado ?></p>
-                                <span class="badge badge-primary click"  onclick="cargarDocumento()">Ver Informe</span>
-                                <span class="badge badge-info click" >Ver Revisiones</span>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                            <div class="table-responsive">
-                                <h4>Equipos de medicion</h4>
-                                <table id="tabla_equipos" class="table table-striped">
-                                    <tbody>
-
-                                    </tbody>
                                 </table>
                             </div>
-
-                        </div>
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <embed id="documento_PDF"  src="../../archivos/clientes/<?php echo $idPlan;?>/"  width="100%" height="750px" />
+                        <embed id="documento_PDF"  src="../../archivos/clientes/pgrs/<?php echo $idPlan;?>/<?php echo $listaArchivos[0];?>"  width="100%" height="750px" />
                     </div>
                 </div>
                 <br>
