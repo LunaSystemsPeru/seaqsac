@@ -128,6 +128,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../contents/ver_informe_auditorias.php">Auditorias</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../contents/ver_plan_residuos.php">Plan Residuos solidos</a>
+                    </li>
                 </ul>
             </div>
         </li>

@@ -333,6 +333,16 @@ class Cliente
         return $this->c_conectar->ejecutar_idu($query);
     }
 
+
+    public function buscarClientesJson($term)
+    {
+        $sql = "SELECT * FROM clientes 
+        WHERE razon_social LIKE '%$term%' OR ruc LIKE '%$term%' 
+        ORDER BY razon_social ASC";
+        return $this->c_conectar->get_Cursor($sql);
+    }
+
+
     public function ver_clientes()
     {
         $query = "select ruc, razon_social, id_clientes, tipo, ultimo_servicio, estado 
