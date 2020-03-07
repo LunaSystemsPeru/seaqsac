@@ -102,8 +102,9 @@ if (filter_input(INPUT_GET, 'plan')) {
                                 </thead>
                                 <tbody>
                                 <?php
-                                $directorio = '../../archivos/cliente/pgrs/' . $sucursal->getIdCliente() . "/" . $sucursal->getIdSucursal() . "/";
-                                if (file_exists($directorio)) {
+                                $directorio = '../../archivos/clientes/pgrs/' . $planResiduos->getIdPlan() . "/";
+                                echo $directorio;
+                                //if (file_exists($directorio)) {
                                     $dir = opendir($directorio);
                                     // Leo todos los ficheros de la carpeta
                                     while ($elemento = readdir($dir)) {
@@ -127,7 +128,7 @@ if (filter_input(INPUT_GET, 'plan')) {
                                             }
                                         }
                                     }
-                                }
+                               // }
                                 ?>
                                 </tbody>
                             </table>
@@ -158,7 +159,8 @@ if (filter_input(INPUT_GET, 'plan')) {
                 </div>
                 <div class="modal-body">
                     <h4 class="card-title">Dropzone</h4>
-                    <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+                    <form action="../controller/ajax/guardar_archivos.php?id_plan=<?php echo $planResiduos->getIdPlan()?>" class="dropzone" id="my-awesome-dropzone">
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button onclick="actualizar()" class="btn btn-success">Actualizar</button>
@@ -189,6 +191,9 @@ if (filter_input(INPUT_GET, 'plan')) {
     <!-- End custom js for this page-->
 
     <script>
+        function actualizar () {
+            location.reload();
+        }
         //Dropzone.autoDiscover = false;
         /*jQuery(document).ready(function() {
             $("div#my-awesome-dropzone").Dropzone({

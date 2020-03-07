@@ -1,6 +1,6 @@
 <?php
 
-print_r($_FILES);
+$plan = filter_input(INPUT_GET, 'id_plan');
 
 if (!empty($_FILES["file"])) {
     $file = $_FILES['file']['name'];
@@ -14,7 +14,7 @@ if (!empty($_FILES["file"])) {
     } else {
 
         //establecer directorio de subida
-        $dir_subida = '../../../archivos/clientes/pgrs/2/1/';
+        $dir_subida = '../../../archivos/clientes/pgrs/'.$plan.'/';
 
         if (!file_exists($dir_subida)) {
             if (!mkdir($dir_subida, 0777, true)) {
