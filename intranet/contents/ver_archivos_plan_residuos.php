@@ -20,7 +20,7 @@ $planResiduos = new PlanResiduos();
     <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
-    <link rel="stylesheet" href="../../vendors/jquery.uploadfile/uploadfile.css">
+        <link rel="stylesheet" href="../../vendors/dropzone/dropzone.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
@@ -51,6 +51,15 @@ $planResiduos = new PlanResiduos();
                 <div class="row">
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Dropzone</h4>
+                                <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
                             <div class="card-header">
                                 <h4 class="h3">Archivos</h4>
 
@@ -60,27 +69,7 @@ $planResiduos = new PlanResiduos();
                                 <div class="card-body">
                                     <h4 class="card-title">Archivos Subidos</h4>
                                     <div class="file-upload-wrapper">
-                                        <div id="fileuploader">
-                                            <div class="ajax-upload-dragdrop"
-                                                 style="vertical-align: top; width: 400px;">
-                                                <div class="ajax-file-upload"
-                                                     style="position: relative; overflow: hidden; cursor: default;">
-                                                    Upload
-                                                    <form method="POST" action="../controller/ajax/guardar_archivos.php"
-                                                          enctype="multipart/form-data"
-                                                          style="margin: 0px; padding: 0px;">
-                                                        <input type="file"
-                                                               id="ajax-upload-id-1583538033741"
-                                                               name="myfile[]"
-                                                               accept="application/pdf"
-                                                               multiple=""
-                                                               style="position: absolute; cursor: pointer; top: 0px; width: 100%; height: 100%; left: 0px; z-index: 100; opacity: 0;">
-                                                    </form>
-                                                </div>
-                                                <span><b>Drag &amp; Drop Files</b></span></div>
-                                            <div></div>
-                                        </div>
-                                        <div class="ajax-file-upload-container"></div>
+                                        <div id="fileuploader">Upload</div>
                                     </div>
                                 </div>
                             </div>
@@ -108,28 +97,25 @@ $planResiduos = new PlanResiduos();
 <!-- inject:js -->
 <script src="../../vendors/assets/js/off-canvas.js"></script>
 <script src="../../vendors/assets/js/misc.js"></script>
-<script src="../../vendors/jquery.uploadfile/jquery.uploadfile.min.js"></script>
+<script src="../../vendors/dropzone/dropzone.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="../../vendors/assets/js/dashboard.js"></script>
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="../../vendors/select2/js/select2.js"></script>
 
 
 <!-- End custom js for this page-->
 
 <script>
-    (function($) {
-        'use strict';
-        if ($("#fileuploader").length) {
-            $("#fileuploader").uploadFile({
-                url: "YOUR_FILE_UPLOAD_URL",
-                fileName: "myfile"
-            });
-        }
-    })(jQuery);
+    //Dropzone.autoDiscover = false;
+    /*jQuery(document).ready(function() {
+        $("div#my-awesome-dropzone").Dropzone({
+            url: "../controller/ajax/guardar_archivos.php"
+        });
+    });*/
+
 
 </script>
 </body>
