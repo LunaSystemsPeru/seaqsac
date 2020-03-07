@@ -99,6 +99,20 @@ class PlanResiduos
         $this->anio = $resultado['anio'];
     }
 
+    public function obtener_datos_cliente()
+    {
+        $query = "SELECT 
+                      * 
+                    FROM
+                      plan_residuos 
+                      WHERE anio='$this->anio'  AND id_cliente='$this->id_cliente' AND id_sucursal='$this->id_sucursal' LIMIT 1;";
+        $resultado = $this->c_conectar->get_Row($query);
+        $this->id_plan = $resultado['id_plan'];
+        $this->id_cliente = $resultado['id_cliente'];
+        $this->id_sucursal = $resultado['id_sucursal'];
+        $this->anio = $resultado['anio'];
+    }
+
 
     public function insertar()
     {
@@ -125,6 +139,10 @@ class PlanResiduos
                     ON cls.id_clientes = cl.id_clientes ";
         return $this->c_conectar->get_Cursor($query);
     }
+
+
+
+
     public function versucursalesAnio()
     {
         $query = "SELECT 

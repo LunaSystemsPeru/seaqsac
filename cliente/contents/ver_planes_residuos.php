@@ -1,5 +1,32 @@
 <?php
 session_start();
+require '../../models/PlanResiduos.php';
+$planResiduos=new PlanResiduos();
+
+
+$idSucursal= filter_input(INPUT_GET, 'sucursal');
+$anio= filter_input(INPUT_GET, 'anio');
+
+$planResiduos->setIdCliente($_SESSION['id_cliente']);
+$planResiduos->setAnio($anio);
+$planResiduos->setIdSucursal($idSucursal);
+$planResiduos->obtener_datos_cliente();
+
+$idPlan=$planResiduos->getIdPlan();
+
+$listaArchivos=[];
+$ruta="../../archivos/clientes/$idPlan/";
+if (is_dir($ruta)){
+    $gestor = opendir($ruta);
+    while (($archivo = readdir($gestor)) !== false)  {
+        $listaArchivos[]=$archivo;
+    }
+    closedir($gestor);
+}
+
+foreach ($listaArchivos as $item){
+    echo $item . '<br>';
+}
 
 ?>
 <!DOCTYPE html>
@@ -62,9 +89,6 @@ session_start();
                     <div class="col-md-4">
                         <div class="card">
 
-                            <?php
-
-                            ?>
                             <div class="card-body">
                                 <p><span class="font-weight-bold">cliente =</span> </p>
                                 <p><span class="font-weight-bold">ubicacion =</span> </p>
@@ -92,7 +116,7 @@ session_start();
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <embed id="documento_PDF"  src=""  width="100%" height="750px" />
+                        <embed id="documento_PDF"  src="../../archivos/clientes/<?php echo $idPlan;?>/"  width="100%" height="750px" />
                     </div>
                 </div>
                 <br>
