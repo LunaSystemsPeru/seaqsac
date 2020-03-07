@@ -19,6 +19,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="ver_informe_residuos_sucursal.php">
+                <i class="menu-icon mdi mdi-content-copy"></i>
+                <span class="menu-title">Ver Plan de Residuos Solidos</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="ver_capacitaciones_clientes.php">
                 <i class="menu-icon mdi mdi-content-copy"></i>
                 <span class="menu-title">Ver Capacitaciones</span>
