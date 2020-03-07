@@ -16,7 +16,7 @@ $idPlan=$planResiduos->getIdPlan();
 
 $listaArchivos=[];
 $ruta="../../archivos/clientes/pgrs/$idPlan/";
-echo $ruta;
+
 if (is_dir($ruta)){
     $gestor = opendir($ruta);
     while (($archivo = readdir($gestor)) !== false)  {
@@ -28,9 +28,7 @@ if (is_dir($ruta)){
     closedir($gestor);
 }
 
-foreach ($listaArchivos as $item){
-    echo $item . '<br>';
-}
+
 
 ?>
 <!DOCTYPE html>
