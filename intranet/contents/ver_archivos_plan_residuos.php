@@ -1,5 +1,5 @@
 <?php
-
+require 'cabeza.php';
 require '../../models/PlanResiduos.php';
 
 $planResiduos = new PlanResiduos();
@@ -70,11 +70,11 @@ $planResiduos = new PlanResiduos();
                                                           enctype="multipart/form-data"
                                                           style="margin: 0px; padding: 0px;">
                                                         <input type="file"
-                                                                                                    id="ajax-upload-id-1583538033741"
-                                                                                                    name="myfile[]"
-                                                                                                    accept="application/pdf"
-                                                                                                    multiple=""
-                                                                                                    style="position: absolute; cursor: pointer; top: 0px; width: 100%; height: 100%; left: 0px; z-index: 100; opacity: 0;">
+                                                               id="ajax-upload-id-1583538033741"
+                                                               name="myfile[]"
+                                                               accept="application/pdf"
+                                                               multiple=""
+                                                               style="position: absolute; cursor: pointer; top: 0px; width: 100%; height: 100%; left: 0px; z-index: 100; opacity: 0;">
                                                     </form>
                                                 </div>
                                                 <span><b>Drag &amp; Drop Files</b></span></div>
@@ -121,10 +121,15 @@ $planResiduos = new PlanResiduos();
 <!-- End custom js for this page-->
 
 <script>
-
-
-
-
+    (function($) {
+        'use strict';
+        if ($("#fileuploader").length) {
+            $("#fileuploader").uploadFile({
+                url: "YOUR_FILE_UPLOAD_URL",
+                fileName: "myfile"
+            });
+        }
+    })(jQuery);
 
 </script>
 </body>

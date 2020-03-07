@@ -26,7 +26,7 @@ $c_cliente->setIdCliente(filter_input(INPUT_POST, 'hidden_id_cliente'));
 
 if (!$tipoAccion) {
     $c_cliente->obtener_id();
-    if ($c_cliente->getTipo() == 1) {
+    if ($c_cliente->getTipo() != 0) {
         $c_cliente->setContrasena($c_varios->generarCodigo(8));
     }
 

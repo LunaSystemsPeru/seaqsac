@@ -1,5 +1,5 @@
 <?php
-
+require  'cabeza.php';
 require  '../../models/PlanResiduos.php';
 require  '../../models/Cliente.php';
 
