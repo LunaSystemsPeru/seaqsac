@@ -89,6 +89,16 @@ class PlanResiduos
         $this->id_plan = $this->c_conectar->get_valor_query($query, "codigo");
     }
 
+    public function obtener_datos()
+    {
+        $query = "select *  
+        from plan_residuos";
+        $resultado = $this->c_conectar->get_Row($query);
+        $this->id_cliente = $resultado['id_cliente'];
+        $this->id_sucursal = $resultado['id_sucursal'];
+        $this->anio = $resultado['anio'];
+    }
+
 
     public function insertar()
     {

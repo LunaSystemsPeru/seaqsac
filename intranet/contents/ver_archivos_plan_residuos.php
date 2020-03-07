@@ -1,9 +1,26 @@
 <?php
 require 'cabeza.php';
 require '../../models/PlanResiduos.php';
+require '../../models/ClienteSucursal.php';
+require '../../models/Cliente.php';
 
 $planResiduos = new PlanResiduos();
+$sucursal = new ClienteSucursal();
+$cliente = new Cliente();
 
+if (filter_input(INPUT_GET, 'plan')) {
+    $planResiduos->setIdPlan(filter_input(INPUT_GET, 'plan'));
+    $planResiduos->obtener_datos();
+
+    $cliente->setIdCliente($planResiduos->getIdCliente());
+    $cliente->obtener_datos();
+
+    $sucursal->setIdCliente($planResiduos->getIdCliente());
+    $sucursal->setIdSucursal($planResiduos->getIdSucursal());
+    $sucursal->obtener_datos();
+} else {
+    header("Location: ver_plan_residuos.php");
+}
 
 ?>
 <!DOCTYPE html>
@@ -15,12 +32,12 @@ $planResiduos = new PlanResiduos();
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Bancos | SEAQ SAC - Software de Gestion </title>
+    <title>Plan de Residuos por Cliente - Sucursal | SEAQ SAC - Software de Gestion </title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
-        <link rel="stylesheet" href="../../vendors/dropzone/dropzone.css">
+    <link rel="stylesheet" href="../../vendors/dropzone/dropzone.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/font-awesome.min.css"/>
@@ -48,76 +65,139 @@ $planResiduos = new PlanResiduos();
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
-                <div class="row">
-                    <div class="col-lg-12 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Dropzone</h4>
-                                <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
-                            </div>
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Archivos de Plan de Residuos Solidos</h3>
                         </div>
-                    </div>
-
-                    <div class="col-lg-12 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="h3">Archivos</h4>
-
-                            </div>
-
-                            <div class="card-body">
-                                <div class="card-body">
-                                    <h4 class="card-title">Archivos Subidos</h4>
-                                    <div class="file-upload-wrapper">
-                                        <div id="fileuploader">Upload</div>
-                                    </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label class="col-form-label"> Cliente : <?php echo $cliente->getRazonSocial() ?></label>
                                 </div>
-                            </div>
+                                <div class="form-group">
+                                    <label class="col-form-label"> Sucursal : <?php echo $sucursal->getNombre() . " - " . $sucursal->getDireccion() ?></label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label"> Año : <?php echo $planResiduos->getAnio() ?></label>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
+                <br/>
+
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-header">
+                            <button class="btn btn-success" data-toggle="modal" data-target="#modal_upload"><i class="fa fa-plus"></i> agregar archivos</button>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Archivo</th>
+                                    <th>Acciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                $directorio = '../../archivos/cliente/pgrs/' . $sucursal->getIdCliente() . "/" . $sucursal->getIdSucursal() . "/";
+                                if (file_exists($directorio)) {
+                                    $dir = opendir($directorio);
+                                    // Leo todos los ficheros de la carpeta
+                                    while ($elemento = readdir($dir)) {
+                                        // Tratamos los elementos . y .. que tienen todas las carpetas
+                                        if ($elemento != "." && $elemento != "..") {
+                                            // Si es una carpeta
+                                            if (is_dir($directorio . $elemento)) {
+                                                // Muestro la carpeta
+                                                //echo "<p><strong>CARPETA: ". $elemento ."</strong></p>";
+                                                // Si es un fichero
+                                            } else {
+                                                // Muestro el fichero
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $elemento ?></td>
+                                                    <td class="text-center">
+                                                        <button onclick="eliminar(1)" class="btn btn-icons btn-danger" title="Eliminar Pago"><i class="fa fa-trash"></i></button>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                            }
+                                        }
+                                    }
+                                }
+                                ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer.html -->
+                <?php include '../fixed/footer.php' ?>
+                <!-- partial -->
             </div>
-            <!-- content-wrapper ends -->
-            <!-- partial:partials/_footer.html -->
-            <?php include '../fixed/footer.php' ?>
-            <!-- partial -->
+            <!-- main-panel ends -->
         </div>
-        <!-- main-panel ends -->
+        <!-- page-body-wrapper ends -->
     </div>
-    <!-- page-body-wrapper ends -->
-</div>
-<!-- container-scroller -->
+    <!-- container-scroller -->
 
-<!-- plugins:js -->
-<script src="../../vendors/js/vendor.bundle.base.js"></script>
-<script src="../../vendors/js/vendor.bundle.addons.js"></script>
-<!-- endinject -->
-<!-- Plugin js for this page-->
-<!-- End plugin js for this page-->
-<!-- inject:js -->
-<script src="../../vendors/assets/js/off-canvas.js"></script>
-<script src="../../vendors/assets/js/misc.js"></script>
-<script src="../../vendors/dropzone/dropzone.js"></script>
-<!-- endinject -->
-<!-- Custom js for this page-->
-<script src="../../vendors/assets/js/dashboard.js"></script>
+    <div class="modal fade" id="modal_upload" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-4"
+         style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel-4">Contrato</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="card-title">Dropzone</h4>
+                    <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="actualizar()" class="btn btn-success">Actualizar</button>
+                    <!--<button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- plugins:js -->
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="../../vendors/assets/js/off-canvas.js"></script>
+    <script src="../../vendors/assets/js/misc.js"></script>
+    <script src="../../vendors/dropzone/dropzone.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../vendors/assets/js/dashboard.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
-<!-- End custom js for this page-->
+    <!-- End custom js for this page-->
 
-<script>
-    //Dropzone.autoDiscover = false;
-    /*jQuery(document).ready(function() {
-        $("div#my-awesome-dropzone").Dropzone({
-            url: "../controller/ajax/guardar_archivos.php"
-        });
-    });*/
+    <script>
+        //Dropzone.autoDiscover = false;
+        /*jQuery(document).ready(function() {
+            $("div#my-awesome-dropzone").Dropzone({
+                url: "../controller/ajax/guardar_archivos.php"
+            });
+        });*/
 
 
-</script>
+    </script>
 </body>
 
 
