@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 require '../../models/Banco.php';
 $c_banco = new Banco();
 ?>

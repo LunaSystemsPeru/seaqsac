@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 require '../../models/Proveedor.php';
 $c_proveedor = new Proveedor();
 ?>

@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 require '../../models/Compra.php';
 require '../../tools/cl_varios.php';
 require '../../models/Banco.php';

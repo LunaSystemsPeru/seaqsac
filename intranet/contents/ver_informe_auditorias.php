@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 require '../../models/Auditoria.php';
 $c_auditoria = new auditoria();
 ?>

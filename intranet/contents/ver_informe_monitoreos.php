@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 require '../../models/Monitoreo.php';
 $c_monitoreo = new Monitoreo();
 ?>

@@ -124,34 +124,15 @@
             </li>
             <li class="nav-item dropdown d-none d-xl-inline-block">
                 <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                    <span class="profile-text">Hola, Kristian Garcia !</span>
-                    <img class="img-xs rounded-circle" src="../../vendors/assets/images/faces/face1.jpg" alt="Profile image">
+                    <span class="profile-text">Hola, <?php echo $_SESSION['nombre']?> !</span>
+                    <img class="img-xs rounded-circle" src="../../archivos/empleados/perfil/<?php echo $_SESSION['foto']?>" alt="Profile image">
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-                    <a class="dropdown-item p-0">
-                        <div class="d-flex border-bottom">
-                            <div class="py-3 px-4 d-flex align-items-center justify-content-center">
-                                <i class="mdi mdi-bookmark-plus-outline mr-0 text-gray"></i>
-                            </div>
-                            <div class="py-3 px-4 d-flex align-items-center justify-content-center border-left border-right">
-                                <i class="mdi mdi-account-outline mr-0 text-gray"></i>
-                            </div>
-                            <div class="py-3 px-4 d-flex align-items-center justify-content-center">
-                                <i class="mdi mdi-alarm-check mr-0 text-gray"></i>
-                            </div>
-                        </div>
+                   <a href="mod_usuario.php" class="dropdown-item mt-2">
+                        Modificar mis Datos
                     </a>
-                    <a class="dropdown-item mt-2">
-                        Manage Accounts
-                    </a>
-                    <a class="dropdown-item">
-                        Change Password
-                    </a>
-                    <a class="dropdown-item">
-                        Check Inbox
-                    </a>
-                    <a class="dropdown-item">
-                        Sign Out
+                    <a href="../controller/logout.php" class="dropdown-item">
+                        Salir
                     </a>
                 </div>
             </li>

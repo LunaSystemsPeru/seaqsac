@@ -17,7 +17,7 @@ $c_capacitacion->setTotHoras(filter_input(INPUT_POST, 'input_horas'));
 $c_capacitacion->setIdTipo(filter_input(INPUT_POST, 'select_tipo'));
 $c_capacitacion->setNombre(filter_input(INPUT_POST, 'input_descripcion'));
 $c_capacitacion->setArchivoAsistencia(filter_input(INPUT_POST, 'input_archivo'));
-$c_capacitacion->setNasistentes(filter_input(INPUT_POST,''));
+$c_capacitacion->setNasistentes(0);
 $c_capacitacion->obtener_id();
 
 if ($c_capacitacion->insertar()) {

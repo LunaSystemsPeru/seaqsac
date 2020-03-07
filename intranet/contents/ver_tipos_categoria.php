@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 if (is_null(filter_input(INPUT_GET, 'id_tipo'))) {
     header("Location: ver_tipos.php");
 }
@@ -52,8 +53,8 @@ $c_clase->setIdTipo(filter_input(INPUT_GET, 'id_tipo'));
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="h3">Tipo: <?php echo $c_tipo->getNombre()?></h4>
+                                <a class="btn btn-success" href="ver_tipos.php?id_general=<?php echo $c_tipo->getCodigo()?>"><i class="fa fa-arrow-left"></i>Ver Clasificacion</a>
                                 <button class="btn btn-info" data-toggle="modal" data-target="#modalcrear"><i class="fa fa-plus"></i>Agregar</button>
-                                <a class="btn btn-success" href="ver_tipos.php"><i class="fa fa-arrow-left"></i>Ver Clasificacion</a>
 
                                 <div class="modal fade" id="modalcrear" tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog">

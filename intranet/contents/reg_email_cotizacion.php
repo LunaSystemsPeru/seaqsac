@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 require '../../models/Presupuesto.php ';
 
 $presupuesto=new Presupuesto();

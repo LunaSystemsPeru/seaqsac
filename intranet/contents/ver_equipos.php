@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 require '../../models/Equipo.php';
 $c_equipo = new Equipo();
 ?>

@@ -18,6 +18,7 @@ class Usuario
     private $estado;
     private $id_empresa;
     private $username;
+    private $foto;
     private $c_conectar;
 
     /**
@@ -172,6 +173,29 @@ class Usuario
         $this->username = $username;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFoto()
+    {
+        return $this->foto;
+    }
+
+    /**
+     * @param mixed $foto
+     */
+    public function setFoto($foto)
+    {
+        $this->foto = $foto;
+    }
+
+    public function obtener_id()
+    {
+        $query = "select ifnull(max(id_usuarios) + 1, 1) 
+        as codigo 
+        from usuarios ";
+        $this->id_usuario = $this->c_conectar->get_valor_query($query, "codigo");
+    }
 
     public function obtener_datos()
     {
@@ -186,6 +210,7 @@ class Usuario
         $this->estado = $columna['estado'];
         $this->id_empresa = $columna['id_empresas'];
         $this->username = $columna ['username'];
+        $this->foto = $columna ['foto'];
     }
 
     public function actualizar_session()
@@ -193,6 +218,46 @@ class Usuario
         $query = "update usuarios 
         set fecha_session = curdate() 
         where id_usuarios = '$this->id_usuario'";
+        return $this->c_conectar->ejecutar_idu($query);
+    }
+
+    public function modificar()
+    {
+        $query = "update usuarios set 
+        nombre = '$this->nombre',
+        email = '$this->email',
+        celular = '$this->celular',
+        contrasena = '$this->contrasena', 
+        username = '$this->username',
+        foto = '$this->foto'
+        where id_usuarios = '$this->id_usuario'";
+        //echo $query;
+        return $this->c_conectar->ejecutar_idu($query);
+    }
+
+    public function eliminar()
+    {
+        $query = "delete from usuarios 
+        where id_usuarios = '$this->id_usuario'";
+        return $this->c_conectar->ejecutar_idu($query);
+    }
+
+    public function insertar()
+    {
+        $query = "insert into usuarios 
+        value (
+        '$this->id_usuario',
+        '$this->nombre',
+        '$this->email',
+        '$this->celular',
+        '$this->contrasena',
+        current_date(),
+        '1',
+        '$this->id_empresa',
+        '$this->username',
+        '$this->foto'
+        )";
+
         return $this->c_conectar->ejecutar_idu($query);
     }
 

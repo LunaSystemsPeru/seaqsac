@@ -1,5 +1,5 @@
 <?php
-session_start();
+include 'cabeza.php';
 require '../../models/Usuario.php';
 require '../../tools/cl_varios.php';
 $c_usuario = new Usuario();
@@ -70,14 +70,17 @@ $c_varios = new cl_varios();
                                         foreach ($a_resultado as $fila) {
                                             ?>
                                             <tr>
-                                                <td><?php echo $fila['id_usuarios']?></td>
-                                                <td class="text-center"><?php echo $fila['username']?></td>
-                                                <td><?php echo $fila['nombre']?></td>
-                                                <td class="text-center"><?php echo $c_varios->fecha_mysql_web($fila['fecha_session'])?></td>
+                                                <td><?php echo $fila['id_usuarios'] ?></td>
+                                                <td class="text-center"><?php echo $fila['username'] ?></td>
+                                                <td><?php echo $fila['nombre'] ?></td>
+                                                <td class="text-center"><?php echo $c_varios->fecha_mysql_web($fila['fecha_session']) ?></td>
                                                 <td class="text-center">
-                                                    <a href="ver_tipos_categoria.php?id_tipo=1" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
-                                                    <a href="reg_empresa.php?id=<?php echo $fila['id_usuarios'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
-                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-close"></i></button>
+                                                    <a href="mod_usuario.php?id=<?php echo $fila['id_usuarios'] ?>"  title="Modificar Usuario"
+                                                       class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
+                                                    <a href="ver_usuarios_permisos.php?id=<?php echo $fila['id_usuarios'] ?>"
+                                                       class="btn btn-success btn-sm"  title="Asignar Permisos"><i class="fa fa-lock"></i></a>
+                                                    <button class="btn btn-danger btn-sm" onclick="eliminar('<?php echo $fila['id_usuarios'] ?>')"><i class="fa fa-close"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                             <?php
@@ -95,31 +98,64 @@ $c_varios = new cl_varios();
             <div class="modal fade" id="modalcrear" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <form class="forms-sample" method="post" action="../controller/reg_usuario.php">
+                        <form class="forms-sample" method="post" enctype="multipart/form-data" action="../controller/reg_usuario.php">
                             <div class="color-line"></div>
                             <div class="modal-header text-center">
                                 <h4 class="modal-title">Agregar Usuario</h4>
                             </div>
                             <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="exampleInputName1">Usuario </label>
-                                    <input type="text" class="form-control" id="input_usuario" name="input_usuario" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputName1">Apellidos y Nombres </label>
-                                    <input type="text" class="form-control" id="input_datos" name="input_datos" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputName1">Email </label>
-                                    <input type="email" class="form-control" id="input_email" name="input_email" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputName1">Nro Celular </label>
-                                    <input type="text" class="form-control" id="input_celular" name="input_celular" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputName1">Contraeña </label>
-                                    <input type="text" class="form-control" id="input_pass" name="input_pass" required>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label for="exampleInputName1">Usuario </label>
+                                            <input type="text" class="form-control" id="input_usuario"
+                                                   name="input_usuario"
+                                                   required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputName1">Apellidos y Nombres </label>
+                                            <input type="text" class="form-control" id="input_datos" name="input_datos"
+                                                   required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputName1">Email </label>
+                                            <input type="email" class="form-control" id="input_email" name="input_email"
+                                                   required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputName1">Nro Celular </label>
+                                            <input type="text" class="form-control" id="input_celular"
+                                                   name="input_celular"
+                                                   required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputName1">Contraeña </label>
+                                            <input type="text" class="form-control" id="input_pass" name="input_pass"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div id="image_preview">
+                                            <img id="previewing" class="col-md-12" src="../../vendors/assets/images/faces/face1.jpg"/>
+                                        </div>
+                                        <hr id="line">
+                                        <div id="selectImage form-group">
+                                            <!--input class="form-control" type="file" name="file" id="file" required/-->
+                                            <div class="form-group">
+                                                <input accept="image/*"  id="file" type="file" name="file" class="file-upload-default">
+                                                <div class="input-group col-xs-12">
+                                                    <input id="nom_archivo" type="text" class="form-control file-upload-info" disabled=""
+                                                           placeholder="selecione">
+                                                    <span class="input-group-append">
+                                                            <button onclick="selectArchivo()" class="file-upload-browse btn btn-info"
+                                                                    type="button"><i class="fa fa-cloud-upload"></i>Subir</button>
+                                                        </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div id="message"></div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -166,6 +202,52 @@ $c_varios = new cl_varios();
 
     });
 
+    $(document).ready(function (e) {
+        // Function to preview image after validation
+        $(function () {
+            $("#file").change(function () {
+                $("#message").empty(); // To remove the previous error message
+                var file = this.files[0];
+                var imagefile = file.type;
+                var match = ["image/jpeg", "image/png", "image/jpg"];
+                if (!((imagefile == match[0]) || (imagefile == match[1]) || (imagefile == match[2]))) {
+                    $('#previewing').attr('src', 'images/faces/face2.jpg');
+                    $("#message").html("<p id='error'>Porfavor seleccione un archivo valido</p>"
+                        + "<h4>Nota</h4>"
+                        + "<span id='error_message'>solamente jpeg, jpg y png son tipos permitidos</span>");
+                    return false;
+                } else {
+                    var reader = new FileReader();
+                    reader.onload = imageIsLoaded;
+                    reader.readAsDataURL(this.files[0]);
+                    $('#nom_archivo').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+                }
+            });
+        });
+
+        function imageIsLoaded(e) {
+            $("#file").css("color", "green");
+            $('#image_preview').css("display", "block");
+            $('#previewing').attr('src', e.target.result);
+            $('#previewing').attr('width', '280px');
+            //$('#previewing').attr('height', '300px');
+        }
+    });
+
+    function selectArchivo() {
+        $('#file').trigger('click');
+    }
+
+    function eliminar(id_usuario) {
+        if (id_usuario !== "") {
+            if (!confirm("¿Está seguro de que desea eliminar el Usuario Seleccionado?")) {
+                return false;
+            } else {
+                document.location = "../controller/del_usuario.php?id=" + id_usuario;
+                return true;
+            }
+        }
+    }
 </script>
 </body>
 

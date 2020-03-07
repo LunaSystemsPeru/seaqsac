@@ -345,7 +345,7 @@ class Cliente
 
     public function ver_clientes()
     {
-        $query = "select ruc, razon_social, id_clientes, tipo, ultimo_servicio, estado 
+        $query = "select * 
         from clientes 
         order by razon_social asc";
         return $this->c_conectar->get_Cursor($query);

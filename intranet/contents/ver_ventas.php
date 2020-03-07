@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 require '../../models/Venta.php';
 $c_venta = new Venta();
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-require('fpdf.php');
+require __DIR__ . '/fpdf.php';
 
 class PDF_Rotate extends FPDF {
 
@@ -47,5 +47,3 @@ class PDF_Rotate extends FPDF {
     }
 
 }
-
-?>

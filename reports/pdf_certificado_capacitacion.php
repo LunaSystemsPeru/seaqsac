@@ -9,13 +9,13 @@ if (is_null(filter_input(INPUT_GET, 'id_capacitacion'))) {
     header("Location: ../ver_capacitaciones_clientes.php");
 }
 
-require('../clases_varios/fpdf/rotations.php');
-require('../clases_varios/cl_varios.php');
+require('../tools/fpdf/rotations.php');
+require('../tools/cl_varios.php');
 $c_varios = new cl_varios();
-define('FPDF_FONTPATH', '../clases_varios/fpdf/font/');
+define('FPDF_FONTPATH', '../tools/fpdf/font/');
 
-require '../clases/Capacitacion.php';
-require '../clases/CapacitacionAsistente.php';
+require '../models/Capacitacion.php';
+require '../models/CapacitacionAsistente.php';
 
 $c_capacitacion = new Capacitacion();
 $c_capacitacion->setIdCapacitacion(filter_input(INPUT_GET, 'id_capacitacion'));
@@ -52,7 +52,7 @@ $pdf->SetMargins(14, 14, 14);
 $pdf->SetAutoPageBreak(true, 10);
 $pdf->AddPage();
 
-$imagen = "../images/fondo_seaq.png";
+$imagen = "../vendors/assets/images/fondo_seaq.png";
 $pdf->Image($imagen, 0, 0, 297, 210);
 
 $pdf->SetY(70);

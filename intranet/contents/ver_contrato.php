@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 require '../../models/Contrato.php';
 $c_contrato = new Contrato();
 ?>

@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 require '../../models/OrdenInterna.php';
 $c_orden = new OrdenInterna();
 ?>

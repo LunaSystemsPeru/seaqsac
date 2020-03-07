@@ -1,4 +1,5 @@
 <?php
+include 'cabeza.php';
 require '../../models/DocumentoSunat.php';
 $c_documentos = new DocumentoSunat();
 ?>

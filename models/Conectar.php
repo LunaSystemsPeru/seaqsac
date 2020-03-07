@@ -217,7 +217,7 @@ class Conectar
         $db = Conectar::getInstancia();
         $mysqli = $db->getConnection();
         if (!$resultado = $mysqli->query($sql)) {
-            print_r("class.Conectar.class: error " . $mysqli->error);
+            print_r("class.Conectar.class: error " . $mysqli->error . "<br>" . $sql);
         }
         return $resultado;
     }

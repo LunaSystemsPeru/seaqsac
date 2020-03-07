@@ -1,5 +1,5 @@
 <?php
-session_start();
+include 'cabeza.php';
 require '../../models/TipoClasificacion.php';
 $c_tipo = new TipoClasificacion();
 $c_tipo->setCodigo(4);

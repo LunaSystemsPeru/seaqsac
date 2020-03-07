@@ -1,5 +1,5 @@
 <?php
-require 'init_page.php';
+include 'cabeza.php';
 
 require '../../models/Proveedor.php';
 require '../../models/Contrato.php';
