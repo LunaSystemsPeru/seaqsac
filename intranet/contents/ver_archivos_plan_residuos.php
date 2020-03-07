@@ -103,7 +103,6 @@ if (filter_input(INPUT_GET, 'plan')) {
                                 <tbody>
                                 <?php
                                 $directorio = '../../archivos/clientes/pgrs/' . $planResiduos->getIdPlan() . "/";
-                                echo $directorio;
                                 //if (file_exists($directorio)) {
                                     $dir = opendir($directorio);
                                     // Leo todos los ficheros de la carpeta
@@ -121,7 +120,7 @@ if (filter_input(INPUT_GET, 'plan')) {
                                                 <tr>
                                                     <td><?php echo $elemento ?></td>
                                                     <td class="text-center">
-                                                        <button onclick="eliminar(1)" class="btn btn-icons btn-danger" title="Eliminar Pago"><i class="fa fa-trash"></i></button>
+                                                        <button onclick="eliminar('<?php echo $planResiduos->getIdPlan()?>', '<?php echo $elemento ?>')" class="btn btn-icons btn-danger" title="Eliminar Pago"><i class="fa fa-trash"></i></button>
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -193,6 +192,24 @@ if (filter_input(INPUT_GET, 'plan')) {
     <script>
         function actualizar () {
             location.reload();
+        }
+
+        function eliminar(id_plam, archivo) {
+            $.ajax({
+                data: {"id_plan": id_plam, "archivo" : archivo},
+                url: '../controller/ajax/eliminar_apgrs.php',
+                type: 'post',
+                beforeSend: function () {
+                    console.log("espera");
+                },
+                success: function (response) {
+                    console.log(response);
+                    location.reload();
+                },
+                error: function () {
+                    console.log("error");
+                }
+            });
         }
         //Dropzone.autoDiscover = false;
         /*jQuery(document).ready(function() {
