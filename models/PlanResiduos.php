@@ -159,7 +159,8 @@ class PlanResiduos
                     AND pr.id_cliente = cls.id_clientes 
                   INNER JOIN clientes AS cl 
                     ON cls.id_clientes = cl.id_clientes
-                    WHERE pr.id_cliente='$this->id_cliente' AND pr.anio='$this->anio'";
+                    WHERE pr.id_cliente='$this->id_cliente' AND pr.anio='$this->anio' 
+                    order by cls.nombre asc";
         return $this->c_conectar->get_Cursor($query);
     }
 

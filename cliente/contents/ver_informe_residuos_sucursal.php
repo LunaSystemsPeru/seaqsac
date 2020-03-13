@@ -90,9 +90,9 @@ $listaSucursales=$planResiduo->versucursalesAnio();
                             <div class="card card-statistics">
                                 <div class="card-body" onclick="ir_monitoreo(<?php echo $item["id_sucursal"] ?>)">
                                     <div class="clearfix">
-                                        <div class="float-left">
-                                            <i class="fa fa-cubes text-danger icon-lg"></i>
-                                        </div>
+                                        <!--<div class="float-left">
+                                            <i class="fa fa-arrow-right text-danger icon-lg"></i>
+                                        </div>-->
                                         <div class="float-right">
                                             <p class="mb-0 text-right">Sucursal <?php echo $item["id_sucursal"] ?></p>
                                             <div class="fluid-container">

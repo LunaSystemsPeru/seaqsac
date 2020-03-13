@@ -25,6 +25,7 @@ if (is_dir($ruta)){
         }
 
     }
+    sort($listaArchivos);
     closedir($gestor);
 }
 
