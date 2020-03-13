@@ -112,7 +112,7 @@ if (is_dir($ruta)){
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <embed type="application/pdf" id="documento_PDF"  src="../../archivos/clientes/pgrs/<?php echo $idPlan;?>/<?php echo $listaArchivos[0];?>"  width="100%" height="750px" />
+                        <object type="application/pdf" id="documento_PDF"  data="../../archivos/clientes/pgrs/<?php echo $idPlan;?>/<?php echo $listaArchivos[0];?>"  width="100%" height="750px" ></object>
                     </div>
                 </div>
                 <br>
@@ -147,7 +147,7 @@ if (is_dir($ruta)){
 <script>
     function cargarDocumento(ruta){
         console.log(ruta)
-        $("#documento_PDF").prop("src",ruta);
+        $("#documento_PDF").prop("data",ruta);
     }
 
 

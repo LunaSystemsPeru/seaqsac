@@ -158,7 +158,7 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <embed id="documento_PDF" type="application/pdf"  src="<?php echo '../../archivos/clientes/monitoreos/' . $_SESSION['id_cliente'] . '/' . $c_monitoreo->getIdSucursal() . '/'. $c_monitoreo->getUrlInforme()?>"  width="100%" height="750px" />
+                        <object id="documento_PDF" type="application/pdf"  data="<?php echo '../../archivos/clientes/monitoreos/' . $_SESSION['id_cliente'] . '/' . $c_monitoreo->getIdSucursal() . '/'. $c_monitoreo->getUrlInforme()?>"  width="100%" height="750px" ></object>
                     </div>
                 </div>
                 <br>
@@ -225,7 +225,7 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
 <script>
     function cargarDocumento(ruta){
         console.log(ruta)
-        $("#documento_PDF").prop("src",ruta);
+        $("#documento_PDF").prop("data",ruta);
     }
 
 
