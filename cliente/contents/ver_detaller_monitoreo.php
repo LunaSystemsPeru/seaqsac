@@ -158,7 +158,7 @@ $c_mequipos->setIdMonitoreo($c_monitoreo->getIdMonitoreo());
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <embed id="documento_PDF"  src="<?php echo '../../archivos/clientes/monitoreos/' . $_SESSION['id_cliente'] . '/' . $c_monitoreo->getIdSucursal() . '/'. $c_monitoreo->getUrlInforme()?>"  width="100%" height="750px" />
+                        <embed id="documento_PDF" type="application/pdf"  src="<?php echo '../../archivos/clientes/monitoreos/' . $_SESSION['id_cliente'] . '/' . $c_monitoreo->getIdSucursal() . '/'. $c_monitoreo->getUrlInforme()?>"  width="100%" height="750px" />
                     </div>
                 </div>
                 <br>

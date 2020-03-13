@@ -111,7 +111,7 @@ if (is_dir($ruta)){
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <embed id="documento_PDF"  src="../../archivos/clientes/pgrs/<?php echo $idPlan;?>/<?php echo $listaArchivos[0];?>"  width="100%" height="750px" />
+                        <embed type="application/pdf" id="documento_PDF"  src="../../archivos/clientes/pgrs/<?php echo $idPlan;?>/<?php echo $listaArchivos[0];?>"  width="100%" height="750px" />
                     </div>
                 </div>
                 <br>
